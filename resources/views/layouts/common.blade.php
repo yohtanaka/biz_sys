@@ -7,7 +7,7 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>@yield('title')</title>
+	<title>biz sys | @yield('title')</title>
 
 	<!-- Scripts -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -19,8 +19,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
 	<!-- Styles -->
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
 	<header class="clearfix">
