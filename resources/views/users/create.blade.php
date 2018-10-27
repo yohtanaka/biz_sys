@@ -84,9 +84,9 @@
         <td class='form-group'>
             <select name='pref' class='form-control'>
                 <option value='0'></option>
-                @for ($i = 1; $i <= 47; $i ++)
-                <option value='$i'>{{ App\Models\City::where('pref_code', $i)->first()->pref_name }}</option>
-                @endfor
+                @foreach ($cities as $city)
+                <option value='$i'>{{ $city->pref_name }}</option>
+                @endforeach
             </select>
             {!! Form::text('city', null, ['class' => 'form-control']) !!}
             {!! Form::text('street', null, ['class' => 'form-control']) !!}
@@ -123,6 +123,9 @@
         <td class='form-group'>
             <select name='section' class='form-control'>
                 <option value='0'>選択してください</option>
+                @foreach ($sections as $section)
+                <option value="{{ $section->code }}">{{ $section->name }}</option>
+                @endforeach
             </select>
         </td>
     <tr>
@@ -131,6 +134,9 @@
         </td>
         <td class='form-group'>
             <select name='position' class='form-control'>
+                @foreach ($positions as $position)
+                <option value="{{ $position->code }}">{{ $position->name }}</option>
+                @endforeach
             </select>
         </td>
     </tr>
