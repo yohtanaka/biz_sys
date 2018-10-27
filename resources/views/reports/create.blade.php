@@ -21,25 +21,25 @@
     @for ($i = 0; $i < 8; $i ++)
         <table>
             <tr>
-                <tr class="form-group">
+                <td class="form-group">
                     {!! Form::label('shop', '店舗') !!}
                     {{ $i + 1 }}
                     {!! Form::text('shop', null, ['class' => 'form-control']) !!}
-                </tr>
-                <tr class="form-group">
+                </td>
+                <td class="form-group">
                     {!! Form::label('staff', '担当者') !!}
                     {!! Form::text('staff', null, ['class' => 'form-control']) !!}
-                </tr>
-                <tr class="form-group">
+                </td>
+                <td class="form-group">
                     <a href="#">報告内容に追加</a>
-                </tr>
+                </td>
             </tr>
         </table>
     @endfor
     <div class="form-group">
         {!! Form::label('body', '報告内容') !!}
     </div>
-    <div class="form-group">    
+    <div class="form-group">
         {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
