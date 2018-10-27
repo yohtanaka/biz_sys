@@ -1,5 +1,5 @@
 @extends('layouts.common')
-@section('title', '管理者画面')
+@section('title', '管理画面')
 @section('content')
 <ul>
     <li>ユーザ管理</li>

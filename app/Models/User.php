@@ -44,4 +44,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    static $role = [
+        1  => 'システム',
+        2  => 'マスター',
+        5  => '管理者',
+        10 => '一般',
+    ];
+
+    static $gender = [
+        '男性', '女性', 'その他',
+    ];
 }
