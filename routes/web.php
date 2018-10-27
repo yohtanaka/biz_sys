@@ -20,13 +20,13 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
     Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
 
-Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    Route::view('/admin', 'admin');
-    Route::resource('user', 'UsersController', ['only' => ['create', 'store', 'destroy']]);
+Route::group(['middleware' => ['auth', 'can:admin-higher'], 'prefix' => 'admin'], function () {
+    Route::view('/', 'admin');
+    Route::resource('user', 'UsersController');
 });
 
-Route::group(['middleware' => ['auth', 'can:master-higher']], function () {
+Route::group(['middleware' => ['auth', 'can:master-higher'], 'prefix' => 'admin'], function () {
 });
 
-Route::group(['middleware' => ['auth', 'can:system-only']], function () {
+Route::group(['middleware' => ['auth', 'can:system-only'], 'prefix' => 'admin'], function () {
 });
