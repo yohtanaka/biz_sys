@@ -27,13 +27,13 @@ class User extends Authenticatable
         'gender',
         'birthday',
         'zip',
-        'city_id',
+        'city_code',
         'street',
         'building',
         'tel_private',
         'tel_work',
-        'section',
-        'position',
+        'section_code',
+        'position_code',
     ];
 
     /**

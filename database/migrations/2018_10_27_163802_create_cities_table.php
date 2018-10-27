@@ -18,7 +18,7 @@ class CreateCitiesTable extends Migration
             $table->integer   ('pref_code')->comment('都道府県コード')->unsigned();
             $table->string    ('pref_name')->comment('都道府県名');
             $table->string    ('p_n_kana') ->comment('都道府県名カナ');
-            $table->integer   ('city_code')->comment('市区町村コード')->unsigned();
+            $table->integer   ('city_code')->comment('市区町村コード')->unsigned()->unique();
             $table->string    ('city_name')->comment('市区町村名')->nullable();
             $table->string    ('c_n_kana') ->comment('市区町村名カナ')->nullable();
         });
