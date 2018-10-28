@@ -51,6 +51,17 @@ table {
 }
 
 .form-inline {
-    width: 300px;
+    /*width: 300px;*/
     display: inline-block;
+}
+
+.form-short {
+    width: 200px;
+    display: inline-block;
+}
+
+.table-heading {
+    width: 150px;
+    padding-right: 10px;
+    text-align: right;
 }

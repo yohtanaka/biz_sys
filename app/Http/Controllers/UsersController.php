@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\City;
+use App\Models\User;
 use App\Models\Section;
 use App\Models\Position;
 
@@ -26,10 +27,11 @@ class UsersController extends Controller
      */
     public function create()
     {
+        $users     = User::all();
         $cities    = City::where('city_name', '')->get();
         $sections  = Section::all();
         $positions = Position::all();
-        return view('users.create', compact('cities', 'sections', 'positions'));
+        return view('users.create', compact('users', 'cities', 'sections', 'positions'));
     }
 
     /**
