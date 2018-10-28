@@ -52,22 +52,18 @@
     <tr>
         <th class="table-heading">{{ Form::label('zip1', '郵便番号') }}</td>
         <td>
-            {{ Form::text('zip1', null, ['class' => 'form-control form-short', 'placeholder' =>  '213']) }}
+            {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-short', 'placeholder' =>  '213']) }}
             <strong>-</strong>
-            {{ Form::text('zip2', null, ['class' => 'form-control form-short', 'placeholder' =>  '0014']) }}
+            {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-short', 'placeholder' =>  '0014']) }}
         </td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('perf', '住所') }}</td>
         <td>
-            <select name='pref' class='form-control form-short'>
-                <option value='' disabled selected style='display:none;'>神奈川</option>
-                @foreach ($cities as $city)
-                <option value='$i'>{{ $city->pref_name }}</option>
-                @endforeach
-            </select>
-            {{ Form::text('city', null, ['class' => 'form-control form-short', 'placeholder' =>  '川崎市高津区']) }}
-            {{ Form::text('street', null, ['class' => 'form-control form-short', 'placeholder' =>  '新作1-1-1']) }}
+            {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-short', 'placeholder' =>  '神奈川県']) }}
+            {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-short', 'placeholder' =>  '川崎市高津区']) }}
+            {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-short', 'placeholder' =>  '新作1-1-1']) }}
+            {{ Form::hidden('street_kana', null, ['id' => 'street_kana']) }}
         </td>
     </tr>
     <tr>
