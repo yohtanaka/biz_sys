@@ -1,4 +1,4 @@
-$(window).ready( function() {
+$(window).ready(function() {
     $('#zip1').jpostal({
         postcode : [
             '#zip1',

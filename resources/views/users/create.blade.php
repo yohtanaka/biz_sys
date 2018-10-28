@@ -2,11 +2,11 @@
 @section('title', 'ユーザ登録')
 @section('content')
 <h1 class="title">ユーザ登録</h1>
-{{ Form::model($users) }}
+{{ Form::model($users, ['route' => 'user.confirm']) }}
 <table class="form-group">
     <tr>
         <th class="table-heading">{{ Form::label('email', 'メールアドレス') }}</td>
-        <td>{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' =>  'example@email.com']) }}</td>
+        <td>{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'example@email.com']) }}</td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('role', '権限') }}</td>
@@ -23,21 +23,21 @@
     <tr>
         <th class="table-heading">{{ Form::label('last_name', '名前') }}</td>
         <td>
-            {{ Form::text('last_name', null, ['class' => 'form-control form-short', 'placeholder' =>  '山田']) }}
-            {{ Form::text('first_name', null, ['class' => 'form-control form-short', 'placeholder' =>  '太郎']) }}
+            {{ Form::text('last_name', null, ['class' => 'form-control form-short', 'placeholder' => '山田']) }}
+            {{ Form::text('first_name', null, ['class' => 'form-control form-short', 'placeholder' => '太郎']) }}
         </td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('l_n_kana', '名前(カナ)') }}</td>
         <td>
-            {{ Form::text('l_n_kana', null, ['class' => 'form-control form-short', 'placeholder' =>  'ヤマダ']) }}
-            {{ Form::text('f_n_kana', null, ['class' => 'form-control form-short', 'placeholder' =>  'タロウ']) }}
+            {{ Form::text('l_n_kana', null, ['class' => 'form-control form-short', 'placeholder' => 'ヤマダ']) }}
+            {{ Form::text('f_n_kana', null, ['class' => 'form-control form-short', 'placeholder' => 'タロウ']) }}
         </td>
     </tr>
     <tr>
         <th class="table-heading">性別</td>
         <td>
-            {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
+            {{ Form::radio('gender', 0, false, ['id'=>'men']) }}
             {{ Form::label('men', '男性') }}
             {{ Form::radio('gender', 1, false, ['id'=>'women']) }}
             {{ Form::label('women', '女性') }}
@@ -52,37 +52,37 @@
     <tr>
         <th class="table-heading">{{ Form::label('zip1', '郵便番号') }}</td>
         <td>
-            {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-short', 'placeholder' =>  '213']) }}
+            {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-short', 'placeholder' => '213']) }}
             <strong>-</strong>
-            {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-short', 'placeholder' =>  '0014']) }}
+            {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-short', 'placeholder' => '0014']) }}
         </td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('perf', '住所') }}</td>
         <td>
-            {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-short', 'placeholder' =>  '神奈川県']) }}
-            {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-short', 'placeholder' =>  '川崎市高津区']) }}
-            {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-short', 'placeholder' =>  '新作1-1-1']) }}
+            {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-short', 'placeholder' => '神奈川県']) }}
+            {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-short', 'placeholder' => '川崎市高津区']) }}
+            {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-short', 'placeholder' => '新作1-1-1']) }}
             {{ Form::hidden('street_kana', null, ['id' => 'street_kana']) }}
         </td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('building', '建物名/部屋番号') }}</td>
-        <td>{{ Form::text('building', null, ['class' => 'form-control', 'placeholder' =>  '田中マンション 101号室']) }}</td>
+        <td>{{ Form::text('building', null, ['class' => 'form-control', 'placeholder' => '田中マンション 101号室']) }}</td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('tel_private', '電話番号(個人)') }}</td>
-        <td>{{ Form::number('tel_private', null, ['class' => 'form-control', 'placeholder' =>  '0344445555']) }}</td>
+        <td>{{ Form::number('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}</td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('tel_work', '電話番号(会社)') }}</td>
-        <td>{{ Form::number('tel_work', null, ['class' => 'form-control', 'placeholder' =>  '07088889999']) }}</td>
+        <td>{{ Form::number('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}</td>
     </tr>
     <tr>
         <th class="table-heading">{{ Form::label('section', '部署') }}</td>
         <td>
             <select name='section' class='form-control'>
-                <option value='0'>選択してください</option>
+                <option value='' disabled selected style='display:none;'>選択してください</option>
                 @foreach ($sections as $section)
                 <option value="{{ $section->code }}">{{ $section->name }}</option>
                 @endforeach

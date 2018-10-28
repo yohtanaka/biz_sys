@@ -27,13 +27,13 @@
 </head>
 <body>
 	<header class="clearfix">
-	@include('layouts._header')
+		@include('layouts._header')
 	</header>
 	<div class="container">
 		@yield('content')
 	</div>
 	<footer>
-	@include('layouts._footer')
+		@include('layouts._footer')
 	</footer>
 </body>
 </html>
