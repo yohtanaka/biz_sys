@@ -7,28 +7,35 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Section;
 use App\Models\Position;
+use App\Library\Form;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function __construct(Form $form)
     {
-        return view('users.index');
+        $this->form = $form;
     }
 
-    public function create()
+    public function index()
     {
-        $users     = User::all();
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function create(Request $request)
+    {
         $sections  = Section::all();
         $positions = Position::all();
-        return view('users.create', compact('users', 'sections', 'positions'));
+        $data      = $this->form->beforeCreate($request);
+        return view('users.create', $data, compact('sections', 'positions'));
     }
 
     public function confirm(Request $request)
     {
-        $users     = User::all();
         $sections  = Section::all();
         $positions = Position::all();
-        return view('users.create', compact('users', 'sections', 'positions'));
+        $data      = $this->form->beforeConfirm($request);
+        return view('users.create', $data, compact('sections', 'positions'));
     }
 
     public function store(Request $request)
@@ -43,7 +50,8 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        return view('users.create');
+        $data = $this->form->beforeEdit($request);
+        return view('users.create', $data);
     }
 
     public function update(Request $request, $id)
