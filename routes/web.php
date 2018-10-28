@@ -14,20 +14,20 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
+Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
     Route::view('/', 'index');
     Route::resource('report', 'ReportsController');
     Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
 
-Route::group(['middleware' => ['auth', 'can:admin-higher'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'can:admin-higher'], 'prefix' => 'admin'], function() {
     Route::view('/', 'admin');
     Route::resource('user', 'UsersController');
-    Route::post('/user/confirm', 'UsersController@confirm')->name('user.confirm');
+    Route::post('user/confirm', 'UsersController@confirm')->name('user.confirm');
 });
 
-Route::group(['middleware' => ['auth', 'can:master-higher'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'can:master-higher'], 'prefix' => 'admin'], function() {
 });
 
-Route::group(['middleware' => ['auth', 'can:system-only'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'can:system-only'], 'prefix' => 'admin'], function() {
 });
