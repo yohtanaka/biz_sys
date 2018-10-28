@@ -55,4 +55,14 @@ class User extends Authenticatable
     static $gender = [
         '男性', '女性', 'その他',
     ];
+
+    public function section()
+    {
+        return $this->belongsTo('App\Models\Section', 'section_code', 'code');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo('App\Models\Position', 'position_code', 'code');
+    }
 }
