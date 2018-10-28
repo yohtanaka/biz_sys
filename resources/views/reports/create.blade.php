@@ -1,7 +1,7 @@
 @extends('layouts.common')
 @section('title', '日報作成')
 @section('content')
-<h1>日報登録</h1>
+<h1 class="title">日報登録</h1>
 {!! Form::open() !!}
 <table class="form-group">
     <tr>
