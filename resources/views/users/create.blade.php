@@ -53,8 +53,8 @@
         <td>{{ $value['last_name'] . ' ' . $value['first_name'] }}</td>
         @else
         <td>
-            {{ Form::text('last_name', null, ['class' => 'form-control form-short', 'placeholder' => '山田']) }}
-            {{ Form::text('first_name', null, ['class' => 'form-control form-short', 'placeholder' => '太郎']) }}
+            {{ Form::text('last_name', null, ['class' => 'form-control form-half', 'placeholder' => '山田']) }}
+            {{ Form::text('first_name', null, ['class' => 'form-control form-half', 'placeholder' => '太郎']) }}
         </td>
         @endif
     </tr>
@@ -64,8 +64,8 @@
         <td>{{ $value['l_n_kana'] . ' ' . $value['f_n_kana'] }}</td>
         @else
         <td>
-            {{ Form::text('l_n_kana', null, ['class' => 'form-control form-short', 'placeholder' => 'ヤマダ']) }}
-            {{ Form::text('f_n_kana', null, ['class' => 'form-control form-short', 'placeholder' => 'タロウ']) }}
+            {{ Form::text('l_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'ヤマダ']) }}
+            {{ Form::text('f_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'タロウ']) }}
         </td>
         @endif
     </tr>
@@ -98,9 +98,9 @@
         <td>{{ $value['zip1'] . '-' . $value['zip2'] }}</td>
         @else
         <td>
-            {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-short', 'placeholder' => '213']) }}
+            {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
             <strong>-</strong>
-            {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-short', 'placeholder' => '0014']) }}
+            {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
         </td>
         @endif
     </tr>
@@ -110,9 +110,9 @@
         <td>{{ $value['pref'] . ' ' . $value['city'] . ' ' . $value['street'] }}</td>
         @else
         <td>
-            {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-short', 'placeholder' => '神奈川県']) }}
-            {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-short', 'placeholder' => '川崎市高津区']) }}
-            {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-short', 'placeholder' => '新作1-1-1']) }}
+            {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-one-third', 'placeholder' => '神奈川県']) }}
+            {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-one-third', 'placeholder' => '川崎市高津区']) }}
+            {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-one-third', 'placeholder' => '新作1-1-1']) }}
             {{ Form::hidden('street_kana', null, ['id' => 'street_kana']) }}
         </td>
         @endif
@@ -171,9 +171,9 @@
     </tr>
 </table>
 @if ($confirm)
-<button type="submit" name="action" value="post" class="btn btn-primary form-short">送信</button>
-<button type="submit" name="action" value="back" class="btn btn-default form-short">戻る</button>
+<button type="submit" name="action" value="post" class="btn btn-primary form-half">送信</button>
+<button type="submit" name="action" value="back" class="btn btn-default form-half">戻る</button>
 @else
-<button type="submit" class="btn btn-primary form-short">確認画面へ</button>
+<button type="submit" class="btn btn-primary form-control">確認画面へ</button>
 @endif
 @endsection
