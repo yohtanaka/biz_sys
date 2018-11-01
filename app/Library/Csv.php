@@ -8,14 +8,14 @@ use Goodby\CSV\Import\Standard\LexerConfig;
 
 class Csv
 {
-    static function download($type, $dataList) {
+    static function download($data) {
         $dateCsv     = $name . date('YmdHis') . '.csv';
         $csvFileName = "storage/csv/" . $dateCsv;
         $res         = fopen($csvFileName, 'w');
-        foreach($dataList as $dataInfo) {
-            mb_convert_variables('SJIS-win', 'UTF-8', $dataInfo);
+        foreach($data as $line) {
+            mb_convert_variables('SJIS-win', 'UTF-8', $line);
             $tmp  = array();
-            foreach ($dataInfo as $value) {
+            foreach ($line as $value) {
                 $value = str_replace('"', '""', $value);
                 $tmp[] = '"' . $value . '"';
             }
