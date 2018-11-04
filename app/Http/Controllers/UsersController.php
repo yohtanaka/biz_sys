@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\City;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Section;
 use App\Models\Position;
@@ -40,7 +40,32 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        //
+        if ($request->get('action') === 'back') {
+            return redirect()->route('user.create')->withInput(session()->get("post_data"));
+        }
+        $data = $request->session()->get('post_data');
+        User::create([
+            'email'          => $data['email'],
+            'password'       => Hash::make('password'),
+            'role'           => $data['role'],
+            'code'           => $data['code'],
+            'last_name'      => $data['last_name'],
+            'first_name'     => $data['first_name'],
+            'l_n_kana'       => $data['l_n_kana'],
+            'f_n_kana'       => $data['f_n_kana'],
+            'gender'         => $data['gender'],
+            'birthday'       => $data['birthday'],
+            'zip'            => $data['zip1'] . '-' . $data['zip2'],
+            // 'city_code'      => $data['city_code'],
+            'street'         => $data['street'],
+            'building'       => $data['building'],
+            'tel_private'    => $data['tel_private'],
+            'tel_work'       => $data['tel_work'],
+            'section_code'   => $data['section'],
+            'position_code'  => $data['position'],
+        ]);
+        $request->session()->forget('post_data');
+        return redirect()->route('user.index');
     }
 
     public function show($id)
