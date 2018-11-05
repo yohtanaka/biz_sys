@@ -80,7 +80,7 @@
         @endif
     </tr>
     <tr>
-        <th class="table-heading">性別</td>
+        <th class="table-heading">{{ Form::label('', '性別') }}</td>
         @if ($confirm)
         <td>{{ User::$gender[$value['gender']] }}</td>
         @else

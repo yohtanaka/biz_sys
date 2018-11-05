@@ -57,7 +57,7 @@ table {
 
 .form-half {
     min-width: 200px;
-    width: 49%;
+    width: 48%;
     display: inline-block;
 }
 
@@ -67,10 +67,11 @@ table {
     display: inline-block;
 }
 
-.table-heading {
+.table-heading label  {
     width: 150px;
-    padding-right: 10px;
-    text-align: right;
+    padding: 0 20px;
+    -moz-text-align-last: justify;
+    text-align-last: justify;
 }
 
 .btn-default {
