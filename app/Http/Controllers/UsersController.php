@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Section;
 use App\Models\Position;
+use App\Http\Requests\UserRequest;
 use App\Library\Form;
 
 class UsersController extends Controller
@@ -30,7 +31,7 @@ class UsersController extends Controller
         return view('users.create', $data, compact('sections', 'positions'));
     }
 
-    public function confirm(Request $request)
+    public function confirm(UserRequest $request)
     {
         $sections  = Section::all();
         $positions = Position::all();

@@ -85,7 +85,7 @@
         <td>{{ User::$gender[$value['gender']] }}</td>
         @else
         <td>
-            {{ Form::radio('gender', 0, false, ['id'=>'men']) }}
+            {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
             {{ Form::label('men', '男性') }}
             {{ Form::radio('gender', 1, false, ['id'=>'women']) }}
             {{ Form::label('women', '女性') }}
