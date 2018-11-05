@@ -5,6 +5,16 @@
 @endphp
 @section('content')
 <h1 class="title">ユーザ登録</h1>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 @if ($confirm)
     @if ($edit)
         {{ Form::open(['route' => ['user.update', 'id' => $id], 'method' => 'put', 'class' => 'form-horizontal']) }}
