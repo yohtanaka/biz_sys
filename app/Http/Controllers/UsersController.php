@@ -17,6 +17,15 @@ class UsersController extends Controller
         $this->form = $form;
     }
 
+    public function addParams($data)
+    {
+        $data += [
+            'sections'  => Section::all(),
+            'positions' => Position::all(),
+        ];
+        return $data;
+    }
+
     public function index()
     {
         $users = User::all();
@@ -25,18 +34,16 @@ class UsersController extends Controller
 
     public function create(Request $request)
     {
-        $sections  = Section::all();
-        $positions = Position::all();
-        $data      = $this->form->beforeCreate($request);
-        return view('users.create', $data, compact('sections', 'positions'));
+        $data = $this->form->beforeCreate($request);
+        $data = $this->addParams($data);
+        return view('users.create', $data);
     }
 
     public function confirm(UserRequest $request)
     {
-        $sections  = Section::all();
-        $positions = Position::all();
-        $data      = $this->form->beforeConfirm($request);
-        return view('users.create', $data, compact('sections', 'positions'));
+        $data = $this->form->beforeConfirm($request);
+        $data = $this->addParams($data);
+        return view('users.create', $data);
     }
 
     public function store(Request $request)
@@ -77,6 +84,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $data = $this->form->beforeEdit($request);
+        $data = $this->addParams($data);
         return view('users.create', $data);
     }
 
