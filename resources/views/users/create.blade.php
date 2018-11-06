@@ -1,8 +1,5 @@
 @extends('layouts.common')
 @section('title', 'ユーザ登録')
-@php
-    use App\Models\User;
-@endphp
 @section('content')
 <h1 class="title">ユーザ登録</h1>
 @if ($errors->any())
@@ -40,7 +37,7 @@
     <tr>
         <th class="table-heading">{{ Form::label('role', '権限') }}</td>
         @if ($confirm)
-        <td>{{ User::$role[$value['role']] }}</td>
+        <td>{{ $role[$value['role']] }}</td>
         @else
         <td>{{ Form::select('role', [
             2  => 'マスター管理者',
@@ -82,7 +79,7 @@
     <tr>
         <th class="table-heading">{{ Form::label('', '性別') }}</td>
         @if ($confirm)
-        <td>{{ User::$gender[$value['gender']] }}</td>
+        <td>{{ $gender[$value['gender']] }}</td>
         @else
         <td>
             {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
@@ -152,12 +149,12 @@
         @endif
     </tr>
     <tr>
-        <th class="table-heading">{{ Form::label('section', '部署') }}</td>
+        <th class="table-heading">{{ Form::label('section_code', '部署') }}</td>
         @if ($confirm)
-        <td>{{ $sections->where('code', $value['section'])->first()->name }}</td>
+        <td>{{ $sections->where('code', $value['section_code'])->first()->name }}</td>
         @else
         <td>
-            <select name='section' class='form-control'>
+            <select name='section_code' class='form-control'>
                 <option value='' disabled selected style='display:none;'>選択してください</option>
                 @foreach ($sections as $section)
                 <option value="{{ $section->code }}">{{ $section->name }}</option>
@@ -166,12 +163,12 @@
         </td>
         @endif
     <tr>
-        <th class="table-heading">{{ Form::label('position', '役職') }}</td>
+        <th class="table-heading">{{ Form::label('position_code', '役職') }}</td>
         @if ($confirm)
-        <td>{{ $positions->where('code', $value['position'])->first()->name }}</td>
+        <td>{{ $positions->where('code', $value['position_code'])->first()->name }}</td>
         @else
         <td>
-            <select name='position' class='form-control'>
+            <select name='position_code' class='form-control'>
                 @foreach ($positions as $position)
                 <option value="{{ $position->code }}">{{ $position->name }}</option>
                 @endforeach

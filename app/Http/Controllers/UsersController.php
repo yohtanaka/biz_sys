@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\Section;
-use App\Models\Position;
 use App\Http\Requests\UserRequest;
 use App\Library\Form;
 
@@ -15,15 +13,6 @@ class UsersController extends Controller
     public function __construct(Form $form)
     {
         $this->form = $form;
-    }
-
-    public function addParams($data)
-    {
-        $data += [
-            'sections'  => Section::all(),
-            'positions' => Position::all(),
-        ];
-        return $data;
     }
 
     public function index()
@@ -35,14 +24,14 @@ class UsersController extends Controller
     public function create(Request $request)
     {
         $data = $this->form->beforeCreate($request);
-        $data = $this->addParams($data);
+        $data = User::addParams($data);
         return view('users.create', $data);
     }
 
     public function confirm(UserRequest $request)
     {
         $data = $this->form->beforeConfirm($request);
-        $data = $this->addParams($data);
+        $data = User::addParams($data);
         return view('users.create', $data);
     }
 
@@ -52,26 +41,9 @@ class UsersController extends Controller
             return redirect()->route('user.create')->withInput(session()->get('post_data'));
         }
         $data = $request->session()->get('post_data');
-        User::create([
-            'email'         => $data['email'],
-            'password'      => Hash::make('password'),
-            'role'          => $data['role'],
-            'code'          => $data['code'],
-            'last_name'     => $data['last_name'],
-            'first_name'    => $data['first_name'],
-            'l_n_kana'      => $data['l_n_kana'],
-            'f_n_kana'      => $data['f_n_kana'],
-            'gender'        => $data['gender'],
-            'birthday'      => $data['birthday'],
-            'zip'           => $data['zip1'] . '-' . $data['zip2'],
-            // 'city_code'     => $data['city_code'],
-            'street'        => $data['street'],
-            'building'      => $data['building'],
-            'tel_private'   => $data['tel_private'],
-            'tel_work'      => $data['tel_work'],
-            'section_code'  => $data['section'],
-            'position_code' => $data['position'],
-        ]);
+        $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
+        $user = new User();
+        $user->fill($data)->save();
         $request->session()->forget('post_data');
         return redirect()->route('user.index');
     }
@@ -84,7 +56,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $data = $this->form->beforeEdit($request);
-        $data = $this->addParams($data);
+        $data = User::addParams($data);
         return view('users.create', $data);
     }
 

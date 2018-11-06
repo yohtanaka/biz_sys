@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Section;
+use App\Models\Position;
 
 class User extends Authenticatable
 {
@@ -55,6 +57,17 @@ class User extends Authenticatable
     static $gender = [
         '男性', '女性', 'その他',
     ];
+
+    static function addParams($data)
+    {
+        $data += [
+            'role'      => User::$role,
+            'gender'    => User::$gender,
+            'sections'  => Section::all(),
+            'positions' => Position::all(),
+        ];
+        return $data;
+    }
 
     public function section()
     {
