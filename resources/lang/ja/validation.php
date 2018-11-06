@@ -97,6 +97,7 @@ return [
     |
     */
     'attributes' => [
-        'section' => '部署',
+        'email'         => 'メールアドレス',
+        'section_code'  => '部署',
     ],
 ];
