@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libs;
+namespace App\library;
 
 use Goodby\CSV\Import\Standard\Lexer;
 use Goodby\CSV\Import\Standard\Interpreter;
@@ -10,7 +10,7 @@ class Csv
 {
     static function download($data) {
         $dateCsv     = $name . date('YmdHis') . '.csv';
-        $csvFileName = "storage/csv/" . $dateCsv;
+        $csvFileName = "csv/" . $dateCsv;
         $res         = fopen($csvFileName, 'w');
         foreach($data as $line) {
             mb_convert_variables('SJIS-win', 'UTF-8', $line);
@@ -49,7 +49,7 @@ class Csv
                 }
                 continue;
             }
-            foreach($value as $k=>$v) {
+            foreach($value as $k => $v) {
                 $line[$items[$k]] = $v;
             }
             $data[] = $line;
