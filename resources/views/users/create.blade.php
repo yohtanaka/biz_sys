@@ -37,7 +37,7 @@
     <tr>
         <th class="table-heading">{{ Form::label('role', '権限') }}</td>
         @if ($confirm)
-        <td>{{ $role[$value['role']] }}</td>
+        <td>{{ $roles[$value['role']] }}</td>
         @else
         <td>{{ Form::select('role', [
             2  => 'マスター管理者',
@@ -151,13 +151,13 @@
     <tr>
         <th class="table-heading">{{ Form::label('section_code', '部署') }}</td>
         @if ($confirm)
-        <td>{{ $sections->where('code', $value['section_code'])->first()->name }}</td>
+        <td>{{ $sections[$value['section_code']] }}</td>
         @else
         <td>
             <select name='section_code' class='form-control'>
                 <option value='' disabled selected style='display:none;'>選択してください</option>
-                @foreach ($sections as $section)
-                <option value="{{ $section->code }}">{{ $section->name }}</option>
+                @foreach ($sections as $key => $value)
+                <option value="{{ $key }}">{{ $value }}</option>
                 @endforeach
             </select>
         </td>
@@ -165,12 +165,12 @@
     <tr>
         <th class="table-heading">{{ Form::label('position_code', '役職') }}</td>
         @if ($confirm)
-        <td>{{ $positions->where('code', $value['position_code'])->first()->name }}</td>
+        <td>{{ $positions[$value['position_code']] }}</td>
         @else
         <td>
             <select name='position_code' class='form-control'>
-                @foreach ($positions as $position)
-                <option value="{{ $position->code }}">{{ $position->name }}</option>
+                @foreach ($positions as $key => $value)
+                <option value="{{ $key }}">{{ $value }}</option>
                 @endforeach
             </select>
         </td>

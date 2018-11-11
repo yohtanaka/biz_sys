@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    public function names()
+    static function names()
     {
         $names = [];
         foreach (Position::all() as $position) {
-            $names[] = $position->name;
+            $names[$position->code] = $position->name;
         }
         return $names;
     }

@@ -47,7 +47,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    static $role = [
+    static $roles = [
         1  => 'システム',
         2  => 'マスター',
         5  => '管理者',
@@ -61,10 +61,10 @@ class User extends Authenticatable
     static function addParams($data)
     {
         $data += [
-            'role'      => User::$role,
+            'roles'     => User::$roles,
             'gender'    => User::$gender,
-            'sections'  => Section::all(),
-            'positions' => Position::all(),
+            'sections'  => Section::names(),
+            'positions' => Position::names(),
         ];
         return $data;
     }
