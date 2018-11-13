@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Library\Form;
@@ -40,17 +39,17 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('user.create')->withInput(session()->get('post_data'));
         }
-        $data = $request->session()->get('post_data');
+        $data        = $request->session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
-        $user = new User();
-        $user->fill($data)->save();
+        $user        = User::create($data);
         $request->session()->forget('post_data');
         return redirect()->route('user.index');
     }
 
     public function show($id)
     {
-        return view('users.create');
+        $user = User::find($id);
+        return view('users.create', compact('user'));
     }
 
     public function edit($id)
@@ -62,11 +61,18 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        if ($request->get('action') === 'back') {
+            return redirect()->route('user.create')->withInput(session()->get('post_data'));
+        }
+        $data        = $request->session()->get('post_data');
+        $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
+        $user        = User::find($id)->update($data);
+        $request->session()->forget('post_data');
+        return redirect()->route('user.index');
     }
 
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->delete();
     }
 }
