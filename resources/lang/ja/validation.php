@@ -98,6 +98,7 @@ return [
     */
     'attributes' => [
         'email'         => 'メールアドレス',
+        'last_name'     => '苗字',
         'section_code'  => '部署',
     ],
 ];

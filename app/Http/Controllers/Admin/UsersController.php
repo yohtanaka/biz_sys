@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminUserRequest;
 use App\Models\User;
-use App\Http\Requests\UserRequest;
 use App\Library\Form;
 
 class UsersController extends Controller
@@ -27,7 +28,7 @@ class UsersController extends Controller
         return view('users.create', $data);
     }
 
-    public function confirm(UserRequest $request)
+    public function confirm(AdminUserRequest $request)
     {
         $data = $this->form->beforeConfirm($request);
         $data = User::addParams($data);

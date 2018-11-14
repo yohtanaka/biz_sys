@@ -22,8 +22,8 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
 
 Route::group(['middleware' => ['auth', 'can:admin-higher'], 'prefix' => 'admin'], function() {
     Route::view('/', 'admin');
-    Route::resource('user', 'UsersController');
-    Route::post('user/confirm', 'UsersController@confirm')->name('user.confirm');
+    Route::resource('user', 'Admin\UsersController');
+    Route::post('user/confirm', 'Admin\UsersController@confirm')->name('user.confirm');
 });
 
 Route::group(['middleware' => ['auth', 'can:master-higher'], 'prefix' => 'admin'], function() {
