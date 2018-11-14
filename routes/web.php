@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
     Route::view('/', 'index');
     Route::resource('report', 'ReportsController');
-    Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
+    // Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
 
 Route::group(['middleware' => ['auth', 'can:admin-higher'], 'prefix' => 'admin'], function() {

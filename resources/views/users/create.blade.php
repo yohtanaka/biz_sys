@@ -183,4 +183,5 @@
 @else
 <button type="submit" class="btn btn-primary form-control">確認画面へ</button>
 @endif
+{{ Form::close() }}
 @endsection
