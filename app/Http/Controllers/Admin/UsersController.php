@@ -53,9 +53,9 @@ class UsersController extends Controller
         return view('users.create', compact('user'));
     }
 
-    public function edit($id)
+    public function edit(User $user, Request $request)
     {
-        $data = $this->form->beforeEdit($request);
+        $data = $this->form->beforeEdit($request, $user);
         $data = User::addParams($data);
         return view('users.create', $data);
     }

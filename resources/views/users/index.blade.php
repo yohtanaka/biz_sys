@@ -16,7 +16,7 @@
         <td>{{ $user->email }}</td>
         <td>{{ $user->section['name'] }}</td>
         <td>{{ $user->position['name'] }}</td>
-        <td><a href="">編集</a></td>
+        <td><a href="{{ route('user.edit', $user->id) }}">編集</a></td>
         {{ Form::open(['route' => ['user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
         <td><a href="#" data-id="{{ $user->id }}" onclick="deletePost(this);">削除</a></td>
         {{ Form::close() }}
