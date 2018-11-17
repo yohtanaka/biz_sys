@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminUserRequest;
+use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use App\Library\Form;
 
@@ -47,7 +47,7 @@ class UsersController extends Controller
         return view('admin.users.create', $data);
     }
 
-    public function confirm(AdminUserRequest $request)
+    public function confirm(UserRequest $request)
     {
         $data = $this->form->beforeConfirm($request);
         $data = User::addParams($data);
