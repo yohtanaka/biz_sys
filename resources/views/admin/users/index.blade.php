@@ -10,13 +10,13 @@
                         <div class="card-title-block">
                             <h3 class="title">社員検索</h3>
                         </div>
-                        {{ Form::open() }}
+                        {{ Form::open(['route' => 'user.index', 'method' => 'get']) }}
                         <div class="form-group">
-                            <label for="keyword">名前・メールアドレスで検索</label>
-                            {{ Form::text('keyword', null, ['class' => 'form-control']) }}
+                            <label for="name">名前・メールアドレスで検索</label>
+                            {{ Form::text('name', null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
-                            <label for="keyword">部署・役職で絞り込み</label>
+                            <label>部署・役職で絞り込み</label>
                         </div>
                         <div class="row form-group" style="margin-top: -15px;">
                             <div class="col-6">

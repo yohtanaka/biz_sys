@@ -15,11 +15,28 @@ class UsersController extends Controller
         $this->form = $form;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = [];
-        $data = User::addParams($data);
-        $data['users'] = User::paginate(10);
+        $query         = User::query();
+        $name          = $request->name;
+        $section_code  = $request->section_code;
+        $position_code = $request->position_code;
+        if (!empty($name)) {
+            $query->where  ('first_name', 'like', '%' . $name . '%')
+                  ->orWhere('last_name',  'like', '%' . $name . '%')
+                  ->orWhere('f_n_kana',   'like', '%' . $name . '%')
+                  ->orWhere('l_n_kana',   'like', '%' . $name . '%')
+                  ->orWhere('email',      'like', '%' . $name . '%');
+        }
+        if ($section_code  != '') {
+            $query->where('section_code',  $section_code);
+        }
+        if ($position_code != '') {
+            $query->where('position_code', $position_code);
+        }
+        $data          = [];
+        $data          = User::addParams($data);
+        $data['users'] = $query->latest()->paginate(10);;
         return view('admin.users.index', $data);
     }
 
