@@ -18,21 +18,21 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     public function create(Request $request)
     {
         $data = $this->form->beforeCreate($request);
         $data = User::addParams($data);
-        return view('users.create', $data);
+        return view('admin.users.create', $data);
     }
 
     public function confirm(AdminUserRequest $request)
     {
         $data = $this->form->beforeConfirm($request);
         $data = User::addParams($data);
-        return view('users.create', $data);
+        return view('admin.users.create', $data);
     }
 
     public function store(Request $request)
@@ -50,14 +50,14 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.create', compact('user'));
+        return view('admin.users.create', compact('user'));
     }
 
     public function edit(User $user, Request $request)
     {
         $data = $this->form->beforeEdit($request, $user);
         $data = User::addParams($data);
-        return view('users.create', $data);
+        return view('admin.users.create', $data);
     }
 
     public function update(Request $request, $id)

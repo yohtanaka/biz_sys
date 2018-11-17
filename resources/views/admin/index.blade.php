@@ -1,4 +1,4 @@
-@extends('admin.common')
+@extends('admin.layouts.common')
 @section('title', '管理画面')
 @section('content')
 <article class="content">
