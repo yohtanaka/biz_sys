@@ -2,189 +2,232 @@
 @section('title', 'ユーザ登録')
 @section('content')
 <article class="content">
-    <h1 class="title">ユーザ登録</h1>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <div class="card-title-block">
+                        <h3 class="title">社員登録</h3>
+                    </div>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    @if ($confirm)
+                    @if ($edit)
+                    {{ Form::open(['route' => ['user.update', 'id' => $id], 'method' => 'put']) }}
+                    @else
+                    {{ Form::open(['route' => 'user.store']) }}
+                    @endif
+                    @else
+                    {{ Form::open(['route' => 'user.confirm']) }}
+                    @endif
+
+                    @if ($edit)
+                    {{ Form::hidden('edit', 'true') }}
+                    @endif
+
+                    <div class="form-group row">
+                        {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $value['email'] }}
+                            @else
+                            {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'example@email.com']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('role', '権限', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $roles[$value['role']] }}
+                            @else
+                            {{ Form::select('role', [2 => 'マスター管理者', 5 => '管理者', 10 => '一般'], 10, ['class' => 'form-control']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('code', '社員番号', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $value['code'] }}
+                            @else
+                            {{ Form::number('code', null, ['class' => 'form-control']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('last_name', '名前', ['class' => 'col-sm-2 form-control-label']) }}
+                        @if ($confirm)
+                        <div class="col-sm-10">
+                        {{ $value['last_name'] . ' ' . $value['first_name'] }}
+                        </div>
+                        @else
+                        <div class="col-sm-5">
+                        {{ Form::text('last_name', null, ['class' => 'form-control form-half', 'placeholder' => '山田']) }}
+                        </div>
+                        <div class="col-sm-5">
+                        {{ Form::text('first_name', null, ['class' => 'form-control form-half', 'placeholder' => '太郎']) }}
+                        </div>
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('l_n_kana', '名前(カナ)', ['class' => 'col-sm-2 form-control-label']) }}
+                        @if ($confirm)
+                        <div class="col-sm-10">
+                        {{ $value['l_n_kana'] . ' ' . $value['f_n_kana'] }}
+                        </div>
+                        @else
+                        <div class="col-sm-5">
+                        {{ Form::text('l_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'ヤマダ']) }}
+                        </div>
+                        <div class="col-sm-5">
+                        {{ Form::text('f_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'タロウ']) }}
+                        </div>
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('', '性別', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $gender[$value['gender']] }}
+                            @else
+                            {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
+                            {{ Form::label('men', '男性') }}
+                            {{ Form::radio('gender', 1, false, ['id'=>'women']) }}
+                            {{ Form::label('women', '女性') }}
+                            {{ Form::radio('gender', 2, false, ['id'=>'others']) }}
+                            {{ Form::label('others', 'その他') }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('birthday', '誕生日', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-5">
+                            @if ($confirm)
+                            {{ $value['birthday'] }}
+                            @else
+                            {{ Form::input('date', 'birthday', date('Y-m-d'), ['class' => 'form-control']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('zip1', '郵便番号', ['class' => 'col-sm-2 form-control-label']) }}
+                        @if ($confirm)
+                        <div class="col-sm-10">
+                        @if ($value['zip1'] || $value['zip2'])
+                        {{ $value['zip1'] . '-' . $value['zip2'] }}
+                        @endif
+                        </div>
+                        @else
+                        <div class="col-sm-3">
+                        {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
+                        </div>
+                        <strong>-</strong>
+                        <div class="col-sm-3">
+                        {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
+                        </div>
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('pref', '住所', ['class' => 'col-sm-2 form-control-label']) }}
+                        @if ($confirm)
+                        <div class="col-sm-10">
+                            {{ $value['pref'] . ' ' . $value['city'] . ' ' . $value['street'] }}
+                        </div>
+                        @else
+                        <div class="col-sm-3">
+                        {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-one-third', 'placeholder' => '神奈川県']) }}
+                        </div>
+                        <div class="col-sm-3">
+                        {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-one-third', 'placeholder' => '川崎市高津区']) }}
+                        </div>
+                        <div class="col-sm-4">
+                        {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-one-third', 'placeholder' => '新作1-1-1']) }}
+                        </div>
+                        {{ Form::hidden('street_kana', null, ['id' => 'street_kana']) }}
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('building', '建物名/部屋番号', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $value['building'] }}
+                            @else
+                            {{ Form::text('building', null, ['class' => 'form-control', 'placeholder' => '田中マンション 101号室']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('tel_private', '電話番号(個人)', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $value['tel_private'] }}
+                            @else
+                            {{ Form::number('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('tel_work', '電話番号(会社)', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $value['tel_work'] }}
+                            @else
+                            {{ Form::number('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('section_code', '部署', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $sections[$value['section_code']] }}
+                            @else
+                            <select name='section_code' class='form-control'>
+                                <option value='' disabled selected style='display:none;'>選択してください</option>
+                                @foreach ($sections as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ Form::label('position_code', '役職', ['class' => 'col-sm-2 form-control-label']) }}
+                        <div class="col-sm-10">
+                            @if ($confirm)
+                            {{ $positions[$value['position_code']] }}
+                            @else
+                            <select name='position_code' class='form-control'>
+                                @foreach ($positions as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                            @endif
+                        </div>
+                    </div>
+                    @if ($confirm)
+                    <div class="form-group">
+                        <button type="submit" name="action" value="post" class="btn btn-primary">送信</button>
+                        <button type="submit" name="action" value="back" class="btn btn-secondary">戻る</button>
+                    </div>
+                    @else
+                    <div class="form-group">
+                        {{ Form::submit('確認画面へ', ['class' => 'btn btn-primary']) }}
+                    </div>
+                   @endif
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
     </div>
-    @endif
-
-    @if ($confirm)
-    @if ($edit)
-    {{ Form::open(['route' => ['user.update', 'id' => $id], 'method' => 'put', 'class' => 'form-horizontal']) }}
-    @else
-    {{ Form::open(['route' => ['user.store'], 'class' => 'form-horizontal']) }}
-    @endif
-    @else
-    {{ Form::open(['route' => ['user.confirm'], 'class' => 'form-horizontal']) }}
-    @endif
-
-    @if ($edit)
-    {{ Form::hidden('edit', 'true') }}
-    @endif
-    <table class="form-group">
-        <tr>
-            <th class="table-heading">{{ Form::label('email', 'メールアドレス') }}</td>
-            @if ($confirm)
-            <td>{{ $value['email'] }}</td>
-            @else
-            <td>{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'example@email.com']) }}</td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('role', '権限') }}</td>
-            @if ($confirm)
-            <td>{{ $roles[$value['role']] }}</td>
-            @else
-            <td>{{ Form::select('role', [
-                    2  => 'マスター管理者',
-                    5  => '管理者',
-                    10 => '一般',
-                ], 10, ['class' => 'form-control']) }}
-            </td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('code', '社員番号') }}</td>
-            @if ($confirm)
-            <td>{{ $value['code'] }}</td>
-            @else
-            <td>{{ Form::number('code', null, ['class' => 'form-control']) }}</td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('last_name', '名前') }}</td>
-            @if ($confirm)
-            <td>{{ $value['last_name'] . ' ' . $value['first_name'] }}</td>
-            @else
-            <td>
-                {{ Form::text('last_name', null, ['class' => 'form-control form-half', 'placeholder' => '山田']) }}
-                {{ Form::text('first_name', null, ['class' => 'form-control form-half', 'placeholder' => '太郎']) }}
-            </td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('l_n_kana', '名前(カナ)') }}</td>
-            @if ($confirm)
-            <td>{{ $value['l_n_kana'] . ' ' . $value['f_n_kana'] }}</td>
-            @else
-            <td>
-                {{ Form::text('l_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'ヤマダ']) }}
-                {{ Form::text('f_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'タロウ']) }}
-            </td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('', '性別') }}</td>
-            @if ($confirm)
-            <td>{{ $gender[$value['gender']] }}</td>
-            @else
-            <td>
-                {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
-                {{ Form::label('men', '男性') }}
-                {{ Form::radio('gender', 1, false, ['id'=>'women']) }}
-                {{ Form::label('women', '女性') }}
-                {{ Form::radio('gender', 2, false, ['id'=>'others']) }}
-                {{ Form::label('others', 'その他') }}
-            </td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('birthday', '誕生日') }}</td>
-            @if ($confirm)
-            <td>{{ $value['birthday'] }}</td>
-            @else
-            <td>{{ Form::input('date', 'birthday', date('Y-m-d'), ['class' => 'form-control']) }}</td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('zip1', '郵便番号') }}</td>
-            @if ($confirm)
-            <td>{{ $value['zip1'] . '-' . $value['zip2'] }}</td>
-            @else
-            <td>
-                {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
-                <strong>-</strong>
-                {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
-            </td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('pref', '住所') }}</td>
-            @if ($confirm)
-            <td>{{ $value['pref'] . ' ' . $value['city'] . ' ' . $value['street'] }}</td>
-            @else
-            <td>
-                {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-one-third', 'placeholder' => '神奈川県']) }}
-                {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-one-third', 'placeholder' => '川崎市高津区']) }}
-                {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-one-third', 'placeholder' => '新作1-1-1']) }}
-                {{ Form::hidden('street_kana', null, ['id' => 'street_kana']) }}
-            </td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('building', '建物名/部屋番号') }}</td>
-            @if ($confirm)
-            <td>{{ $value['building'] }}</td>
-            @else
-            <td>{{ Form::text('building', null, ['class' => 'form-control', 'placeholder' => '田中マンション 101号室']) }}</td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('tel_private', '電話番号(個人)') }}</td>
-            @if ($confirm)
-            <td>{{ $value['tel_private'] }}</td>
-            @else
-            <td>{{ Form::number('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}</td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('tel_work', '電話番号(会社)') }}</td>
-            @if ($confirm)
-            <td>{{ $value['tel_work'] }}</td>
-            @else
-            <td>{{ Form::number('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}</td>
-            @endif
-        </tr>
-        <tr>
-            <th class="table-heading">{{ Form::label('section_code', '部署') }}</td>
-            @if ($confirm)
-            <td>{{ $sections[$value['section_code']] }}</td>
-            @else
-            <td>
-                <select name='section_code' class='form-control'>
-                    <option value='' disabled selected style='display:none;'>選択してください</option>
-                    @foreach ($sections as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                </select>
-            </td>
-            @endif
-        <tr>
-            <th class="table-heading">{{ Form::label('position_code', '役職') }}</td>
-            @if ($confirm)
-            <td>{{ $positions[$value['position_code']] }}</td>
-            @else
-            <td>
-                <select name='position_code' class='form-control'>
-                    @foreach ($positions as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                </select>
-            </td>
-            @endif
-        </tr>
-    </table>
-    @if ($confirm)
-    <button type="submit" name="action" value="post" class="btn btn-primary form-half">送信</button>
-    <button type="submit" name="action" value="back" class="btn btn-default form-half">戻る</button>
-    @else
-    <button type="submit" class="btn btn-primary form-control">確認画面へ</button>
-    @endif
-    {{ Form::close() }}
 </article>
 @endsection
