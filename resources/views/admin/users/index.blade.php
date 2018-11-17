@@ -1,29 +1,71 @@
 @extends('admin.layouts.common')
 @section('title', 'ユーザ一覧')
 @section('content')
-<article class="content">
-    <h1 class="title">ユーザ一覧</h1>
-    <table>
-        <tr>
-            <th>名前</th>
-            <th>メールアドレス</th>
-            <th>部署</th>
-            <th>役職</th>
-            <th colspan="2">操作</th>
-        </tr>
-        @foreach ($users as $user)
-            <tr>
-                <td>{{ $user->last_name }} {{ $user->first_name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->section['name'] }}</td>
-                <td>{{ $user->position['name'] }}</td>
-                <td><a href="{{ route('user.edit', $user->id) }}">編集</a></td>
-                {{ Form::open(['route' => ['user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
-                    <td><a href="#" data-id="{{ $user->id }}" onclick="deletePost(this);">削除</a></td>
-                {{ Form::close() }}
-            </tr>
-        @endforeach
-    </table>
+<article class="content items-list-page">
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title-block">
+                            <h3 class="title">社員一覧</h3>
+                        </div>
+                        <section class="example">
+                            <div class="table-flip-scroll">
+                                <table class="table table-striped table-bordered table-hover flip-content">
+                                    <thead class="flip-header">
+                                        <tr>
+                                            <th>名前</th>
+                                            <th>メールアドレス</th>
+                                            <th>部署</th>
+                                            <th>役職</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($users as $user)
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <a href="{{ route('user.show', $user->id) }}">
+                                                    {{ $user->last_name }} {{ $user->first_name }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="mailto:{{ $user->email }}">
+                                                    {{ $user->email }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $user->section['name'] }}</td>
+                                            <td>{{ $user->position['name'] }}</td>
+                                            <td>
+                                                <span class="action-list">
+                                                    {{ Form::open(['route' => ['user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
+                                                    <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $user->id }}" onclick="deletePost(this);">
+                                                        <i class="fa fa-trash-o "></i>
+                                                    </a>
+                                                    {{ Form::close() }}
+                                                </span>
+                                                <span class="action-list">
+                                                    <a class="edit" href="{{ route('user.edit', $user->id) }}">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav class="text-right">
+        {{ $users->links() }}
+    </nav>
 </article>
 <script>
     function deletePost(e) {
@@ -33,5 +75,4 @@
         }
     }
 </script>
-</article>
 @endsection
