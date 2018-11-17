@@ -24,6 +24,7 @@
                     <ul class="sidebar-nav">
                         <li><a href="{{ route('user.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
                         <li><a href="{{ route('user.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('section.index') }}"><i class="fa fa-pencil-square"></i> 部署・役職登録 </a></li>
                     </ul>
                 </li>
                 <li>
