@@ -36,7 +36,7 @@ class UsersController extends Controller
         }
         $data          = [];
         $data          = User::addParams($data);
-        $data['users'] = $query->latest()->paginate(10);;
+        $data['users'] = $query->latest()->paginate(10);
         return view('admin.users.index', $data);
     }
 

@@ -217,7 +217,7 @@
                     @if ($confirm)
                     <div class="form-group">
                         <button type="submit" name="action" value="post" class="btn btn-primary">送信</button>
-                        <button type="submit" name="action" value="back" class="btn btn-secondary">戻る</button>
+                        <button type="submit" name="action" value="back" class="btn btn-primary-outline">戻る</button>
                     </div>
                     @else
                     <div class="form-group">
