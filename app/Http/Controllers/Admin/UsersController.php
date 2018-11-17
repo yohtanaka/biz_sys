@@ -17,8 +17,10 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::paginate(10);
-        return view('admin.users.index', compact('users'));
+        $data = [];
+        $data = User::addParams($data);
+        $data['users'] = User::paginate(10);
+        return view('admin.users.index', $data);
     }
 
     public function create(Request $request)

@@ -8,6 +8,49 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="card-title-block">
+                            <h3 class="title">社員検索</h3>
+                        </div>
+                        {{ Form::open() }}
+                        <div class="form-group">
+                            <label for="keyword">名前・メールアドレスで検索</label>
+                            {{ Form::text('keyword', null, ['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="keyword">部署・役職で絞り込み</label>
+                        </div>
+                        <div class="row form-group" style="margin-top: -15px;">
+                            <div class="col-6">
+                                <select name='section_code' class='form-control'>
+                                    <option value=''>選択してください</option>
+                                    @foreach ($sections as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select name='position_code' class='form-control'>
+                                    <option value=''>選択してください</option>
+                                    @foreach ($positions as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ Form::submit('検索', ['class' => 'btn btn-primary']) }}
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title-block">
                             <h3 class="title">社員一覧</h3>
                         </div>
                         <section class="example">
@@ -62,7 +105,6 @@
             </div>
         </div>
     </section>
-
     <nav class="text-right">
         {{ $users->links() }}
     </nav>
