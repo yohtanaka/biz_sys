@@ -84,7 +84,7 @@
                                                 <span class="action-list">
                                                     {{ Form::open(['route' => ['user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
                                                     <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $user->id }}" onclick="deletePost(this);">
-                                                        <i class="fa fa-trash-o "></i>
+                                                        <i class="fa fa-trash-o"></i>
                                                     </a>
                                                     {{ Form::close() }}
                                                 </span>
