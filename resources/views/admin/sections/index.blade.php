@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 {{ Form::label('code', '部署コード', ['class' => 'col-sm-2 form-control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::number('code', null, ['class' => 'form-control']) }}
+                                    {{ Form::number('code', $next_code, ['class' => 'form-control']) }}
                                 </div>
                             </div>
                             <div class="form-group row">
