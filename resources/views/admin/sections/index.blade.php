@@ -25,15 +25,7 @@
                         <div class="card-title-block">
                             <h3 class="title">部署新規登録</h3>
                         </div>
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
+                        @include('layouts.error')
                         {{ Form::open(['route' => 'section.store']) }}
                             <div class="form-group row">
                                 {{ Form::label('code', '部署コード', ['class' => 'col-sm-2 form-control-label']) }}

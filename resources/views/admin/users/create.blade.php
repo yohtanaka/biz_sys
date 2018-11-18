@@ -9,15 +9,7 @@
                     <div class="card-title-block">
                         <h3 class="title">社員登録</h3>
                     </div>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                    @include('layouts.error')
                     @if ($confirm)
                     @if ($edit)
                     {{ Form::open(['route' => ['user.update', 'id' => $id], 'method' => 'put']) }}
