@@ -98,19 +98,6 @@
     </section>
 </article>
 <script>
-    function deletePost(e) {
-        'use strict';
-        if (confirm('本当に削除してよろしいですか？')) {
-        document.getElementById('form_' + e.dataset.id).submit();
-        }
-    }
-    $(function() {
-        $('.edit').on('click', function() {
-            var code = $(this).data('code');
-            var name = $(this).data('name');
-            $('#code').val(code);
-            $('#name').val(name);
-        });
-    });
+    $('.sidebar-menu').children('li:nth-child(2)').addClass('active');
 </script>
 @endsection

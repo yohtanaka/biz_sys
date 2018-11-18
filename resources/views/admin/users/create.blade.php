@@ -227,4 +227,7 @@
         </div>
     </div>
 </article>
+<script>
+    $('.sidebar-menu').children('li:nth-child(2)').addClass('active');
+</script>
 @endsection

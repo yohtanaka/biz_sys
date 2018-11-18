@@ -26,6 +26,9 @@
         <link rel="stylesheet" href="/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="/js/script.js"></script>
+        <script type="text/javascript" src="/js/vendor.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
         <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
     </head>
     <body>
@@ -45,7 +48,5 @@
                 <div class="color-secondary"></div>
             </div>
         </div>
-        <script src="/js/vendor.js"></script>
-        <script src="/js/app.js"></script>
     </body>
 </html>

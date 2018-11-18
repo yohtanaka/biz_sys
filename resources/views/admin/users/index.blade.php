@@ -110,11 +110,6 @@
     </nav>
 </article>
 <script>
-    function deletePost(e) {
-        'use strict';
-        if (confirm('本当に削除してよろしいですか？')) {
-        document.getElementById('form_' + e.dataset.id).submit();
-        }
-    }
+    $('.sidebar-menu').children('li:nth-child(2)').addClass('active');
 </script>
 @endsection

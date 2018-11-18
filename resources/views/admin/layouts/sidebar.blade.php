@@ -16,7 +16,7 @@
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-tachometer"></i> ダッシュボード </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="">
                         <i class="fa fa-user"></i> 社員管理
                         <i class="fa arrow"></i>
