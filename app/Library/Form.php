@@ -48,7 +48,7 @@ class Form
         $values = $value->toArray();
         $request->session()->put('id', $values['id']);
         foreach ($values as $key => $val) {
-            $request->session()->put('_old_input . {$key}', $val);
+            $request->session()->put("_old_input.{$key}", $val);
         }
         return $data;
     }

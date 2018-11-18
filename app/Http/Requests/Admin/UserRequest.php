@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'         => 'required|unique:users,email',
+            'email'         => 'required|unique:users,email,' . session()->get('id'),
             'last_name'     => 'required',
             'section_code'  => 'required',
         ];

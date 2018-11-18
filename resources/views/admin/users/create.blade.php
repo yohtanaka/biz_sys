@@ -191,10 +191,14 @@
                             @if ($confirm)
                             {{ $sections[$value['section_code']] }}
                             @else
-                            <select name='section_code' class='form-control'>
+                            <select class='form-control' id='section_code' name='section_code'>
                                 <option value='' disabled selected style='display:none;'>選択してください</option>
                                 @foreach ($sections as $key => $value)
+                                @if (old('section_code') == $key)
+                                <option value="{{ $key }}" selected="selected">{{ $value }}</option>
+                                @else
                                 <option value="{{ $key }}">{{ $value }}</option>
+                                @endif
                                 @endforeach
                             </select>
                             @endif
@@ -206,9 +210,13 @@
                             @if ($confirm)
                             {{ $positions[$value['position_code']] }}
                             @else
-                            <select name='position_code' class='form-control'>
+                            <select class='form-control' id='position_code' name='position_code'>
                                 @foreach ($positions as $key => $value)
+                                @if (old('position_code') == $key)
+                                <option value="{{ $key }}" selected="selected">{{ $value }}</option>
+                                @else
                                 <option value="{{ $key }}">{{ $value }}</option>
+                                @endif
                                 @endforeach
                             </select>
                             @endif
