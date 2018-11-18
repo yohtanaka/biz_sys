@@ -97,8 +97,10 @@ return [
     |
     */
     'attributes' => [
-        'email'         => 'メールアドレス',
-        'last_name'     => '苗字',
-        'section_code'  => '部署',
+        'email'        => 'メールアドレス',
+        'last_name'    => '名前',
+        'section_code' => '部署',
+        'code'         => 'コード',
+        'name'         => '名前',
     ],
 ];
