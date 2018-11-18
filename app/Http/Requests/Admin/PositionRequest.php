@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserDataRequest extends FormRequest
+class PositionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,14 @@ class UserDataRequest extends FormRequest
         return [
             'code' => 'required',
             'name' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'code' => '役職コード',
+            'name' => '役職名',
         ];
     }
 }

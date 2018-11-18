@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UserDataRequest;
+use App\Http\Requests\Admin\SectionRequest;
 use App\Models\Section;
 
 class SectionsController extends Controller
@@ -16,7 +16,7 @@ class SectionsController extends Controller
         return view('admin.sections.index', $data);
     }
 
-    public function store(UserDataRequest $request)
+    public function store(SectionRequest $request)
     {
         $section = Section::firstOrNew(['code' => $request->code]);
         $section->fill($request->all())->save();

@@ -96,11 +96,5 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
     */
-    'attributes' => [
-        'email'        => 'メールアドレス',
-        'last_name'    => '名前',
-        'section_code' => '部署',
-        'code'         => 'コード',
-        'name'         => '名前',
-    ],
+    'attributes' => [],
 ];

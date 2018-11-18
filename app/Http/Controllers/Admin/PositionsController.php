@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UserDataRequest;
+use App\Http\Requests\Admin\PositionRequest;
 use App\Models\Position;
 
 class PositionsController extends Controller
@@ -15,7 +15,7 @@ class PositionsController extends Controller
         return view('admin.positions.index', $data);
     }
 
-    public function store(UserDataRequest $request)
+    public function store(PositionRequest $request)
     {
         $position = Position::firstOrNew(['code' => $request->code]);
         $position->fill($request->all())->save();
