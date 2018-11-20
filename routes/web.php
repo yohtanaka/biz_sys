@@ -12,20 +12,25 @@
 */
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
-    Route::view('/', 'index');
+    Route::view('/', 'index')->name('dashboard');
     Route::resource('report', 'ReportsController');
     // Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
 
-Route::group(['middleware' => ['auth', 'can:admin-higher'], 'prefix' => 'admin'], function() {
-    Route::view('/', 'admin.index')->name('admin.dashboard');
-    Route::resource('user', 'Admin\UsersController');
-    Route::post('user/confirm', 'Admin\UsersController@confirm')->name('user.confirm');
-    Route::resource('section', 'Admin\SectionsController');
-    Route::resource('position', 'Admin\PositionsController');
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Admin\Auth\LoginController@login');
+    Route::post('logout', 'Admin\Auth\LoginController@logout')->name('logout');
+
+    Route::group(['middleware' => ['auth', 'can:admin-higher']], function() {
+        Route::view('/', 'admin.index')->name('admin.dashboard');
+        Route::resource('user', 'Admin\UsersController');
+        Route::post('user/confirm', 'Admin\UsersController@confirm')->name('user.confirm');
+        Route::resource('section', 'Admin\SectionsController', ['only' => ['index', 'store', 'destroy']]);
+        Route::resource('position', 'Admin\PositionsController', ['only' => ['index', 'store', 'destroy']]);
+    });
 });
 
 Route::group(['middleware' => ['auth', 'can:master-higher'], 'prefix' => 'admin'], function() {
