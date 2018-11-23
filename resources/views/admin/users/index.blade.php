@@ -1,5 +1,5 @@
 @extends('admin.layouts.common')
-@section('title', 'ユーザ一覧')
+@section('title', '社員一覧')
 @section('content')
 <article class="content items-list-page">
     <section class="section">
@@ -52,6 +52,7 @@
                     <div class="card-block">
                         <div class="card-title-block">
                             <h3 class="title">社員一覧</h3>
+                            <p class="right">合計数: {{ count($users) }}</p>
                         </div>
                         <section class="example">
                             <div class="table-flip-scroll">

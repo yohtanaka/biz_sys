@@ -52,7 +52,7 @@ class User extends Authenticatable
         'gender'        => '性別',
         'birthday'      => '生年月日',
         'zip'           => '郵便番号',
-        'city_code'     => '市区町村コード',
+        'city_code'     => '市区町村',
         'street'        => '番地',
         'building'      => '建物',
         'tel_private'   => '個人電話',
@@ -69,7 +69,7 @@ class User extends Authenticatable
     ];
 
     static $gender = [
-        '男性', '女性', 'その他',
+        '', '男性', '女性', 'その他',
     ];
 
     static function addParams($data)

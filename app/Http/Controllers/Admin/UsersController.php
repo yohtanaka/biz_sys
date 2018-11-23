@@ -84,7 +84,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->get('action') === 'back') {
-            return redirect()->route('user.create')->withInput(session()->get('post_data'));
+            return redirect()->route('user.edit', ['id' => $id ])->withInput(session()->get('post_data'));
         }
         $data        = $request->session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];

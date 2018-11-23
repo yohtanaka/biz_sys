@@ -1,5 +1,5 @@
 @extends('admin.layouts.common')
-@section('title', 'ユーザ登録')
+@section('title', '社員登録')
 @section('content')
 <article class="content">
     <div class="row">
