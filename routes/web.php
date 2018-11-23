@@ -30,6 +30,11 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('user/confirm', 'Admin\UsersController@confirm')->name('user.confirm');
         Route::resource('section', 'Admin\SectionsController', ['only' => ['index', 'store', 'destroy']]);
         Route::resource('position', 'Admin\PositionsController', ['only' => ['index', 'store', 'destroy']]);
+        Route::resource('sales', 'Admin\SalesController');
+        Route::resource('shop', 'Admin\ShopsController');
+        Route::resource('item', 'Admin\ItemsController');
+        Route::resource('news', 'Admin\NewsController');
+        Route::post('news/confirm', 'Admin\NewsController@confirm')->name('news.confirm');
     });
 });
 
