@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Position;
 
 class PositionRequest extends FormRequest
 {
@@ -31,9 +32,6 @@ class PositionRequest extends FormRequest
 
     public function attributes()
     {
-        return [
-            'code' => '役職コード',
-            'name' => '役職名',
-        ];
+        return Position::$names;
     }
 }

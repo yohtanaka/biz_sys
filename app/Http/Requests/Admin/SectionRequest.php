@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Section;
 
 class SectionRequest extends FormRequest
 {
@@ -31,9 +32,6 @@ class SectionRequest extends FormRequest
 
     public function attributes()
     {
-        return [
-            'code' => '部署コード',
-            'name' => '部署名',
-        ];
+        return Section::$names;
     }
 }

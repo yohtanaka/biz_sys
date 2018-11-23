@@ -12,6 +12,11 @@ class Position extends Model
 
     public $timestamps = false;
 
+    static $names = [
+        'code' => '役職コード',
+        'name' => '役職名',
+    ];
+
     static function names()
     {
         $names = [];

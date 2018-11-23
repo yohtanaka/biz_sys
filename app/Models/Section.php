@@ -12,6 +12,11 @@ class Section extends Model
 
     public $timestamps = false;
 
+    static $names = [
+        'code' => '部署コード',
+        'name' => '部署名',
+    ];
+
     static function names()
     {
         $names = [];
