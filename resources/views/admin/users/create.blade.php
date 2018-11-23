@@ -26,7 +26,11 @@
                             {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($confirm)
+                                @if ($confirm !== 'show')
                                 {{ $value['email'] }}
+                                @else
+                                <a href="mailto:{{ $value['email'] }}">{{ $value['email'] }}</a>
+                                @endif
                                 @else
                                 {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'example@email.com']) }}
                                 @endif
@@ -213,8 +217,12 @@
                         </div>
                         @if ($confirm)
                         <div class="form-group">
+                            @if ($confirm !== 'show')
                             <button type="submit" name="action" value="post" class="btn btn-primary">送信</button>
                             <button type="submit" name="action" value="back" class="btn btn-primary-outline">戻る</button>
+                            @else
+                            <a href="{{ route('user.index') }}" class="btn btn-primary">戻る</a>
+                            @endif
                         </div>
                         @else
                         <div class="form-group">

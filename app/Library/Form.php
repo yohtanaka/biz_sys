@@ -34,6 +34,13 @@ class Form
         return $data;
     }
 
+    public function beforeShow(Request $request)
+    {
+        $data['edit']    = false;
+        $data['confirm'] = 'show';
+        return $data;
+    }
+
     public function beforeEdit(Request $request, $value)
     {
 

@@ -66,10 +66,12 @@ class UsersController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $user = User::find($id);
-        return view('admin.users.create', compact('user'));
+        $data          = $this->form->beforeShow($request);
+        $data['value'] = User::find($id);
+        $data          = User::addParams($data);
+        return view('admin.users.create', $data);
     }
 
     public function edit(User $user, Request $request)
