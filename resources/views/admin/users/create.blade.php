@@ -215,6 +215,20 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            {{ Form::label('', '表示ステータス', ['class' => 'col-sm-2 form-control-label']) }}
+                            <div class="col-sm-10">
+                                @if ($confirm)
+                                {{ config('const.display')[$value['display_flag']] }}
+                                @else
+                                {{ Form::radio('display_flag', 1, true, ['id'=>'on']) }}
+                                {{ Form::label('on', '表示') }}
+                                {{ Form::radio('display_flag', 0, false, ['id'=>'off']) }}
+                                {{ Form::label('off', '非表示') }}
+                                <span>※ 非表示にすると ユーザ画面上からは削除されます</span>
+                                @endif
+                            </div>
+                        </div>
                         @if ($confirm)
                         <div class="form-group">
                             @if ($confirm !== 'show')

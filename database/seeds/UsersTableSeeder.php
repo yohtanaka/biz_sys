@@ -14,11 +14,15 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'last_name'  => 'マスター',
-                'first_name' => '管理者',
-                'role'       => 2,
-                'email'      => 'master@master.jp',
-                'password'   => Hash::make('master')
+                'email'         => 'master@master.jp',
+                'password'      => Hash::make('master'),
+                'code'          => 1,
+                'last_name'     => 'マスター',
+                'first_name'    => '管理者',
+                'gender'        => 2,
+                'role'          => 2,
+                'section_code'  => 11,
+                'position_code' => 30
             ]
         ];
         DB::table('users')->insert($users);
