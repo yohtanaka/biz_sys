@@ -23,6 +23,26 @@ class UsersTableSeeder extends Seeder
                 'role'          => 2,
                 'section_code'  => 11,
                 'position_code' => 30
+            ], [
+                'email'         => 'test@test.jp',
+                'password'      => Hash::make('test'),
+                'code'          => 2,
+                'last_name'     => 'タナカ',
+                'first_name'    => 'テスト',
+                'gender'        => 2,
+                'role'          => 2,
+                'section_code'  => 11,
+                'position_code' => 30
+            ], [
+                'email'         => 'test2@test.jp',
+                'password'      => Hash::make('test'),
+                'code'          => 3,
+                'last_name'     => 'タナカ',
+                'first_name'    => 'テスト',
+                'gender'        => 2,
+                'role'          => 2,
+                'section_code'  => 11,
+                'position_code' => 30
             ]
         ];
         DB::table('users')->insert($users);

@@ -12,11 +12,11 @@
         </div>
         <nav class="menu">
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                <li>
+                <li id="dashboard">
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-tachometer"></i> ダッシュボード </a>
                 </li>
-                <li>
+                <li id="users">
                     <a href="">
                         <i class="fa fa-user"></i> 社員管理
                         <i class="fa arrow"></i>
@@ -28,7 +28,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="sales">
                         <i class="fa fa-area-chart"></i> 売上管理
                         <i class="fa arrow"></i>
                     </a>
@@ -38,7 +38,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="shops">
                         <i class="fa fa-home"></i> 店舗管理
                         <i class="fa arrow"></i>
                     </a>
@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="items">
                         <i class="fa fa-briefcase"></i> 商品管理
                         <i class="fa arrow"></i>
                     </a>
@@ -57,7 +57,7 @@
                         <li><a href="{{ route('user.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
                     </ul>
                 </li>
-                <li>
+                <li id="news">
                     <a href="">
                         <i class="fa fa-bell"></i> お知らせ管理
                         <i class="fa arrow"></i>

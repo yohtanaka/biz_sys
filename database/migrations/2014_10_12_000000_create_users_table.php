@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string       ('first_name')   ->comment('名')->nullable();
             $table->string       ('l_n_kana')     ->comment('姓カナ')->nullable();
             $table->string       ('f_n_kana')     ->comment('名カナ')->nullable();
-            $table->tinyInteger  ('gender')       ->comment('性別 0:男性, 1:女性, 2:その他')->nullable();
+            $table->tinyInteger  ('gender')       ->comment('性別 0:男性, 1:女性, 2:その他')->default(2);
             $table->date         ('birthday')     ->comment('誕生日')->nullable();
             $table->string       ('zip')          ->comment('郵便番号')->nullable();
             $table->integer      ('city_code')    ->comment('市区町村')->nullable()->unsigned();
@@ -34,8 +34,8 @@ class CreateUsersTable extends Migration
             $table->string       ('tel_work')     ->comment('社用電話')->nullable();
             $table->integer      ('section_code') ->comment('部署')->unsigned();
             $table->integer      ('position_code')->comment('役職')->unsigned();
-            $table->tinyInteger  ('display_flag') ->comment('表示ステータス 0:非表示, 1:表示')->default(1);
             $table->rememberToken();
+            $table->softDeletes  ();
             $table->timestamps   ();
         });
     }

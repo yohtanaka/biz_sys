@@ -62,7 +62,6 @@
                                             <th>メールアドレス</th>
                                             <th>部署</th>
                                             <th>役職</th>
-                                            <th>表示</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -81,7 +80,6 @@
                                             </td>
                                             <td>{{ $user->section['name'] }}</td>
                                             <td>{{ $user->position['name'] }}</td>
-                                            <td>{{ config('const.display')[$user->display_flag] }}</td>
                                             <td>
                                                 <span class="action-list">
                                                     {{ Form::open(['route' => ['user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
@@ -112,6 +110,6 @@
     </nav>
 </article>
 <script>
-    $('.sidebar-menu').children('li:nth-child(2)').addClass('active');
+    $('.sidebar-menu').children('#users').addClass('active');
 </script>
 @endsection
