@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User;
 
 class UserRequest extends FormRequest
 {
@@ -32,10 +33,8 @@ class UserRequest extends FormRequest
 
     public function attributes()
     {
-        return [
-            'email'        => 'メールアドレス',
-            'last_name'    => '名前 (苗字)',
-            'section_code' => '部署',
-        ];
+        $attributes              = User::$names;
+        $attributes['last_name'] = '名前 (苗字)';
+        return $attributes;
     }
 }

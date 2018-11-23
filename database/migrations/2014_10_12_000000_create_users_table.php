@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string       ('l_n_kana')     ->comment('姓カナ')->nullable();
             $table->string       ('f_n_kana')     ->comment('名カナ')->nullable();
             $table->tinyInteger  ('gender')       ->comment('性別 0:男性, 1:女性, 2:その他')->default(2);
-            $table->date         ('birthday')     ->comment('誕生日')->nullable();
+            $table->date         ('birthday')     ->comment('生年月日')->nullable();
             $table->string       ('zip')          ->comment('郵便番号')->nullable();
             $table->integer      ('city_code')    ->comment('市区町村')->nullable()->unsigned();
             $table->string       ('street')       ->comment('番地')->nullable();
