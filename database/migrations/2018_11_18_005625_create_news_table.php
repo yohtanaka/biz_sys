@@ -16,9 +16,9 @@ class CreateNewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->increments ('id');
             $table->string     ('title')       ->comment('タイトル');
-            $table->tinyInteger('type')        ->comment('タイプ 0:管理者 1:ユーザ');
+            $table->tinyInteger('type')        ->comment('タイプ 1:管理者向け 2:ユーザ向け');
             $table->text       ('body')        ->comment('本文');
-            $table->tinyInteger('display_flag')->comment('表示ステータス 0:非表示 1:表示')->default(1);
+            $table->tinyInteger('display_flag')->comment('表示ステータス 1:表示 2:非表示')->default(1);
             $table->timestamps ();
         });
     }

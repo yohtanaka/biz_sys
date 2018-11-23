@@ -6,3 +6,7 @@
 .btn {
     min-width: 300px;
 }
+
+.right {
+    text-align: right;
+}

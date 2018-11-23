@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\News;
 
 class NewsRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class NewsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,15 @@ class NewsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title'         => 'required',
+            'type'          => 'required',
+            'body'          => 'required',
+            'display_flag'  => 'required',
         ];
+    }
+
+    public function attributes()
+    {
+        return News::$names;
     }
 }
