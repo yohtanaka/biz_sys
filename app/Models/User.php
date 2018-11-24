@@ -75,8 +75,8 @@ class User extends Authenticatable
     static function addParams($data)
     {
         $data += [
-            'roles'     => User::$roles,
-            'gender'    => User::$gender,
+            'roles'     => self::$roles,
+            'gender'    => self::$gender,
             'sections'  => Section::names(),
             'positions' => Position::names(),
         ];

@@ -20,7 +20,7 @@ class Section extends Model
     static function names()
     {
         $names = [];
-        foreach (Section::all() as $section) {
+        foreach (self::all() as $section) {
             $names[$section->code] = $section->name;
         }
         return $names;

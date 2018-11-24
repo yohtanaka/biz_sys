@@ -9,19 +9,7 @@
                     <div class="card-title-block">
                         <h3 class="title">お知らせ登録</h3>
                     </div>
-                    @include('layouts.error')
-                    @if ($confirm)
-                    @if ($edit)
-                    {{ Form::open(['route' => ['admin.news.update', 'id' => $id], 'method' => 'put']) }}
-                    @else
-                    {{ Form::open(['route' => 'admin.news.store']) }}
-                    @endif
-                    @else
-                    {{ Form::open(['route' => 'admin.news.confirm']) }}
-                    @endif
-                    @if ($edit)
-                    {{ Form::hidden('edit', 'true') }}
-                    @endif
+                    @include('layouts.formOpen', ['name' => 'admin.news'])
                         <div class="form-group row">
                             {{ Form::label('title', 'お知らせタイトル', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
@@ -68,21 +56,7 @@
                                 @endif
                             </div>
                         </div>
-                        @if ($confirm)
-                        <div class="form-group">
-                            @if ($confirm !== 'show')
-                            <button type="submit" name="action" value="post" class="btn btn-primary">送信</button>
-                            <button type="submit" name="action" value="back" class="btn btn-primary-outline">戻る</button>
-                            @else
-                            <a href="{{ route('admin.news.index') }}" class="btn btn-primary">戻る</a>
-                            @endif
-                        </div>
-                        @else
-                        <div class="form-group">
-                            {{ Form::submit('確認画面へ', ['class' => 'btn btn-primary']) }}
-                        </div>
-                       @endif
-                    {{ Form::close() }}
+                    @include('layouts.formClose', ['name' => 'admin.news'])
                 </div>
             </div>
         </div>

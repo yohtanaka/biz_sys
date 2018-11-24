@@ -10,3 +10,7 @@
 .right {
     text-align: right;
 }
+
+.card .card-header .title {
+    color: #FFF;
+}

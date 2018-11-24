@@ -28,7 +28,7 @@ class News extends Model
     static function addParams($data)
     {
         $data += [
-            'type' => News::$type,
+            'type' => self::$type,
         ];
         return $data;
     }

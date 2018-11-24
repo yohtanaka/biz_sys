@@ -20,7 +20,7 @@ class Position extends Model
     static function names()
     {
         $names = [];
-        foreach (Position::all() as $position) {
+        foreach (self::all() as $position) {
             $names[$position->code] = $position->name;
         }
         return $names;

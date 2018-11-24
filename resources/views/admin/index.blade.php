@@ -25,6 +25,6 @@
     </section>
 </article>
 <script>
-    $('.sidebar-menu').children('li:first').addClass('active');
+    $('.sidebar-menu').children('#dashboard').addClass('active');
 </script>
 @endsection

@@ -98,6 +98,6 @@
     </section>
 </article>
 <script>
-    $('.sidebar-menu').children('li:nth-child(2)').addClass('active');
+    $('.sidebar-menu').children('#users').addClass('active');
 </script>
 @endsection
