@@ -16,11 +16,11 @@ class News extends Model
     ];
 
     static $names = [
-        'title'         => 'お知らせタイトル',
-        'type'          => 'お知らせタイプ',
-        'body'          => '本文',
-        'display_flag'  => '表示ステータス',
-        'user_id'       => 'ユーザID',
+        'title'        => 'お知らせタイトル',
+        'type'         => 'お知らせタイプ',
+        'body'         => '本文',
+        'display_flag' => '表示ステータス',
+        'user_id'      => 'ユーザID',
     ];
 
     static $type = [

@@ -11,7 +11,7 @@ use App\Library\Csv;
 
 class SalesController extends Controller
 {
-    static $items = ['user_code', 'campany_code', 'shop_code', 'type', 'amount', 'sold_date'];
+    private static $table = 'sales';
 
     public function index() {
         return view('admin.sales.index');
@@ -19,13 +19,12 @@ class SalesController extends Controller
 
     public function csvUpload(Request $request) {
         $file  = $request->file('csvFile');
-        $items = self::$items;
-        $head  = 'campany_code';
-        $data  = Csv::upload($file, $items, $head);
+        $names = Sales::$names;
+        $data  = Csv::upload($file, $names);
         if ($data === false) {
             return redirect()->route('admin.sales.index')->with('alert', 'ファイルの内容が正しくありません');
         }
-        DB::table('sales')->truncate();
+        DB::table(self::$table)->truncate();
         foreach (array_chunk($data, 1000) as $item) {
             Sales::insert($item);
         }
@@ -33,24 +32,10 @@ class SalesController extends Controller
     }
 
     public function csvDownload() {
-        $name     = 'sales';
-        $elements = Sales::latest()->get();
-        $data     = self::getElements($elements);
+        $names = Sales::$names;
+        $eles  = Sales::all();
+        $name  = self::$table;
+        $data  = Csv::getElements($names, $eles);
         return Csv::download($name, $data);
-    }
-
-    static function getElements($elements) {
-        $data[] = self::$items;
-        foreach ($elements as $ele) {
-            $data[] = [
-                $ele['user_code'],
-                $ele['campany_code'],
-                $ele['shop_code'],
-                $ele['type'],
-                $ele['amount'],
-                $ele['sold_date'],
-            ];
-        }
-        return $data;
     }
 }

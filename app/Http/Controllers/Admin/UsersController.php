@@ -29,10 +29,10 @@ class UsersController extends Controller
                   ->orWhere('l_n_kana',   'like', '%' . $name . '%')
                   ->orWhere('email',      'like', '%' . $name . '%');
         }
-        if ($section_code  != '') {
+        if ($section_code  !== '') {
             $query->where('section_code',  $section_code);
         }
-        if ($position_code != '') {
+        if ($position_code !== '') {
             $query->where('position_code', $position_code);
         }
         $data          = [];
