@@ -30,7 +30,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::post('user/confirm', 'UsersController@confirm')->name('user.confirm');
         Route::resource('section', 'SectionsController', ['only' => ['index', 'store', 'destroy']]);
         Route::resource('position', 'PositionsController', ['only' => ['index', 'store', 'destroy']]);
-        Route::resource('sales', 'SalesController');
+        Route::get('sales', 'SalesController@index')->name('sales.index');
+        Route::post('sales/upload', 'SalesController@csvUpload')->name('sales.upload');
+        Route::get('sales/download', 'SalesController@csvDownload')->name('sales.download');
         Route::resource('shop', 'ShopsController');
         Route::resource('item', 'ItemsController');
         Route::resource('news', 'NewsController');

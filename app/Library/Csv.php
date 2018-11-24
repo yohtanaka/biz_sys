@@ -8,29 +8,6 @@ use Goodby\CSV\Import\Standard\LexerConfig;
 
 class Csv
 {
-    static function download($data) {
-        $dateCsv     = $name . date('YmdHis') . '.csv';
-        $csvFileName = "csv/" . $dateCsv;
-        $res         = fopen($csvFileName, 'w');
-        foreach($data as $line) {
-            mb_convert_variables('SJIS-win', 'UTF-8', $line);
-            $tmp  = array();
-            foreach ($line as $value) {
-                $value = str_replace('"', '""', $value);
-                $tmp[] = '"' . $value . '"';
-            }
-            $str  = implode(',', $tmp);
-            $str .= "\n";
-            fputs($res, $str);
-        }
-        fclose($res);
-        header('Content-Type: application/octet-stream');
-        header("Content-Disposition: attachment; filename=${dateCsv}");
-        header('Content-Transfer-Encoding: binary');
-        header('Content-Length: ' . filesize($csvFileName));
-        readfile($csvFileName);
-    }
-
     static function upload($file, $items, $head) {
         $config      = new LexerConfig();
         $interpreter = new Interpreter();
@@ -55,5 +32,28 @@ class Csv
             $data[] = $line;
         }
         return $data;
+    }
+
+    static function download($name, $data) {
+        $dateCsv     = $name . date('YmdHis') . '.csv';
+        $csvFileName = "storage/csv/" . $dateCsv;
+        $res         = fopen($csvFileName, 'w');
+        foreach($data as $line) {
+            mb_convert_variables('SJIS-win', 'UTF-8', $line);
+            $tmp  = array();
+            foreach ($line as $value) {
+                $value = str_replace('"', '""', $value);
+                $tmp[] = '"' . $value . '"';
+            }
+            $str  = implode(',', $tmp);
+            $str .= "\n";
+            fputs($res, $str);
+        }
+        fclose($res);
+        header('Content-Type: application/octet-stream');
+        header("Content-Disposition: attachment; filename=${dateCsv}");
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: ' . filesize($csvFileName));
+        readfile($csvFileName);
     }
 }

@@ -27,13 +27,13 @@ class CreateUsersTable extends Migration
             $table->tinyInteger  ('gender')       ->comment('性別 1:男性, 2:女性, 3:その他')->default(3);
             $table->date         ('birthday')     ->comment('生年月日')->nullable();
             $table->string       ('zip')          ->comment('郵便番号')->nullable();
-            $table->integer      ('city_code')    ->comment('市区町村')->nullable()->unsigned();
+            $table->integer      ('city_code')    ->comment('市区町村コード')->nullable()->unsigned();
             $table->string       ('street')       ->comment('番地')->nullable();
             $table->string       ('building')     ->comment('建物')->nullable();
             $table->string       ('tel_private')  ->comment('個人電話')->nullable();
             $table->string       ('tel_work')     ->comment('社用電話')->nullable();
-            $table->integer      ('section_code') ->comment('部署')->unsigned();
-            $table->integer      ('position_code')->comment('役職')->unsigned();
+            $table->integer      ('section_code') ->comment('部署コード')->unsigned();
+            $table->integer      ('position_code')->comment('役職コード')->unsigned();
             $table->rememberToken();
             $table->softDeletes  ();
             $table->timestamps   ();
