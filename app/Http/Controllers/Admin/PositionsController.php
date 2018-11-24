@@ -11,6 +11,7 @@ class PositionsController extends Controller
 {
     public function index(Request $request)
     {
+        $request->session()->forget('_old_input');
         $data['positions'] = Position::orderBy('code', 'asc')->get();
         return view('admin.positions.index', $data);
     }

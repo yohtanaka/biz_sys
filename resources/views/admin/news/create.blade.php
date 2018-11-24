@@ -38,7 +38,7 @@
                                 @if ($confirm)
                                 {{ $type[$value['type']] }}
                                 @else
-                                {{ Form::radio('type', 1, false, ['id'=>'admin']) }}
+                                {{ Form::radio('type', 1, true, ['id'=>'admin']) }}
                                 {{ Form::label('admin', '管理者向け') }}
                                 {{ Form::radio('type', 2, false, ['id'=>'user']) }}
                                 {{ Form::label('user', 'ユーザ向け') }}
@@ -61,7 +61,7 @@
                                 @if ($confirm)
                                 {{ config('const.display')[$value['display_flag']] }}
                                 @else
-                                {{ Form::radio('display_flag', 1, false, ['id'=>'on']) }}
+                                {{ Form::radio('display_flag', 1, true, ['id'=>'on']) }}
                                 {{ Form::label('on', '表示') }}
                                 {{ Form::radio('display_flag', 2, false, ['id'=>'off']) }}
                                 {{ Form::label('off', '非表示') }}

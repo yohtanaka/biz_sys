@@ -17,6 +17,7 @@ class NewsController extends Controller
 
     public function index(Request $request)
     {
+        $request->session()->forget('_old_input');
         $query        = News::query();
         $name         = $request->name;
         $type         = $request->type;

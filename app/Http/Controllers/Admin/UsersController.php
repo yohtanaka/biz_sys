@@ -17,6 +17,7 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
+        $request->session()->forget('_old_input');
         $query         = User::query();
         $name          = $request->name;
         $section_code  = $request->section_code;
