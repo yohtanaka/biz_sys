@@ -12,7 +12,7 @@
                         </div>
                         {{ Form::open(['route' => 'admin.news.index', 'method' => 'get']) }}
                         <div class="form-group">
-                            <label for="name">名前・本文で検索</label>
+                            <label for="name">タイトル・本文から検索</label>
                             {{ Form::text('name', null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
