@@ -1,10 +1,21 @@
 <?php
 
-namespace App\library;
+namespace App\Http\ViewComposers;
 
-class Time
+use Illuminate\View\View;
+use Auth;
+
+class AppLayoutComposer
 {
-    static function greeting() {
+    public function compose(View $view)
+    {
+        $user             = Auth::user();
+        $data['user']     = $user['last_name'] . $user['first_name'];
+        $data['greeting'] = $this->greeting();
+        $view->with('appLayout', $data);
+    }
+
+    protected function greeting() {
         $time = date('H');
         switch ($time) {
             case $time < 6:

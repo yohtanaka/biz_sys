@@ -1,8 +1,3 @@
-@php
-$user     = Auth::user();
-$user     = $user->last_name . $user->first_name;
-$greeting = App\Library\Time::greeting();
-@endphp
 <header class="header">
     <div class="header-block header-block-buttons">
         {{ date('Y/m/d') }}
@@ -73,7 +68,7 @@ $greeting = App\Library\Time::greeting();
             <li class="profile dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="img" style="background-image: url('')"> </div>
-                    <span class="name">{{ $greeting }} {{ $user }} さん</span>
+                    <span class="name">{{ $appLayout['greeting'] }} {{ $appLayout['user'] }} さん</span>
                 </a>
                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="#">
