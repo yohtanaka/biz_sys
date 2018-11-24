@@ -19,22 +19,22 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
     // Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('login');
-    Route::post('login', 'Admin\Auth\LoginController@login');
-    Route::post('logout', 'Admin\Auth\LoginController@logout')->name('logout');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::group(['middleware' => ['auth', 'can:admin-higher']], function() {
-        Route::view('/', 'admin.index')->name('admin.dashboard');
-        Route::resource('user', 'Admin\UsersController');
-        Route::post('user/confirm', 'Admin\UsersController@confirm')->name('user.confirm');
-        Route::resource('section', 'Admin\SectionsController', ['only' => ['index', 'store', 'destroy']]);
-        Route::resource('position', 'Admin\PositionsController', ['only' => ['index', 'store', 'destroy']]);
-        Route::resource('sales', 'Admin\SalesController');
-        Route::resource('shop', 'Admin\ShopsController');
-        Route::resource('item', 'Admin\ItemsController');
-        Route::resource('news', 'Admin\NewsController');
-        Route::post('news/confirm', 'Admin\NewsController@confirm')->name('news.confirm');
+        Route::view('/', 'admin.index')->name('dashboard');
+        Route::resource('user', 'UsersController');
+        Route::post('user/confirm', 'UsersController@confirm')->name('user.confirm');
+        Route::resource('section', 'SectionsController', ['only' => ['index', 'store', 'destroy']]);
+        Route::resource('position', 'PositionsController', ['only' => ['index', 'store', 'destroy']]);
+        Route::resource('sales', 'SalesController');
+        Route::resource('shop', 'ShopsController');
+        Route::resource('item', 'ItemsController');
+        Route::resource('news', 'NewsController');
+        Route::post('news/confirm', 'NewsController@confirm')->name('news.confirm');
     });
 });
 

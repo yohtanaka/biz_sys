@@ -12,12 +12,12 @@
                     @include('layouts.error')
                     @if ($confirm)
                     @if ($edit)
-                    {{ Form::open(['route' => ['user.update', 'id' => $id], 'method' => 'put']) }}
+                    {{ Form::open(['route' => ['admin.user.update', 'id' => $id], 'method' => 'put']) }}
                     @else
-                    {{ Form::open(['route' => 'user.store']) }}
+                    {{ Form::open(['route' => 'admin.user.store']) }}
                     @endif
                     @else
-                    {{ Form::open(['route' => 'user.confirm']) }}
+                    {{ Form::open(['route' => 'admin.user.confirm']) }}
                     @endif
                     @if ($edit)
                     {{ Form::hidden('edit', 'true') }}
@@ -221,7 +221,7 @@
                             <button type="submit" name="action" value="post" class="btn btn-primary">送信</button>
                             <button type="submit" name="action" value="back" class="btn btn-primary-outline">戻る</button>
                             @else
-                            <a href="{{ route('user.index') }}" class="btn btn-primary">戻る</a>
+                            <a href="{{ route('admin.user.index') }}" class="btn btn-primary">戻る</a>
                             @endif
                         </div>
                         @else

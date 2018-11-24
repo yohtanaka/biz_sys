@@ -10,7 +10,7 @@
                         <div class="card-title-block">
                             <h3 class="title">お知らせ検索</h3>
                         </div>
-                        {{ Form::open(['route' => 'news.index', 'method' => 'get']) }}
+                        {{ Form::open(['route' => 'admin.news.index', 'method' => 'get']) }}
                         <div class="form-group">
                             <label for="name">名前・本文で検索</label>
                             {{ Form::text('name', null, ['class' => 'form-control']) }}
@@ -65,7 +65,7 @@
                                         @foreach ($list as $news)
                                         <tr class="odd gradeX">
                                             <td>
-                                                <a href="{{ route('news.show', $news->id) }}">
+                                                <a href="{{ route('admin.news.show', $news->id) }}">
                                                     {{ $news->title }}
                                                 </a>
                                             </td>
@@ -73,14 +73,14 @@
                                             <td>{{ config('const.display')[$news->display_flag] }}</td>
                                             <td>
                                                 <span class="action-list">
-                                                    {{ Form::open(['route' => ['news.destroy', 'id' => $news->id], 'method' => 'delete', 'id' => 'form_' . $news->id]) }}
+                                                    {{ Form::open(['route' => ['admin.news.destroy', 'id' => $news->id], 'method' => 'delete', 'id' => 'form_' . $news->id]) }}
                                                     <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $news->id }}" onclick="deletePost(this);">
                                                         <i class="fa fa-trash-o"></i>
                                                     </a>
                                                     {{ Form::close() }}
                                                 </span>
                                                 <span class="action-list">
-                                                    <a class="edit" href="{{ route('news.edit', $news->id) }}">
+                                                    <a class="edit" href="{{ route('admin.news.edit', $news->id) }}">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
                                                 </span>

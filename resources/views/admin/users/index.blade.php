@@ -10,7 +10,7 @@
                         <div class="card-title-block">
                             <h3 class="title">社員検索</h3>
                         </div>
-                        {{ Form::open(['route' => 'user.index', 'method' => 'get']) }}
+                        {{ Form::open(['route' => 'admin.user.index', 'method' => 'get']) }}
                         <div class="form-group">
                             <label for="name">名前・メールアドレスで検索</label>
                             {{ Form::text('name', null, ['class' => 'form-control']) }}
@@ -70,7 +70,7 @@
                                         @foreach ($users as $user)
                                         <tr class="odd gradeX">
                                             <td>
-                                                <a href="{{ route('user.show', $user->id) }}">
+                                                <a href="{{ route('admin.user.show', $user->id) }}">
                                                     {{ $user->last_name }} {{ $user->first_name }}
                                                 </a>
                                             </td>
@@ -83,14 +83,14 @@
                                             <td>{{ $user->position['name'] }}</td>
                                             <td>
                                                 <span class="action-list">
-                                                    {{ Form::open(['route' => ['user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
+                                                    {{ Form::open(['route' => ['admin.user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
                                                     <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $user->id }}" onclick="deletePost(this);">
                                                         <i class="fa fa-trash-o"></i>
                                                     </a>
                                                     {{ Form::close() }}
                                                 </span>
                                                 <span class="action-list">
-                                                    <a class="edit" href="{{ route('user.edit', $user->id) }}">
+                                                    <a class="edit" href="{{ route('admin.user.edit', $user->id) }}">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
                                                 </span>

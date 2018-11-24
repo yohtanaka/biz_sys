@@ -81,10 +81,10 @@
                         <i class="fa fa-gear icon"></i> 設定
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-power-off icon"></i> ログアウト
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST">
                         @csrf
                     </form>
                 </div>

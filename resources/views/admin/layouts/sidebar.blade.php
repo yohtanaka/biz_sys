@@ -22,9 +22,9 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('user.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
-                        <li><a href="{{ route('user.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
-                        <li><a href="{{ route('section.index') }}"><i class="fa fa-pencil-square"></i> 部署・役職登録 </a></li>
+                        <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
+                        <li><a href="{{ route('admin.user.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.section.index') }}"><i class="fa fa-pencil-square"></i> 部署・役職登録 </a></li>
                     </ul>
                 </li>
                 <li>
@@ -33,8 +33,8 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('sales.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
-                        <li><a href="{{ route('sales.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.sales.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
+                        <li><a href="{{ route('admin.sales.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
                     </ul>
                 </li>
                 <li>
@@ -43,8 +43,8 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('shop.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
-                        <li><a href="{{ route('shop.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.shop.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
+                        <li><a href="{{ route('admin.shop.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
                     </ul>
                 </li>
                 <li>
@@ -53,8 +53,8 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('item.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
-                        <li><a href="{{ route('item.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.item.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
+                        <li><a href="{{ route('admin.item.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
                     </ul>
                 </li>
                 <li id="news">
@@ -63,8 +63,8 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('news.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
-                        <li><a href="{{ route('news.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.news.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
+                        <li><a href="{{ route('admin.news.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
                     </ul>
                 </li>
             </ul>

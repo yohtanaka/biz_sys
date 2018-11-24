@@ -54,12 +54,12 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         if ($request->get('action') === 'back') {
-            return redirect()->route('news.create')->withInput(session()->get('post_data'));
+            return redirect()->route('admin.news.create')->withInput(session()->get('post_data'));
         }
         $data = $request->session()->get('post_data');
         $news = News::create($data);
         $request->session()->forget('post_data');
-        return redirect()->route('news.index');
+        return redirect()->route('admin.news.index');
     }
 
     public function show(Request $request, $id)
@@ -80,17 +80,17 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->get('action') === 'back') {
-            return redirect()->route('news.edit', ['id' => $id ])->withInput(session()->get('post_data'));
+            return redirect()->route('admin.news.edit', ['id' => $id ])->withInput(session()->get('post_data'));
         }
         $data = $request->session()->get('post_data');
         $news = News::find($id)->update($data);
         $request->session()->forget('post_data');
-        return redirect()->route('news.index');
+        return redirect()->route('admin.news.index');
     }
 
     public function destroy($id)
     {
         $news = News::find($id)->delete();
-        return redirect()->route('news.index');
+        return redirect()->route('admin.news.index');
     }
 }

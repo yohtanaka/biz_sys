@@ -20,12 +20,12 @@ class SectionsController extends Controller
     {
         $section = Section::firstOrNew(['code' => $request->code]);
         $section->fill($request->all())->save();
-        return redirect()->route('section.index');
+        return redirect()->route('admin.section.index');
     }
 
     public function destroy($id)
     {
         $section = Section::find($id)->delete();
-        return redirect()->route('section.index');
+        return redirect()->route('admin.section.index');
     }
 }

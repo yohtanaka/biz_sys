@@ -11,7 +11,7 @@
                             <h3 class="title">部署・役職登録</h3>
                         </div>
                         部署
-                        <a href="{{ route('position.index') }}">役職</a>
+                        <a href="{{ route('admin.position.index') }}">役職</a>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                             <h3 class="title">部署新規登録</h3>
                         </div>
                         @include('layouts.error')
-                        {{ Form::open(['route' => 'section.store']) }}
+                        {{ Form::open(['route' => 'admin.section.store']) }}
                             <div class="form-group row">
                                 {{ Form::label('code', '部署コード', ['class' => 'col-sm-2 form-control-label']) }}
                                 <div class="col-sm-10">
@@ -73,7 +73,7 @@
                                             <td>{{ $section->name }}</td>
                                             <td>
                                                 <span class="action-list">
-                                                    {{ Form::open(['route' => ['section.destroy', 'id' => $section->id], 'method' => 'delete', 'id' => 'form_' . $section->id]) }}
+                                                    {{ Form::open(['route' => ['admin.section.destroy', 'id' => $section->id], 'method' => 'delete', 'id' => 'form_' . $section->id]) }}
                                                     <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $section->id }}" onclick="deletePost(this);">
                                                         <i class="fa fa-trash-o"></i>
                                                     </a>

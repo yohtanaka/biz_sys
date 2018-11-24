@@ -19,12 +19,12 @@ class PositionsController extends Controller
     {
         $position = Position::firstOrNew(['code' => $request->code]);
         $position->fill($request->all())->save();
-        return redirect()->route('position.index');
+        return redirect()->route('admin.position.index');
     }
 
     public function destroy($id)
     {
         $position = Position::find($id)->delete();
-        return redirect()->route('position.index');
+        return redirect()->route('admin.position.index');
     }
 }
