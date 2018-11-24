@@ -2,15 +2,7 @@
 @section('title', '売上一覧')
 @section('content')
 <article class="content">
-    @if($errors->first('file'))
-    <div id="alert">{{ $errors->first('file') }}</div>
-    @endif
-    @if(Session::has('alert'))
-        <div id="alert">{{ session('alert') }}</div>
-    @endif
-    @if(Session::has('notice'))
-        <div id="notice">{{ session('notice') }}</div>
-    @endif
+    @include('layouts.fileError', ['name' => 'csvFile'])
     <section class="section">
         <div class="row">
             <div class="col-md-12">

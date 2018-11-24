@@ -26,15 +26,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
     Route::group(['middleware' => ['auth', 'can:admin-higher']], function() {
         Route::get('/', 'HomeController@index')->name('dashboard');
+
         Route::resource('user', 'UsersController');
         Route::post('user/confirm', 'UsersController@confirm')->name('user.confirm');
         Route::resource('section', 'SectionsController', ['only' => ['index', 'store', 'destroy']]);
         Route::resource('position', 'PositionsController', ['only' => ['index', 'store', 'destroy']]);
+
         Route::get('sales', 'SalesController@index')->name('sales.index');
+        Route::get('sales/csv', 'SalesController@csv')->name('sales.csv');
         Route::post('sales/upload', 'SalesController@csvUpload')->name('sales.upload');
         Route::get('sales/download', 'SalesController@csvDownload')->name('sales.download');
+
         Route::resource('shop', 'ShopsController');
         Route::resource('item', 'ItemsController');
+
         Route::resource('news', 'NewsController');
         Route::post('news/confirm', 'NewsController@confirm')->name('news.confirm');
     });

@@ -24,7 +24,22 @@ class CsvRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimetypes:text/plain|mimes:csv,txt',
+            'csvFile' => 'required|file|mimetypes:text/plain|mimes:csv,txt',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'csvFile' => 'ファイル',
+        ];
+    }
+
+    public function messages() {
+        return [
+            'csvFile.file'      => 'ファイルが保存できませんでした',
+            'csvFile.mimetypes' => 'ファイルの形式が異なっています',
+            'csvFile.mimes'     => 'ファイルの形式が異なっています',
         ];
     }
 }

@@ -17,7 +17,11 @@ class SalesController extends Controller
         return view('admin.sales.index');
     }
 
-    public function csvUpload(Request $request) {
+    public function csv() {
+        return view('admin.sales.index');
+    }
+
+    public function csvUpload(CsvRequest $request) {
         $file  = $request->file('csvFile');
         $names = Sales::$names;
         $data  = Csv::upload($file, $names);
