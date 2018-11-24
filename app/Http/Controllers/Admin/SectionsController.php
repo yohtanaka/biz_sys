@@ -26,7 +26,7 @@ class SectionsController extends Controller
 
     public function destroy($id)
     {
-        $section = Section::find($id)->delete();
+        $section = Section::findOrFail($id)->delete();
         return redirect()->route('admin.section.index');
     }
 }

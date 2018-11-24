@@ -66,7 +66,7 @@ class NewsController extends Controller
     public function show(Request $request, $id)
     {
         $data          = $this->form->beforeShow($request);
-        $data['value'] = News::find($id);
+        $data['value'] = News::findOrFail($id);
         $data          = News::addParams($data);
         return view('admin.news.create', $data);
     }
@@ -84,14 +84,14 @@ class NewsController extends Controller
             return redirect()->route('admin.news.edit', ['id' => $id ])->withInput(session()->get('post_data'));
         }
         $data = $request->session()->get('post_data');
-        $news = News::find($id)->update($data);
+        $news = News::findOrFail($id)->update($data);
         $request->session()->forget('post_data');
         return redirect()->route('admin.news.index');
     }
 
     public function destroy($id)
     {
-        $news = News::find($id)->delete();
+        $news = News::findOrFail($id)->delete();
         return redirect()->route('admin.news.index');
     }
 }

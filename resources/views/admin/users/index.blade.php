@@ -71,7 +71,7 @@
                                         <tr class="odd gradeX">
                                             <td>
                                                 <a href="{{ route('admin.user.show', $user->id) }}">
-                                                    {{ $user->last_name }} {{ $user->first_name }}
+                                                    {{ $user->getFullName() }}
                                                 </a>
                                             </td>
                                             <td>

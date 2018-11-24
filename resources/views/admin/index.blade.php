@@ -18,7 +18,10 @@
                 <div class="card-block">
                     <p>{{ $news->body }}</p>
                 </div>
-                <div class="card-footer right">{{ $news->updated_at->format('Y/m/d') }}</div>
+                <div class="card-footer right">
+                    {{ $news->user->getFullName() }}
+                    {{ $news->updated_at->format('Y/m/d') }}
+                </div>
             </div>
         </div>
         @endforeach

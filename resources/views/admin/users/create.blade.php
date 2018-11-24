@@ -48,7 +48,7 @@
                             {{ Form::label('last_name', '名前', ['class' => 'col-sm-2 form-control-label']) }}
                             @if ($confirm)
                             <div class="col-sm-10">
-                            {{ $value['last_name'] . ' ' . $value['first_name'] }}
+                            {{ $value->getFullName() }}
                             </div>
                             @else
                             <div class="col-sm-5">

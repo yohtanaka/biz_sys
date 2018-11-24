@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->tinyInteger('type')        ->comment('タイプ 1:管理者向け 2:ユーザ向け');
             $table->text       ('body')        ->comment('本文');
             $table->tinyInteger('display_flag')->comment('表示ステータス 1:表示 2:非表示')->default(1);
+            $table->integer    ('user_id')     ->comment('ユーザID')->unsigned();
             $table->timestamps ();
         });
     }

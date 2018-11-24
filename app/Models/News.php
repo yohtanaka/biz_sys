@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class News extends Model
 {
@@ -11,6 +12,7 @@ class News extends Model
         'type',
         'body',
         'display_flag',
+        'user_id',
     ];
 
     static $names = [
@@ -18,6 +20,7 @@ class News extends Model
         'type'          => 'お知らせタイプ',
         'body'          => '本文',
         'display_flag'  => '表示ステータス',
+        'user_id'       => 'ユーザID',
     ];
 
     static $type = [
@@ -25,11 +28,24 @@ class News extends Model
         2 => 'ユーザ向け',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function(News $news) {
+            $news->user_id = Auth::user()->id;
+        });
+    }
+
     static function addParams($data)
     {
         $data += [
             'type' => self::$type,
         ];
         return $data;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

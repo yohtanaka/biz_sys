@@ -57,6 +57,7 @@
                                         <tr>
                                             <th>お知らせタイトル</th>
                                             <th>お知らせタイプ</th>
+                                            <th>投稿者</th>
                                             <th>表示</th>
                                             <th>操作</th>
                                         </tr>
@@ -70,6 +71,7 @@
                                                 </a>
                                             </td>
                                             <td>{{ $type[$news->type] }}</td>
+                                            <td>{{ $news->user->getFullName() }}</td>
                                             <td>{{ config('const.display')[$news->display_flag] }}</td>
                                             <td>
                                                 <span class="action-list">

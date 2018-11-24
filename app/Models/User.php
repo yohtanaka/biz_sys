@@ -83,6 +83,11 @@ class User extends Authenticatable
         return $data;
     }
 
+    public function getFullName()
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
+
     public function section()
     {
         return $this->belongsTo('App\Models\Section', 'section_code', 'code');
@@ -91,5 +96,10 @@ class User extends Authenticatable
     public function position()
     {
         return $this->belongsTo('App\Models\Position', 'position_code', 'code');
+    }
+
+    public function news()
+    {
+        return $this->hasMany('App\Models\News');
     }
 }

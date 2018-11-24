@@ -25,7 +25,7 @@ class PositionsController extends Controller
 
     public function destroy($id)
     {
-        $position = Position::find($id)->delete();
+        $position = Position::findOrFail($id)->delete();
         return redirect()->route('admin.position.index');
     }
 }

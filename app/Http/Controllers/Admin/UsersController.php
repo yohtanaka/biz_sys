@@ -70,7 +70,7 @@ class UsersController extends Controller
     public function show(Request $request, $id)
     {
         $data          = $this->form->beforeShow($request);
-        $data['value'] = User::find($id);
+        $data['value'] = User::findOrFail($id);
         $data          = User::addParams($data);
         return view('admin.users.create', $data);
     }
@@ -89,14 +89,14 @@ class UsersController extends Controller
         }
         $data        = $request->session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
-        $user        = User::find($id)->update($data);
+        $user        = User::findOrFail($id)->update($data);
         $request->session()->forget('post_data');
         return redirect()->route('admin.user.index');
     }
 
     public function destroy($id)
     {
-        $user = User::find($id)->delete();
+        $user = User::findOrFail($id)->delete();
         return redirect()->route('admin.user.index');
     }
 }

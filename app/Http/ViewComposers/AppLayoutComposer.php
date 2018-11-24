@@ -9,8 +9,7 @@ class AppLayoutComposer
 {
     public function compose(View $view)
     {
-        $user             = Auth::user();
-        $data['user']     = $user['last_name'] . $user['first_name'];
+        $data['user']     = Auth::user()->getFullName();
         $data['greeting'] = $this->greeting();
         $view->with('appLayout', $data);
     }
