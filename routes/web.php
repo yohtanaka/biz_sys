@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
-    Route::view('/', 'index')->name('dashboard');
+    Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('report', 'ReportsController');
     // Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::group(['middleware' => ['auth', 'can:admin-higher']], function() {
-        Route::view('/', 'admin.index')->name('dashboard');
+        Route::get('/', 'HomeController@index')->name('dashboard');
         Route::resource('user', 'UsersController');
         Route::post('user/confirm', 'UsersController@confirm')->name('user.confirm');
         Route::resource('section', 'SectionsController', ['only' => ['index', 'store', 'destroy']]);
