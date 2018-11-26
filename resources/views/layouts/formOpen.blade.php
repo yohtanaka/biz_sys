@@ -1,10 +1,3 @@
-@if ($errors->any())
-<div class="alert alert-danger">
-    @foreach ($errors->all() as $error)
-    <p>{{ $error }}</p>
-    @endforeach
-</div>
-@endif
 @if ($confirm)
 @if ($edit)
 {{ Form::open(['route' => [$name . '.update', 'id' => $id], 'method' => 'put']) }}

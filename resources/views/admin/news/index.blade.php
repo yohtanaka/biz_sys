@@ -1,7 +1,7 @@
 @extends('admin.layouts.common')
 @section('title', 'お知らせ一覧')
 @section('content')
-<article class="content items-list-page">
+<article class="content">
     <section class="section">
         <div class="row">
             <div class="col-md-12">

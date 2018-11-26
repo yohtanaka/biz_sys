@@ -33,7 +33,7 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('admin.sales.index') }}">><i class="fa fa-list"></i> 一覧 </a></li>
+                        <li><a href="{{ route('admin.sales.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
                         <li><a href="{{ route('admin.sales.csv') }}"><i class="fa fa-upload"></i> CSV登録 </a></li>
                     </ul>
                 </li>

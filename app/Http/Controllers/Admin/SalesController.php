@@ -18,7 +18,7 @@ class SalesController extends Controller
     }
 
     public function csv() {
-        return view('admin.sales.index');
+        return view('admin.sales.csv');
     }
 
     public function csvUpload(CsvRequest $request) {

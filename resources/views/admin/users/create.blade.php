@@ -9,6 +9,7 @@
                     <div class="card-title-block">
                         <h3 class="title">社員登録</h3>
                     </div>
+                    @include('layouts.error')
                     @include('layouts.formOpen', ['name' => 'admin.user'])
                         <div class="form-group row">
                             {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 form-control-label']) }}
