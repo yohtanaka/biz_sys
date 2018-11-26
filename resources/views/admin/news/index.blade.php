@@ -55,6 +55,7 @@
                                 <table class="table table-striped table-bordered table-hover flip-content">
                                     <thead class="flip-header">
                                         <tr>
+                                            <th>ID</th>
                                             <th>お知らせタイトル</th>
                                             <th>お知らせタイプ</th>
                                             <th>投稿者</th>
@@ -65,6 +66,7 @@
                                     <tbody>
                                         @foreach ($list as $news)
                                         <tr class="odd gradeX">
+                                            <td>{{ $news->id }}</td>
                                             <td>
                                                 <a href="{{ route('admin.news.show', $news->id) }}">
                                                     {{ $news->title }}

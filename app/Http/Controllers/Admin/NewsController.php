@@ -34,7 +34,7 @@ class NewsController extends Controller
         }
         $data         = [];
         $data         = News::addParams($data);
-        $data['list'] = $query->latest()->paginate(10);
+        $data['list'] = $query->paginate(10);
         return view('admin.news.index', $data);
     }
 

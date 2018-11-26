@@ -59,6 +59,7 @@
                                 <table class="table table-striped table-bordered table-hover flip-content">
                                     <thead class="flip-header">
                                         <tr>
+                                            <th>ID</th>
                                             <th>名前</th>
                                             <th>メールアドレス</th>
                                             <th>部署</th>
@@ -69,6 +70,7 @@
                                     <tbody>
                                         @foreach ($users as $user)
                                         <tr class="odd gradeX">
+                                            <td>{{ $user->id }}</td>
                                             <td>
                                                 <a href="{{ route('admin.user.show', $user->id) }}">
                                                     {{ $user->getFullName() }}
