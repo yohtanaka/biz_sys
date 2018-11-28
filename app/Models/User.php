@@ -69,7 +69,9 @@ class User extends Authenticatable
     ];
 
     static $gender = [
-        '', '男性', '女性', 'その他',
+        1 => '男性',
+        2 => '女性',
+        3 => 'その他',
     ];
 
     static function addParams($data)

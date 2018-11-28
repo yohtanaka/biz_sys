@@ -43,8 +43,11 @@
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li><a href="{{ route('admin.shop.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
-                        <li><a href="{{ route('admin.shop.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.shop.index') }}"><i class="fa fa-list"></i> 店舗一覧 </a></li>
+                        <li><a href="{{ route('admin.shop.create') }}"><i class="fa fa-pencil-square-o"></i> 店舗登録 </a></li>
+                        <li><a href="{{ route('admin.shop.csv') }}"><i class="fa fa-upload"></i> CSV登録 </a></li>
+                        <li><a href="{{ route('admin.company.index') }}"><i class="fa fa-list"></i> チェーン一覧 </a></li>
+                        <li><a href="{{ route('admin.company.create') }}"><i class="fa fa-pencil-square-o"></i> チェーン登録 </a></li>
                     </ul>
                 </li>
                 <li>
@@ -55,6 +58,7 @@
                     <ul class="sidebar-nav">
                         <li><a href="{{ route('admin.item.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
                         <li><a href="{{ route('admin.item.create') }}"><i class="fa fa-pencil-square-o"></i> 新規登録 </a></li>
+                        <li><a href="{{ route('admin.item.csv') }}"><i class="fa fa-upload"></i> CSV登録 </a></li>
                     </ul>
                 </li>
                 <li id="news">

@@ -38,7 +38,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('sales/download', 'SalesController@csvDownload')->name('sales.download');
 
         Route::resource('shop', 'ShopsController');
+        Route::post('shop/confirm', 'ShopsController@confirm')->name('shop.confirm');
+        Route::get('shop/csv', 'ShopsController@csv')->name('shop.csv');
+        Route::post('shop/upload', 'ShopsController@csvUpload')->name('shop.upload');
+        Route::get('shop/download', 'ShopsController@csvDownload')->name('shop.download');
+        Route::resource('company', 'CompaniesController');
+        Route::post('company/confirm', 'CompaniesController@confirm')->name('company.confirm');
+
         Route::resource('item', 'ItemsController');
+        Route::post('item/confirm', 'ItemsController@confirm')->name('item.confirm');
+        Route::get('item/csv', 'ItemsController@csv')->name('item.csv');
+        Route::post('item/upload', 'ItemsController@csvUpload')->name('item.upload');
+        Route::get('item/download', 'ItemsController@csvDownload')->name('item.download');
 
         Route::resource('news', 'NewsController');
         Route::post('news/confirm', 'NewsController@confirm')->name('news.confirm');
