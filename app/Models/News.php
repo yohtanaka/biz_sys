@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Library\Search;
 
 class News extends Model
 {
+    use Search;
+
     protected $fillable = [
         'title',
         'type',
@@ -23,25 +26,12 @@ class News extends Model
         'user_id'      => 'ユーザID',
     ];
 
-    static $type = [
-        1 => '管理者向け',
-        2 => 'ユーザ向け',
-    ];
-
     public static function boot()
     {
         parent::boot();
         self::creating(function(News $news) {
             $news->user_id = Auth::user()->id;
         });
-    }
-
-    static function addParams($data)
-    {
-        $data += [
-            'type' => self::$type,
-        ];
-        return $data;
     }
 
     public function user()

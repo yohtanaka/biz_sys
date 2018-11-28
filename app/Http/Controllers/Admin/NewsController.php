@@ -18,37 +18,26 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('_old_input');
-        $query        = News::query();
-        $name         = $request->name;
-        $type         = $request->type;
-        $display_flag = $request->display_flag;
-        if (!empty($name)) {
-            $query->where  ('title', 'like', '%' . $name . '%')
-                  ->orWhere('body',  'like', '%' . $name . '%');
-        }
-        if (!empty($type)) {
-            $query->where('type', $type);
-        }
-        if (!empty($display_flag)) {
-            $query->where('display_flag', $display_flag);
-        }
-        $data         = [];
-        $data         = News::addParams($data);
-        $data['list'] = $query->paginate(10);
+        $data['name'] = $request->name;
+        $data['type'] = $request->type;
+        $data['df']   = $request->display_flag;
+        $data['list'] = News::nameIn('title', $data['name'])
+                            ->orNameIn('body', $data['name'])
+                            ->nameEqual('type', $data['type'])
+                            ->nameEqual('display_flag', $data['df'])
+                            ->paginate(10);
         return view('admin.news.index', $data);
     }
 
     public function create(Request $request)
     {
         $data = $this->form->beforeCreate($request);
-        $data = News::addParams($data);
         return view('admin.news.create', $data);
     }
 
     public function confirm(NewsRequest $request)
     {
         $data = $this->form->beforeConfirm($request);
-        $data = News::addParams($data);
         return view('admin.news.create', $data);
     }
 
@@ -67,14 +56,12 @@ class NewsController extends Controller
     {
         $data          = $this->form->beforeShow($request);
         $data['value'] = News::findOrFail($id);
-        $data          = News::addParams($data);
         return view('admin.news.create', $data);
     }
 
     public function edit(News $news, Request $request)
     {
         $data = $this->form->beforeEdit($request, $news);
-        $data = News::addParams($data);
         return view('admin.news.create', $data);
     }
 

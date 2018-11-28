@@ -13,23 +13,35 @@
                         {{ Form::open(['route' => 'admin.news.index', 'method' => 'get']) }}
                         <div class="form-group">
                             <label for="name">タイトル・本文から検索</label>
-                            {{ Form::text('name', null, ['class' => 'form-control']) }}
+                            {{ Form::text('name', $name, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             <label>お知らせタイプ・表示ステータスで絞り込み</label>
                         </div>
                         <div class="row form-group" style="margin-top: -15px;">
                             <div class="col-4">
-                                {{ Form::radio('type', 1, false, ['id'=>'admin']) }}
-                                {{ Form::label('admin', '管理者向け') }}
-                                {{ Form::radio('type', 2, false, ['id'=>'user']) }}
-                                {{ Form::label('user', 'ユーザ向け') }}
+                                {{ Form::radio('type', '', true, ['id' => 't_all']) }}
+                                {{ Form::label('t_all', '全て') }}
+                                @foreach (config('const.type') as $key => $value)
+                                @if ($type == $key)
+                                {{ Form::radio('type', $key, true, ['id' => $value]) }}
+                                @else
+                                {{ Form::radio('type', $key, false, ['id' => $value]) }}
+                                @endif
+                                {{ Form::label($value, $value) }}
+                                @endforeach
                             </div>
                             <div class="col-4">
-                                {{ Form::radio('display_flag', 1, false, ['id'=>'on']) }}
-                                {{ Form::label('on', '表示') }}
-                                {{ Form::radio('display_flag', 2, false, ['id'=>'off']) }}
-                                {{ Form::label('off', '非表示') }}
+                                {{ Form::radio('display_flag', '', true, ['id' => 'd_all']) }}
+                                {{ Form::label('d_all', '全て') }}
+                                @foreach (config('const.display') as $key => $value)
+                                @if ($df == $key)
+                                {{ Form::radio('display_flag', $key, true, ['id' => $value]) }}
+                                @else
+                                {{ Form::radio('display_flag', $key, false, ['id' => $value]) }}
+                                @endif
+                                {{ Form::label($value, $value) }}
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,7 +76,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($list as $news)
+                                        @forelse ($list as $news)
                                         <tr class="odd gradeX">
                                             <td>{{ $news->id }}</td>
                                             <td>
@@ -72,7 +84,7 @@
                                                     {{ $news->title }}
                                                 </a>
                                             </td>
-                                            <td>{{ $type[$news->type] }}</td>
+                                            <td>{{ config('const.type')[$news->type] }}</td>
                                             <td>{{ $news->user->getFullName() }}</td>
                                             <td>{{ config('const.display')[$news->display_flag] }}</td>
                                             <td>
@@ -90,7 +102,11 @@
                                                 </span>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr class="odd gradeX">
+                                            <td colspan="6">該当の項目がありません</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

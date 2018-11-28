@@ -25,7 +25,7 @@
                             {{ Form::label('', 'お知らせタイプ', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($confirm)
-                                {{ $type[$value['type']] }}
+                                {{ config('const.type')[$value['type']] }}
                                 @else
                                 {{ Form::radio('type', 1, true, ['id'=>'admin']) }}
                                 {{ Form::label('admin', '管理者向け') }}
