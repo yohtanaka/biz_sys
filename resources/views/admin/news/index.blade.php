@@ -20,27 +20,27 @@
                         </div>
                         <div class="row form-group" style="margin-top: -15px;">
                             <div class="col-4">
-                                {{ Form::radio('type', '', true, ['id' => 't_all']) }}
-                                {{ Form::label('t_all', '全て') }}
+                                {{ Form::radio('type', '', true, ['id' => 'type_all']) }}
+                                {{ Form::label('type_all', '全て') }}
                                 @foreach (config('const.type') as $key => $value)
                                 @if ($type == $key)
-                                {{ Form::radio('type', $key, true, ['id' => $value]) }}
+                                {{ Form::radio('type', $key, true, ['id' => "type_${key}"]) }}
                                 @else
-                                {{ Form::radio('type', $key, false, ['id' => $value]) }}
+                                {{ Form::radio('type', $key, false, ['id' => "type_${key}"]) }}
                                 @endif
-                                {{ Form::label($value, $value) }}
+                                {{ Form::label("type_${key}", $value) }}
                                 @endforeach
                             </div>
                             <div class="col-4">
-                                {{ Form::radio('display_flag', '', true, ['id' => 'd_all']) }}
-                                {{ Form::label('d_all', '全て') }}
+                                {{ Form::radio('display_flag', '', true, ['id' => 'df_all']) }}
+                                {{ Form::label('df_all', '全て') }}
                                 @foreach (config('const.display') as $key => $value)
                                 @if ($df == $key)
-                                {{ Form::radio('display_flag', $key, true, ['id' => $value]) }}
+                                {{ Form::radio('display_flag', $key, true, ['id' => "df_${key}"]) }}
                                 @else
-                                {{ Form::radio('display_flag', $key, false, ['id' => $value]) }}
+                                {{ Form::radio('display_flag', $key, false, ['id' => "df_${key}"]) }}
                                 @endif
-                                {{ Form::label($value, $value) }}
+                                {{ Form::label("df_${key}", $value) }}
                                 @endforeach
                             </div>
                         </div>

@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Section;
 use App\Models\Position;
+use App\Library\Search;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes, Search;
+
     protected $fillable = [
         'email',
         'password',
@@ -33,7 +35,6 @@ class User extends Authenticatable
         'position_code',
     ];
 
-    use SoftDeletes;
     protected $dates = ['deleted_at'];
 
     protected $hidden = [
@@ -60,30 +61,6 @@ class User extends Authenticatable
         'section_code'  => '部署',
         'position_code' => '役職',
     ];
-
-    static $roles = [
-        1  => 'システム',
-        2  => 'マスター',
-        5  => '管理者',
-        10 => '一般',
-    ];
-
-    static $gender = [
-        1 => '男性',
-        2 => '女性',
-        3 => 'その他',
-    ];
-
-    static function addParams($data)
-    {
-        $data += [
-            'roles'     => self::$roles,
-            'gender'    => self::$gender,
-            'sections'  => Section::names(),
-            'positions' => Position::names(),
-        ];
-        return $data;
-    }
 
     public function getFullName()
     {

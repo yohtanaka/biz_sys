@@ -18,40 +18,29 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('_old_input');
-        $query         = User::query();
-        $name          = $request->name;
-        $section_code  = $request->section_code;
-        $position_code = $request->position_code;
-        if (!empty($name)) {
-            $query->where  ('first_name', 'like', '%' . $name . '%')
-                  ->orWhere('last_name',  'like', '%' . $name . '%')
-                  ->orWhere('f_n_kana',   'like', '%' . $name . '%')
-                  ->orWhere('l_n_kana',   'like', '%' . $name . '%')
-                  ->orWhere('email',      'like', '%' . $name . '%');
-        }
-        if (!empty($section_code)) {
-            $query->where('section_code',  $section_code);
-        }
-        if (!empty($position_code)) {
-            $query->where('position_code', $position_code);
-        }
-        $data          = [];
-        $data          = User::addParams($data);
-        $data['users'] = $query->paginate(10);
+        $data['name']  = $request->name;
+        $data['sc']    = $request->section_code;
+        $data['pc']    = $request->position_code;
+        $data['users'] = User::nameIn('first_name', $data['name'])
+                             ->orNameIn('last_name', $data['name'])
+                             ->orNameIn('f_n_kana', $data['name'])
+                             ->orNameIn('l_n_kana', $data['name'])
+                             ->orNameIn('email', $data['name'])
+                             ->nameEqual('section_code', $data['sc'])
+                             ->nameEqual('position_code', $data['pc'])
+                             ->paginate(10);
         return view('admin.users.index', $data);
     }
 
     public function create(Request $request)
     {
         $data = $this->form->beforeCreate($request);
-        $data = User::addParams($data);
         return view('admin.users.create', $data);
     }
 
     public function confirm(UserRequest $request)
     {
         $data = $this->form->beforeConfirm($request);
-        $data = User::addParams($data);
         return view('admin.users.create', $data);
     }
 
@@ -71,14 +60,12 @@ class UsersController extends Controller
     {
         $data          = $this->form->beforeShow($request);
         $data['value'] = User::findOrFail($id);
-        $data          = User::addParams($data);
         return view('admin.users.create', $data);
     }
 
     public function edit(User $user, Request $request)
     {
         $data = $this->form->beforeEdit($request, $user);
-        $data = User::addParams($data);
         return view('admin.users.create', $data);
     }
 

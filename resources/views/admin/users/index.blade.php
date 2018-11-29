@@ -13,7 +13,7 @@
                         {{ Form::open(['route' => 'admin.user.index', 'method' => 'get']) }}
                         <div class="form-group">
                             <label for="name">名前・メールアドレスで検索</label>
-                            {{ Form::text('name', null, ['class' => 'form-control']) }}
+                            {{ Form::text('name', $name, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             <label>部署・役職で絞り込み</label>
@@ -22,16 +22,24 @@
                             <div class="col-6">
                                 <select name='section_code' class='form-control'>
                                     <option value=''>選択してください</option>
-                                    @foreach ($sections as $key => $value)
+                                    @foreach ($userData['sections'] as $key => $value)
+                                    @if ($sc == $key)
+                                    <option value="{{ $key }}" selected>{{ $value }}</option>
+                                    @else
                                     <option value="{{ $key }}">{{ $value }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-6">
                                 <select name='position_code' class='form-control'>
                                     <option value=''>選択してください</option>
-                                    @foreach ($positions as $key => $value)
+                                    @foreach ($userData['positions'] as $key => $value)
+                                    @if ($pc == $key)
+                                    <option value="{{ $key }}" selected>{{ $value }}</option>
+                                    @else
                                     <option value="{{ $key }}">{{ $value }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -68,7 +76,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @forelse ($users as $user)
                                         <tr class="odd gradeX">
                                             <td>{{ $user->id }}</td>
                                             <td>
@@ -98,7 +106,11 @@
                                                 </span>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr class="odd gradeX">
+                                            <td colspan="6">該当の項目がありません</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

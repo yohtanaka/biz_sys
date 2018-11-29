@@ -29,7 +29,7 @@
                             {{ Form::label('role', '権限', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($confirm)
-                                {{ $roles[$value['role']] }}
+                                {{ config('const.roles')[$value['role']] }}
                                 @else
                                 {{ Form::select('role', [2 => 'マスター管理者', 5 => '管理者', 10 => '一般'], 10, ['class' => 'form-control']) }}
                                 @endif
@@ -79,7 +79,7 @@
                             {{ Form::label('', '性別', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($confirm)
-                                {{ $gender[$value['gender']] }}
+                                {{ config('const.gender')[$value['gender']] }}
                                 @else
                                 {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
                                 {{ Form::label('men', '男性') }}
@@ -171,11 +171,11 @@
                             {{ Form::label('section_code', '部署', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($confirm)
-                                {{ $sections[$value['section_code']] }}
+                                {{ $userData['sections'][$value['section_code']] }}
                                 @else
                                 <select class='form-control' id='section_code' name='section_code'>
                                     <option value='' disabled selected style='display:none;'>選択してください</option>
-                                    @foreach ($sections as $key => $value)
+                                    @foreach ($userData['sections'] as $key => $value)
                                     @if (old('section_code') == $key)
                                     <option value="{{ $key }}" selected="selected">{{ $value }}</option>
                                     @else
@@ -190,10 +190,10 @@
                             {{ Form::label('position_code', '役職', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($confirm)
-                                {{ $positions[$value['position_code']] }}
+                                {{ $userData['positions'][$value['position_code']] }}
                                 @else
                                 <select class='form-control' id='position_code' name='position_code'>
-                                    @foreach ($positions as $key => $value)
+                                    @foreach ($userData['positions'] as $key => $value)
                                     @if (old('position_code') == $key)
                                     <option value="{{ $key }}" selected="selected">{{ $value }}</option>
                                     @else

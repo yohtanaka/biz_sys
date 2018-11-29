@@ -25,7 +25,7 @@ class NewsController extends Controller
                             ->orNameIn('body', $data['name'])
                             ->nameEqual('type', $data['type'])
                             ->nameEqual('display_flag', $data['df'])
-                            ->paginate(10);
+                            ->paginate (10);
         return view('admin.news.index', $data);
     }
 
