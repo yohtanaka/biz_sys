@@ -17,7 +17,6 @@ class NewsController extends Controller
 
     public function index(Request $request)
     {
-        $request->session()->forget('_old_input');
         $data['name'] = $request->name;
         $data['type'] = $request->type;
         $data['df']   = $request->display_flag;
@@ -48,7 +47,6 @@ class NewsController extends Controller
         }
         $data = $request->session()->get('post_data');
         $news = News::create($data);
-        $request->session()->forget('post_data');
         return redirect()->route('admin.news.index');
     }
 
@@ -72,7 +70,6 @@ class NewsController extends Controller
         }
         $data = $request->session()->get('post_data');
         $news = News::findOrFail($id)->update($data);
-        $request->session()->forget('post_data');
         return redirect()->route('admin.news.index');
     }
 

@@ -17,7 +17,6 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        $request->session()->forget('_old_input');
         $data['name']  = $request->name;
         $data['sc']    = $request->section_code;
         $data['pc']    = $request->position_code;
@@ -52,7 +51,6 @@ class UsersController extends Controller
         $data        = $request->session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
         $user        = User::create($data);
-        $request->session()->forget('post_data');
         return redirect()->route('admin.user.index');
     }
 
@@ -77,7 +75,6 @@ class UsersController extends Controller
         $data        = $request->session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
         $user        = User::findOrFail($id)->update($data);
-        $request->session()->forget('post_data');
         return redirect()->route('admin.user.index');
     }
 
