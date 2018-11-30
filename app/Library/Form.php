@@ -6,31 +6,31 @@ use Illuminate\Http\Request;
 
 class Form
 {
-    public function beforeCreate(Request $request)
+    public function beforeCreate()
     {
         $data['edit']    = false;
         $data['confirm'] = false;
-        if ($request->session()->has('id')) {
-            $request->session()->forget('id');
-            $request->session()->forget('_old_input');
+        if (!session()->exists('_old_input')) {
+            session()->forget('post_data');
         }
-        if (!$request->session()->exists('_old_input')) {
-            $request->session()->forget('post_data');
+        if (session()->has('id')) {
+            session()->forget('id');
+            session()->forget('_old_input');
         }
         return $data;
     }
 
     public function beforeConfirm(Request $request)
     {
-        if ($request->session()->has('id')) {
+        if (session()->has('id')) {
             $data['edit'] = true;
-            $data['id']   = $request->session()->get('id');
+            $data['id']   = session()->get('id');
         } else {
             $data['edit'] = false;
         }
         $data['confirm'] = true;
         $data['value']   = $request->all();
-        $request->session()->put('post_data', $data['value']);
+        session()->put('post_data', $data['value']);
         return $data;
     }
 
@@ -41,21 +41,21 @@ class Form
         return $data;
     }
 
-    public function beforeEdit(Request $request, $value)
+    public function beforeEdit($value)
     {
 
         $data['edit']    = true;
         $data['confirm'] = false;
-        if (!$request->session()->exists('_old_input')) {
-            $request->session()->forget('post_data');
+        if (!session()->exists('_old_input')) {
+            session()->forget('post_data');
         }
-        if ($request->session()->has('post_data.edit') || $request->session()->has('errors')) {
+        if (session()->has('post_data.edit') || session()->has('errors')) {
             return $data;
         }
         $values = $value->toArray();
-        $request->session()->put('id', $values['id']);
+        session()->put('id', $values['id']);
         foreach ($values as $key => $val) {
-            $request->session()->put("_old_input.{$key}", $val);
+            session()->put("_old_input.{$key}", $val);
         }
         return $data;
     }

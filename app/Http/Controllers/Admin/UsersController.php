@@ -31,9 +31,9 @@ class UsersController extends Controller
         return view('admin.users.index', $data);
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $data = $this->form->beforeCreate($request);
+        $data = $this->form->beforeCreate();
         return view('admin.users.create', $data);
     }
 
@@ -48,7 +48,7 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.user.create')->withInput(session()->get('post_data'));
         }
-        $data        = $request->session()->get('post_data');
+        $data        = session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
         $user        = User::create($data);
         return redirect()->route('admin.user.index');
@@ -61,9 +61,9 @@ class UsersController extends Controller
         return view('admin.users.create', $data);
     }
 
-    public function edit(User $user, Request $request)
+    public function edit(User $user)
     {
-        $data = $this->form->beforeEdit($request, $user);
+        $data = $this->form->beforeEdit($user);
         return view('admin.users.create', $data);
     }
 
@@ -72,7 +72,7 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.user.edit', ['id' => $id ])->withInput(session()->get('post_data'));
         }
-        $data        = $request->session()->get('post_data');
+        $data        = session()->get('post_data');
         $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
         $user        = User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');

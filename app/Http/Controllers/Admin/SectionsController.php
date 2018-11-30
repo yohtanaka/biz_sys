@@ -9,7 +9,7 @@ use App\Models\Section;
 
 class SectionsController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $data['sections']  = Section::orderBy('code', 'asc')->get();
         $data['next_code'] = Section::max('code') + 1;
@@ -19,7 +19,7 @@ class SectionsController extends Controller
     public function store(SectionRequest $request)
     {
         $section = Section::firstOrNew(['code' => $request->code]);
-        $section->fill($request->all())->save();
+        $section::create($request->all());
         return redirect()->route('admin.section.index');
     }
 

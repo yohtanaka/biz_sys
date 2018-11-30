@@ -26,6 +26,7 @@ class UserRequest extends FormRequest
     {
         return [
             'email'        => 'required|unique:users,email,' . session()->get('id'),
+            'code'         => 'required',
             'last_name'    => 'required',
             'section_code' => 'required',
         ];

@@ -28,9 +28,9 @@ class NewsController extends Controller
         return view('admin.news.index', $data);
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $data = $this->form->beforeCreate($request);
+        $data = $this->form->beforeCreate();
         return view('admin.news.create', $data);
     }
 
@@ -45,7 +45,7 @@ class NewsController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.news.create')->withInput(session()->get('post_data'));
         }
-        $data = $request->session()->get('post_data');
+        $data = session()->get('post_data');
         $news = News::create($data);
         return redirect()->route('admin.news.index');
     }
@@ -57,9 +57,9 @@ class NewsController extends Controller
         return view('admin.news.create', $data);
     }
 
-    public function edit(News $news, Request $request)
+    public function edit(News $news)
     {
-        $data = $this->form->beforeEdit($request, $news);
+        $data = $this->form->beforeEdit($news);
         return view('admin.news.create', $data);
     }
 
@@ -68,7 +68,7 @@ class NewsController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.news.edit', ['id' => $id ])->withInput(session()->get('post_data'));
         }
-        $data = $request->session()->get('post_data');
+        $data = session()->get('post_data');
         $news = News::findOrFail($id)->update($data);
         return redirect()->route('admin.news.index');
     }

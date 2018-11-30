@@ -9,7 +9,7 @@ use App\Models\Position;
 
 class PositionsController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $data['positions'] = Position::orderBy('code', 'asc')->get();
         return view('admin.positions.index', $data);
@@ -18,7 +18,7 @@ class PositionsController extends Controller
     public function store(PositionRequest $request)
     {
         $position = Position::firstOrNew(['code' => $request->code]);
-        $position->fill($request->all())->save();
+        $position::create($request->all());
         return redirect()->route('admin.position.index');
     }
 
