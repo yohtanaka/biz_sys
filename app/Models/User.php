@@ -28,7 +28,7 @@ class User extends Authenticatable
         'zip',
         'pref_code',
         'city_code',
-        'city',
+        'city_name',
         'street',
         'building',
         'tel_private',
@@ -57,7 +57,7 @@ class User extends Authenticatable
         'zip'           => '郵便番号',
         'pref_code'     => '都道府県',
         'city_code'     => '市区町村コード',
-        'city'          => '市区町村',
+        'city_name'     => '市区町村',
         'street'        => '番地',
         'building'      => '建物',
         'tel_private'   => '個人電話',
@@ -82,6 +82,11 @@ class User extends Authenticatable
     public function getFullName()
     {
         return $this->last_name . ' ' . $this->first_name;
+    }
+
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City', 'pref_code', 'pref_code');
     }
 
     public function section()

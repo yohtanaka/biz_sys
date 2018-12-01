@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string     ('zip')          ->comment('郵便番号')->nullable();
             $table->integer    ('pref_code')    ->comment('都道府県コード')->nullable()->unsigned();
             $table->integer    ('city_code')    ->comment('市区町村コード')->nullable()->unsigned();
-            $table->string     ('city')         ->comment('市区町村')->nullable();
+            $table->string     ('city_name')    ->comment('市区町村')->nullable();
             $table->string     ('street')       ->comment('番地')->nullable();
             $table->string     ('building')     ->comment('建物')->nullable();
             $table->string     ('tel_private')  ->comment('個人電話')->nullable();

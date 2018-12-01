@@ -63,6 +63,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $data = $this->beforeEdit($user);
+        $this->replaceParams($user);
         return view('admin.users.create', $data);
     }
 

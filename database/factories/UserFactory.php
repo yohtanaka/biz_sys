@@ -31,7 +31,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'zip'            => mt_rand(100, 999) . '-' . mt_rand(1000, 9999),
         'pref_code'      => $faker->numberBetween(1, 47),
         'city_code'      => null,
-        'city'           => $faker->city,
+        'city_name'      => $faker->city,
         'street'         => $faker->streetAddress,
         'building'       => $faker->secondaryAddress,
         'tel_private'    => '0' . mt_rand(),

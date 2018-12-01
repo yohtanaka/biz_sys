@@ -47,14 +47,14 @@
                             {{ Form::label('last_name', '名前', ['class' => 'col-sm-2 form-control-label']) }}
                             @if ($show)
                             <div class="col-sm-10">
-                            {{ $value['last_name'] . ' ' . $value['first_name'] }}
+                                {{ $value['last_name'] . ' ' . $value['first_name'] }}
                             </div>
                             @else
                             <div class="col-sm-5">
-                            {{ Form::text('last_name', null, ['class' => 'form-control form-half', 'placeholder' => '山田']) }}
+                                {{ Form::text('last_name', null, ['class' => 'form-control form-half', 'placeholder' => '山田']) }}
                             </div>
                             <div class="col-sm-5">
-                            {{ Form::text('first_name', null, ['class' => 'form-control form-half', 'placeholder' => '太郎']) }}
+                                {{ Form::text('first_name', null, ['class' => 'form-control form-half', 'placeholder' => '太郎']) }}
                             </div>
                             @endif
                         </div>
@@ -62,14 +62,14 @@
                             {{ Form::label('l_n_kana', '名前(カナ)', ['class' => 'col-sm-2 form-control-label']) }}
                             @if ($show)
                             <div class="col-sm-10">
-                            {{ $value['l_n_kana'] . ' ' . $value['f_n_kana'] }}
+                                {{ $value['l_n_kana'] . ' ' . $value['f_n_kana'] }}
                             </div>
                             @else
                             <div class="col-sm-5">
-                            {{ Form::text('l_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'ヤマダ']) }}
+                                {{ Form::text('l_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'ヤマダ']) }}
                             </div>
                             <div class="col-sm-5">
-                            {{ Form::text('f_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'タロウ']) }}
+                                {{ Form::text('f_n_kana', null, ['class' => 'form-control form-half', 'placeholder' => 'タロウ']) }}
                             </div>
                             @endif
                         </div>
@@ -100,39 +100,43 @@
                         </div>
                         <div class="form-group row">
                             {{ Form::label('zip1', '郵便番号', ['class' => 'col-sm-2 form-control-label']) }}
-                            @if ($show)
+                            @if ($show === 'confirm')
                             <div class="col-sm-10">
-                            @if ($value['zip1'] || $value['zip2'])
-                            {{ $value['zip1'] . '-' . $value['zip2'] }}
+                                {{ $value['zip1'] . '-' . $value['zip2'] }}
+                            </div>
                             @elseif ($show === 'show')
-                            {{ $value['zip']}}
-                            @endif
+                            <div class="col-sm-10">
+                                {{ $value['zip'] }}
                             </div>
                             @else
                             <div class="col-sm-3">
-                            {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
+                                {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
                             </div>
                             <strong>-</strong>
                             <div class="col-sm-3">
-                            {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
+                                {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
                             </div>
                             @endif
                         </div>
                         <div class="form-group row">
                             {{ Form::label('pref', '住所', ['class' => 'col-sm-2 form-control-label']) }}
-                            @if ($show)
+                            @if ($show === 'confirm')
                             <div class="col-sm-10">
-                                {{ $value['pref'] . ' ' . $value['city'] . ' ' . $value['street'] }}
+                                {{ $value['pref'] . ' ' . $value['city_name'] . ' ' . $value['street'] }}
+                            </div>
+                            @elseif ($show === 'show')
+                            <div class="col-sm-10">
+                                {{ $value->city['pref_name'] . ' ' . $value['city_name'] . ' ' . $value['street'] }}
                             </div>
                             @else
                             <div class="col-sm-3">
-                            {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-one-third', 'placeholder' => '神奈川県']) }}
+                                {{ Form::text('pref', null, ['id' => 'pref', 'class' => 'form-control form-one-third', 'placeholder' => '神奈川県']) }}
                             </div>
                             <div class="col-sm-3">
-                            {{ Form::text('city', null, ['id' => 'city', 'class' => 'form-control form-one-third', 'placeholder' => '川崎市高津区']) }}
+                                {{ Form::text('city_name', null, ['id' => 'city', 'class' => 'form-control form-one-third', 'placeholder' => '川崎市高津区']) }}
                             </div>
                             <div class="col-sm-4">
-                            {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-one-third', 'placeholder' => '新作1-1-1']) }}
+                                {{ Form::text('street', null, ['id' => 'street', 'class' => 'form-control form-one-third', 'placeholder' => '新作1-1-1']) }}
                             </div>
                             {{ Form::hidden('street_kana', null, ['id' => 'street_kana']) }}
                             @endif
