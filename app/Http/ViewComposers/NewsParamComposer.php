@@ -10,8 +10,9 @@ class NewsParamComposer
     public function compose(View $view)
     {
         $view->with([
-            'type'    => News::$type,
-            'display' => News::$display,
+            'type'       => News::$type,
+            'display'    => News::$display,
+            'news_count' => count(News::all()),
         ]);
     }
 }

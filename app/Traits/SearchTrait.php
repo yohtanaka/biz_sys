@@ -27,4 +27,10 @@ trait SearchTrait
             return $query->orWhere($string, $keyword);
         }
     }
+
+    public function scopeChangeOrder($query, $order) {
+        if ($order == 'desc') {
+            return $query->latest('id');
+        }
+    }
 }

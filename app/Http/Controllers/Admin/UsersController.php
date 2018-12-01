@@ -7,16 +7,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use App\Traits\FormTrait;
+use App\Traits\PostUserTrait;
 
 class UsersController extends Controller
 {
-    use FormTrait;
+    use FormTrait, PostUserTrait;
 
     public function index(Request $request)
     {
         $data['name']  = $request->name;
         $data['sc']    = $request->section_code;
         $data['pc']    = $request->position_code;
+        $data['order'] = $request->order;
         $data['users'] = User::nameIn('first_name', $data['name'])
                              ->orNameIn('last_name', $data['name'])
                              ->orNameIn('f_n_kana', $data['name'])
@@ -24,6 +26,7 @@ class UsersController extends Controller
                              ->orNameIn('email', $data['name'])
                              ->nameEqual('section_code', $data['sc'])
                              ->nameEqual('position_code', $data['pc'])
+                             ->changeOrder($data['order'])
                              ->paginate(10);
         return view('admin.users.index', $data);
     }
@@ -45,9 +48,8 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.user.create')->withInput(session()->get('post_data'));
         }
-        $data        = session()->get('post_data');
-        $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
-        $user        = User::create($data);
+        $data = $this->formatParams();
+        $user = User::create($data);
         return redirect()->route('admin.user.index');
     }
 
@@ -69,9 +71,8 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.user.edit', ['id' => $id ])->withInput(session()->get('post_data'));
         }
-        $data        = session()->get('post_data');
-        $data['zip'] = $data['zip1'] . '-' . $data['zip2'];
-        $user        = User::findOrFail($id)->update($data);
+        $data = $this->formatParams();
+        $user = User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');
     }
 

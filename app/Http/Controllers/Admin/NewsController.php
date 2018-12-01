@@ -14,13 +14,15 @@ class NewsController extends Controller
 
     public function index(Request $request)
     {
-        $data['name'] = $request->name;
-        $data['type'] = $request->type;
-        $data['df']   = $request->display_flag;
-        $data['list'] = News::nameIn('title', $data['name'])
+        $data['name']  = $request->name;
+        $data['type']  = $request->type;
+        $data['df']    = $request->display_flag;
+        $data['order'] = $request->order;
+        $data['list']  = News::nameIn('title', $data['name'])
                             ->orNameIn('body', $data['name'])
                             ->nameEqual('type', $data['type'])
                             ->nameEqual('display_flag', $data['df'])
+                            ->changeOrder($data['order'])
                             ->paginate (10);
         return view('admin.news.index', $data);
     }

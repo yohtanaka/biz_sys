@@ -1,6 +1,6 @@
-@extends('admin.layouts.common')
-@section('title', '社員一覧')
-@section('content')
+@extends ('admin.layouts.common')
+@section ('title', '社員一覧')
+@section ('content')
 <article class="content">
     <section class="section">
         <div class="row">
@@ -44,6 +44,7 @@
                                 </select>
                             </div>
                         </div>
+                        @include ('layouts.searchOrder')
                         <div class="form-group">
                             {{ Form::submit('検索', ['class' => 'btn btn-primary']) }}
                         </div>
@@ -60,7 +61,7 @@
                     <div class="card-block">
                         <div class="card-title-block">
                             <h3 class="title">社員一覧</h3>
-                            <p class="right">合計数: {{ count($users) }}</p>
+                            <p class="right">合計数: {{ $user_count }}</p>
                         </div>
                         <section class="example">
                             <div class="table-flip-scroll">

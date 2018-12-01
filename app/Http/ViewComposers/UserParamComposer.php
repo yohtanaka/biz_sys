@@ -12,10 +12,11 @@ class UserParamComposer
     public function compose(View $view)
     {
         $view->with([
-            'roles'     => User::$roles,
-            'gender'    => User::$gender,
-            'sections'  => Section::names(),
-            'positions' => Position::names(),
+            'roles'      => User::$roles,
+            'gender'     => User::$gender,
+            'sections'   => Section::names(),
+            'positions'  => Position::names(),
+            'user_count' => count(User::all()),
         ]);
     }
 }

@@ -39,7 +39,7 @@ class News extends Model
     public static function boot()
     {
         parent::boot();
-        self::creating(function(News $news) {
+        self::saving(function(News $news) {
             if (Auth::check()) {
                 $news->user_id = Auth::user()->id;
             }

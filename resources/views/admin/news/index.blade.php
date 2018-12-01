@@ -1,6 +1,6 @@
-@extends('admin.layouts.common')
-@section('title', 'お知らせ一覧')
-@section('content')
+@extends ('admin.layouts.common')
+@section ('title', 'お知らせ一覧')
+@section ('content')
 <article class="content">
     <section class="section">
         <div class="row">
@@ -44,6 +44,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        @include ('layouts.searchOrder')
                         <div class="form-group">
                             {{ Form::submit('検索', ['class' => 'btn btn-primary']) }}
                         </div>
@@ -60,7 +61,7 @@
                     <div class="card-block">
                         <div class="card-title-block">
                             <h3 class="title">お知らせ一覧</h3>
-                            <p class="right">合計数: {{ count($list) }}</p>
+                            <p class="right">合計数: {{ $news_count }}</p>
                         </div>
                         <section class="example">
                             <div class="table-flip-scroll">
@@ -68,9 +69,9 @@
                                     <thead class="flip-header">
                                         <tr>
                                             <th>ID</th>
-                                            <th>お知らせタイトル</th>
-                                            <th>お知らせタイプ</th>
-                                            <th>投稿者</th>
+                                            <th>タイトル</th>
+                                            <th>タイプ</th>
+                                            <th>最終更新者</th>
                                             <th>表示</th>
                                             <th>操作</th>
                                         </tr>

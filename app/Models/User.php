@@ -26,7 +26,9 @@ class User extends Authenticatable
         'gender',
         'birthday',
         'zip',
+        'pref_code',
         'city_code',
+        'city',
         'street',
         'building',
         'tel_private',
@@ -53,7 +55,9 @@ class User extends Authenticatable
         'gender'        => '性別',
         'birthday'      => '生年月日',
         'zip'           => '郵便番号',
-        'city_code'     => '市区町村',
+        'pref_code'     => '都道府県',
+        'city_code'     => '市区町村コード',
+        'city'          => '市区町村',
         'street'        => '番地',
         'building'      => '建物',
         'tel_private'   => '個人電話',
@@ -61,6 +65,7 @@ class User extends Authenticatable
         'section_code'  => '部署',
         'position_code' => '役職',
     ];
+
     static $roles = [
         1  => 'システム',
         2  => 'マスター',
