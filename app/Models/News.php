@@ -40,7 +40,9 @@ class News extends Model
     {
         parent::boot();
         self::creating(function(News $news) {
-            $news->user_id = Auth::user()->id;
+            if (Auth::check()) {
+                $news->user_id = Auth::user()->id;
+            }
         });
     }
 

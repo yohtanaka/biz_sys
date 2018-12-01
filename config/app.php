@@ -80,6 +80,8 @@ return [
 
     'locale' => 'ja',
 
+    'faker_locale' => 'ja_JP',
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

@@ -1976,6 +1976,7 @@ class CitiesTableSeeder extends Seeder
             ['pref_code' => '47', 'city_code' => '473812', 'pref_name' => '沖縄県', 'city_name' => '竹富町', 'p_n_kana' => 'オキナワケン', 'c_n_kana' => 'タケトミチョウ'],
             ['pref_code' => '47', 'city_code' => '473821', 'pref_name' => '沖縄県', 'city_name' => '与那国町', 'p_n_kana' => 'オキナワケン', 'c_n_kana' => 'ヨナグニチョウ'],
         ];
+        DB::table('cities')->truncate();
         DB::table('cities')->insert($cities);
     }
 }

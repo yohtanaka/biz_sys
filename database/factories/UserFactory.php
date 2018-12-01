@@ -1,6 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\City;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +16,26 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => Hash::make(str_random(8)),
+        'role'           => array_rand(User::$roles),
+        'code'           => $faker->unique()->numberBetween(4, 100),
+        'last_name'      => $faker->lastName,
+        'first_name'     => $faker->firstName,
+        'l_n_kana'       => $faker->lastKanaName,
+        'f_n_kana'       => $faker->firstKanaName,
+        'gender'         => array_rand(User::$gender),
+        'birthday'       => $faker->dateTime->format('Y-m-d'),
+        'zip'            => $faker->postcode,
+        'city_code'      => 1,
+        'street'         => $faker->streetAddress,
+        'building'       => $faker->secondaryAddress,
+        'tel_private'    => $faker->phoneNumber,
+        'tel_work'       => $faker->phoneNumber,
+        'section_code'   => 4,
+        'position_code'  => 1,
         'remember_token' => str_random(10),
     ];
 });

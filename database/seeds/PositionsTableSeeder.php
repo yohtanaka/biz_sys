@@ -23,6 +23,7 @@ class PositionsTableSeeder extends Seeder
             ['code' => 70,  'name' => '係長'],
             ['code' => 80,  'name' => '主任'],
         ];
+        DB::table('positions')->truncate();
         DB::table('positions')->insert($positions);
     }
 }

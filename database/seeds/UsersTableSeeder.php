@@ -45,6 +45,8 @@ class UsersTableSeeder extends Seeder
                 'position_code' => 30
             ]
         ];
+        DB::table('users')->truncate();
         DB::table('users')->insert($users);
+        factory(App\Models\User::class, 10)->create();
     }
 }

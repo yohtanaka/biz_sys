@@ -24,6 +24,7 @@ class SectionsTableSeeder extends Seeder
             ['code' => 10, 'name' => '業務部'],
             ['code' => 11, 'name' => '情報システム部'],
         ];
+        DB::table('sections')->truncate();
         DB::table('sections')->insert($sections);
     }
 }
