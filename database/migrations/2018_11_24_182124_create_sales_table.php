@@ -16,7 +16,6 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->increments ('id');
             $table->integer    ('user_code')   ->comment('担当者コード');
-            $table->integer    ('campany_code')->comment('チェーンコード');
             $table->integer    ('shop_code')   ->comment('店舗コード');
             $table->tinyInteger('type')        ->comment('売上分類');
             $table->integer    ('amount')      ->comment('売上金額');

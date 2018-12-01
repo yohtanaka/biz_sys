@@ -8,7 +8,6 @@ class Sales extends Model
 {
     protected $fillable = [
         'user_code',
-        'campany_code',
         'shop_code',
         'type',
         'amount',
@@ -16,12 +15,11 @@ class Sales extends Model
     ];
 
     static $names = [
-        'user_code'    => '担当者コード',
-        'campany_code' => 'チェーンコード',
-        'shop_code'    => '店舗コード',
-        'type'         => '売上分類',
-        'amount'       => '売上金額',
-        'sold_date'    => '売上計上日',
+        'user_code' => '担当者コード',
+        'shop_code' => '店舗コード',
+        'type'      => '売上分類',
+        'amount'    => '売上金額',
+        'sold_date' => '売上計上日',
     ];
 
     static $type = [

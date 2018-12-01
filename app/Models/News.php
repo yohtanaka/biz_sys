@@ -26,6 +26,16 @@ class News extends Model
         'user_id'      => 'ユーザID',
     ];
 
+    static $type = [
+        1 => '管理者向け',
+        2 => 'ユーザ向け',
+    ];
+
+    static $display = [
+        1 => '表示',
+        2 => '非表示',
+    ];
+
     public static function boot()
     {
         parent::boot();

@@ -22,7 +22,7 @@
                             <div class="col-6">
                                 <select name='section_code' class='form-control'>
                                     <option value=''>選択してください</option>
-                                    @foreach ($userData['sections'] as $key => $value)
+                                    @foreach ($sections as $key => $value)
                                     @if ($sc == $key)
                                     <option value="{{ $key }}" selected>{{ $value }}</option>
                                     @else
@@ -34,7 +34,7 @@
                             <div class="col-6">
                                 <select name='position_code' class='form-control'>
                                     <option value=''>選択してください</option>
-                                    @foreach ($userData['positions'] as $key => $value)
+                                    @foreach ($positions as $key => $value)
                                     @if ($pc == $key)
                                     <option value="{{ $key }}" selected>{{ $value }}</option>
                                     @else

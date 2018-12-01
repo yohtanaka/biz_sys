@@ -25,7 +25,7 @@
                             {{ Form::label('', 'お知らせタイプ', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($show)
-                                {{ config('const.type')[$value['type']] }}
+                                {{ $type[$value['type']] }}
                                 @else
                                 {{ Form::radio('type', 1, true, ['id'=>'admin']) }}
                                 {{ Form::label('admin', '管理者向け') }}
@@ -48,7 +48,7 @@
                             {{ Form::label('', '表示ステータス', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($show)
-                                {{ config('const.display')[$value['display_flag']] }}
+                                {{ $display[$value['display_flag']] }}
                                 @else
                                 {{ Form::radio('display_flag', 1, true, ['id'=>'on']) }}
                                 {{ Form::label('on', '表示') }}

@@ -61,6 +61,18 @@ class User extends Authenticatable
         'section_code'  => '部署',
         'position_code' => '役職',
     ];
+    static $roles = [
+        1  => 'システム',
+        2  => 'マスター',
+        5  => '管理者',
+        10 => '一般',
+    ];
+
+    static $gender = [
+        1 => '男性',
+        2 => '女性',
+        3 => 'その他',
+    ];
 
     public function getFullName()
     {

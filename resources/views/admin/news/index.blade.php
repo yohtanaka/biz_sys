@@ -22,7 +22,7 @@
                             <div class="col-4">
                                 {{ Form::radio('type', '', true, ['id' => 'type_all']) }}
                                 {{ Form::label('type_all', '全て') }}
-                                @foreach (config('const.type') as $key => $value)
+                                @foreach ($type as $key => $value)
                                 @if ($type == $key)
                                 {{ Form::radio('type', $key, true, ['id' => "type_${key}"]) }}
                                 @else
@@ -34,7 +34,7 @@
                             <div class="col-4">
                                 {{ Form::radio('display_flag', '', true, ['id' => 'df_all']) }}
                                 {{ Form::label('df_all', '全て') }}
-                                @foreach (config('const.display') as $key => $value)
+                                @foreach ($display as $key => $value)
                                 @if ($df == $key)
                                 {{ Form::radio('display_flag', $key, true, ['id' => "df_${key}"]) }}
                                 @else
@@ -84,9 +84,9 @@
                                                     {{ $news->title }}
                                                 </a>
                                             </td>
-                                            <td>{{ config('const.type')[$news->type] }}</td>
+                                            <td>{{ $type[$news->type] }}</td>
                                             <td>{{ $news->user->getFullName() }}</td>
-                                            <td>{{ config('const.display')[$news->display_flag] }}</td>
+                                            <td>{{ $display[$news->display_flag] }}</td>
                                             <td>
                                                 <span class="action-list">
                                                     <a class="edit" href="{{ route('admin.news.edit', $news->id) }}">

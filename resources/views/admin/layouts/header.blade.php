@@ -68,7 +68,7 @@
             <li class="profile dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="img" style="background-image: url('')"> </div>
-                    <span class="name">{{ $appLayout['greeting'] }} {{ $appLayout['user'] }} さん</span>
+                    <span class="name">{{ $greeting }} {{ $current_user }} さん</span>
                 </a>
                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="#">
