@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CsvRequest;
 use App\Models\Sales;
-use App\Library\Csv;
+use App\Traits\CsvTrait;
 
 class SalesController extends Controller
 {
+    use CsvTrait;
+
     private static $table = 'sales';
 
     public function index() {
@@ -24,7 +26,7 @@ class SalesController extends Controller
     public function csvUpload(CsvRequest $request) {
         $file  = $request->file('csvFile');
         $names = Sales::$names;
-        $data  = Csv::upload($file, $names);
+        $data  = $this->upload($file, $names);
         if ($data === false) {
             return redirect()->route('admin.sales.index')->with('alert', 'ファイルの内容が正しくありません');
         }
@@ -32,14 +34,14 @@ class SalesController extends Controller
         foreach (array_chunk($data, 1000) as $item) {
             Sales::insert($item);
         }
-        return redirect()->route('admin.sales.index')->with('notice', 'アップロードしました');
+        return redirect()->route('admin.sales.csv')->with('notice', 'アップロードしました');
     }
 
     public function csvDownload() {
         $names = Sales::$names;
         $eles  = Sales::all();
         $name  = self::$table;
-        $data  = Csv::getElements($names, $eles);
-        return Csv::download($name, $data);
+        $data  = $this->getElements($names, $eles);
+        return $this->download($name, $data);
     }
 }

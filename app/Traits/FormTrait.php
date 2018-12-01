@@ -1,12 +1,12 @@
 <?php
 
-namespace App\library;
+namespace App\Traits;
 
 use Illuminate\Http\Request;
 
-class Form
+trait FormTrait
 {
-    public function beforeCreate()
+    private function beforeCreate()
     {
         $data['edit'] = false;
         $data['show'] = false;
@@ -20,7 +20,7 @@ class Form
         return $data;
     }
 
-    public function beforeConfirm(Request $request)
+    private function beforeConfirm(Request $request)
     {
         if (session()->has('id')) {
             $data['edit'] = true;
@@ -34,14 +34,14 @@ class Form
         return $data;
     }
 
-    public function beforeShow(Request $request)
+    private function beforeShow(Request $request)
     {
         $data['edit'] = false;
         $data['show'] = 'show';
         return $data;
     }
 
-    public function beforeEdit($value)
+    private function beforeEdit($value)
     {
 
         $data['edit'] = true;

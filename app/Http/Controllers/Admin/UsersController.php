@@ -6,14 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
-use App\Library\Form;
+use App\Traits\FormTrait;
 
 class UsersController extends Controller
 {
-    public function __construct(Form $form)
-    {
-        $this->form = $form;
-    }
+    use FormTrait;
 
     public function index(Request $request)
     {
@@ -33,13 +30,13 @@ class UsersController extends Controller
 
     public function create()
     {
-        $data = $this->form->beforeCreate();
+        $data = $this->beforeCreate();
         return view('admin.users.create', $data);
     }
 
     public function confirm(UserRequest $request)
     {
-        $data = $this->form->beforeConfirm($request);
+        $data = $this->beforeConfirm($request);
         return view('admin.users.create', $data);
     }
 
@@ -56,14 +53,14 @@ class UsersController extends Controller
 
     public function show(Request $request, $id)
     {
-        $data          = $this->form->beforeShow($request);
+        $data          = $this->beforeShow($request);
         $data['value'] = User::findOrFail($id);
         return view('admin.users.create', $data);
     }
 
     public function edit(User $user)
     {
-        $data = $this->form->beforeEdit($user);
+        $data = $this->beforeEdit($user);
         return view('admin.users.create', $data);
     }
 

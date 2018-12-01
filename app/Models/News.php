@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use App\Library\Search;
+use App\Traits\SearchTrait;
 
 class News extends Model
 {
-    use Search;
+    use SearchTrait;
 
     protected $fillable = [
         'title',

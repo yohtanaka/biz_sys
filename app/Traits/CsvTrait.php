@@ -1,14 +1,14 @@
 <?php
 
-namespace App\library;
+namespace App\Traits;
 
 use Goodby\CSV\Import\Standard\Lexer;
 use Goodby\CSV\Import\Standard\Interpreter;
 use Goodby\CSV\Import\Standard\LexerConfig;
 
-class Csv
+trait CsvTrait
 {
-    static function upload($file, $names) {
+    private function upload($file, $names) {
         $nameKeys    = array_keys($names);
         $nameValues  = array_values($names);
         $config      = new LexerConfig();
@@ -36,7 +36,7 @@ class Csv
         return $data;
     }
 
-    static function download($name, $data) {
+    private function download($name, $data) {
         $dateCsv     = $name . date('YmdHis') . '.csv';
         $csvFileName = 'storage/csv/' . $dateCsv;
         $res         = fopen($csvFileName, 'w');
@@ -59,7 +59,7 @@ class Csv
         readfile($csvFileName);
     }
 
-    static function getElements($names, $eles) {
+    private function getElements($names, $eles) {
         $data[] = array_values($names);
         $list   = array_keys($names);
         foreach ($eles as $ele) {

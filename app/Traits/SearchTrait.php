@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Library;
+namespace App\Traits;
 
-trait Search
+trait SearchTrait
 {
     public function scopeNameIn($query, $string, $keyword) {
         if ($keyword) {

@@ -6,14 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Models\News;
-use App\Library\Form;
+use App\Traits\FormTrait;
 
 class NewsController extends Controller
 {
-    public function __construct(Form $form)
-    {
-        $this->form = $form;
-    }
+    use FormTrait;
 
     public function index(Request $request)
     {
@@ -30,13 +27,13 @@ class NewsController extends Controller
 
     public function create()
     {
-        $data = $this->form->beforeCreate();
+        $data = $this->beforeCreate();
         return view('admin.news.create', $data);
     }
 
     public function confirm(NewsRequest $request)
     {
-        $data = $this->form->beforeConfirm($request);
+        $data = $this->beforeConfirm($request);
         return view('admin.news.create', $data);
     }
 
@@ -52,14 +49,14 @@ class NewsController extends Controller
 
     public function show(Request $request, $id)
     {
-        $data          = $this->form->beforeShow($request);
+        $data          = $this->beforeShow($request);
         $data['value'] = News::findOrFail($id);
         return view('admin.news.create', $data);
     }
 
     public function edit(News $news)
     {
-        $data = $this->form->beforeEdit($news);
+        $data = $this->beforeEdit($news);
         return view('admin.news.create', $data);
     }
 

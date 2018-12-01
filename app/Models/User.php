@@ -8,11 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Section;
 use App\Models\Position;
-use App\Library\Search;
+use App\Traits\SearchTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, Search;
+    use Notifiable, SoftDeletes, SearchTrait;
 
     protected $fillable = [
         'email',
