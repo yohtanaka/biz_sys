@@ -108,11 +108,11 @@
                             </div>
                             @else
                             <div class="col-sm-3">
-                                {{ Form::text('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
+                                {{ Form::number('zip1', null, ['id' => 'zip1', 'class' => 'form-control form-half', 'placeholder' => '213']) }}
                             </div>
                             <strong>-</strong>
                             <div class="col-sm-3">
-                                {{ Form::text('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
+                                {{ Form::number('zip2', null, ['id' => 'zip2', 'class' => 'form-control form-half', 'placeholder' => '0014']) }}
                             </div>
                             @endif
                         </div>
@@ -155,7 +155,7 @@
                                 @if ($show)
                                 {{ $value['tel_private'] }}
                                 @else
-                                {{ Form::number('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}
+                                {{ Form::text('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}
                                 @endif
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                                 @if ($show)
                                 {{ $value['tel_work'] }}
                                 @else
-                                {{ Form::number('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}
+                                {{ Form::text('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}
                                 @endif
                             </div>
                         </div>

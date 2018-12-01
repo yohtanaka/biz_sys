@@ -26,10 +26,23 @@ class UserRequest extends FormRequest
     {
         return [
             'email'         => 'required|email|unique:users,email,'.session()->get('id'),
+            // 'password'      => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i',
             'role'          => 'required|integer',
             'code'          => 'required|unique:users,code,'.session()->get('id'),
             'last_name'     => 'required|max:255',
+            'first_name'    => 'nullable|max:255',
+            'l_n_kana'      => 'nullable|max:255|kana',
+            'f_n_kana'      => 'nullable|max:255|kana',
             'gender'        => 'required|integer',
+            'birthday'      => 'nullable|date_format:Y-m-d',
+            'zip1'          => 'required_with:zip2|size:3',
+            'zip2'          => 'required_with:zip1|size:4',
+            'pref'          => 'nullable|max:255',
+            'city'          => 'nullable|max:255',
+            'street'        => 'nullable|max:255',
+            'building'      => 'nullable|max:255',
+            'tel_private'   => 'nullable|phone',
+            'tel_work'      => 'nullable|phone',
             'section_code'  => 'required|integer',
             'position_code' => 'required|integer',
         ];
@@ -39,6 +52,10 @@ class UserRequest extends FormRequest
     {
         $attributes              = User::$names;
         $attributes['last_name'] = '名前 (苗字)';
+        $attributes['zip1']      = '郵便番号1';
+        $attributes['zip2']      = '郵便番号2';
+        $attributes['pref']      = '都道府県';
+        $attributes['city']      = '市区町村';
         return $attributes;
     }
 }

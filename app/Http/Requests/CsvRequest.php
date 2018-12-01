@@ -37,9 +37,9 @@ class CsvRequest extends FormRequest
 
     public function messages() {
         return [
-            'csvFile.file'      => 'ファイルが保存できませんでした',
-            'csvFile.mimetypes' => 'ファイルの形式が異なっています',
-            'csvFile.mimes'     => 'ファイルの形式が異なっています',
+            'csvFile.file'      => ':attributeが保存できませんでした',
+            'csvFile.mimetypes' => ':attributeの形式が異なっています',
+            'csvFile.mimes'     => ':attributeの形式が異なっています',
         ];
     }
 }

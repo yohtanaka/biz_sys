@@ -64,7 +64,7 @@ return [
     'size'                 => [
         'numeric' => ':attributeは:sizeにしてください',
         'file'    => ':attributeは:size KBにしてください',
-        'string'  => ':attribute:size文字にしてください',
+        'string'  => ':attribute:は:size文字にしてください',
         'array'   => ':attributeは:size個にしてください',
     ],
     'string'               => ':attributeは文字列にしてください',
@@ -81,6 +81,9 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
+    'kana'   => ':attributeはカナで入力をしてください',
+    'phone'  => ':attributeは電話番号形式にしてください',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
