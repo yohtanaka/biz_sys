@@ -25,10 +25,10 @@ class NewsRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'         => 'required',
-            'type'          => 'required',
+            'title'         => 'required|max:255',
+            'type'          => 'required|integer',
             'body'          => 'required',
-            'display_flag'  => 'required',
+            'display_flag'  => 'required|integer',
         ];
     }
 

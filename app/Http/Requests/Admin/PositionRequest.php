@@ -25,8 +25,8 @@ class PositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required',
-            'name' => 'required',
+            'code' => 'required|integer',
+            'name' => 'required|max:255',
         ];
     }
 
