@@ -14,12 +14,10 @@
                         <div class="form-group row">
                             {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
-                                @if ($confirm !== 'show')
+                                @if ($show === 'confirm')
                                 {{ $value['email'] }}
-                                @else
+                                @elseif ($show === 'show')
                                 <a href="mailto:{{ $value['email'] }}">{{ $value['email'] }}</a>
-                                @endif
                                 @else
                                 {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'example@email.com']) }}
                                 @endif
@@ -28,7 +26,7 @@
                         <div class="form-group row">
                             {{ Form::label('role', '権限', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ config('const.roles')[$value['role']] }}
                                 @else
                                 {{ Form::select('role', [2 => 'マスター管理者', 5 => '管理者', 10 => '一般'], 10, ['class' => 'form-control']) }}
@@ -38,7 +36,7 @@
                         <div class="form-group row">
                             {{ Form::label('code', '社員番号', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['code'] }}
                                 @else
                                 {{ Form::number('code', null, ['class' => 'form-control']) }}
@@ -47,9 +45,9 @@
                         </div>
                         <div class="form-group row">
                             {{ Form::label('last_name', '名前', ['class' => 'col-sm-2 form-control-label']) }}
-                            @if ($confirm)
+                            @if ($show)
                             <div class="col-sm-10">
-                            {{ $value->getFullName() }}
+                            {{ $value['last_name'] . ' ' . $value['first_name'] }}
                             </div>
                             @else
                             <div class="col-sm-5">
@@ -62,7 +60,7 @@
                         </div>
                         <div class="form-group row">
                             {{ Form::label('l_n_kana', '名前(カナ)', ['class' => 'col-sm-2 form-control-label']) }}
-                            @if ($confirm)
+                            @if ($show)
                             <div class="col-sm-10">
                             {{ $value['l_n_kana'] . ' ' . $value['f_n_kana'] }}
                             </div>
@@ -78,14 +76,14 @@
                         <div class="form-group row">
                             {{ Form::label('', '性別', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ config('const.gender')[$value['gender']] }}
                                 @else
-                                {{ Form::radio('gender', 0, true, ['id'=>'men']) }}
+                                {{ Form::radio('gender', 1, true, ['id'=>'men']) }}
                                 {{ Form::label('men', '男性') }}
-                                {{ Form::radio('gender', 1, false, ['id'=>'women']) }}
+                                {{ Form::radio('gender', 2, false, ['id'=>'women']) }}
                                 {{ Form::label('women', '女性') }}
-                                {{ Form::radio('gender', 2, false, ['id'=>'others']) }}
+                                {{ Form::radio('gender', 3, false, ['id'=>'others']) }}
                                 {{ Form::label('others', 'その他') }}
                                 @endif
                             </div>
@@ -93,7 +91,7 @@
                         <div class="form-group row">
                             {{ Form::label('birthday', '誕生日', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-5">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['birthday'] }}
                                 @else
                                 {{ Form::input('date', 'birthday', date('Y-m-d'), ['class' => 'form-control']) }}
@@ -102,7 +100,7 @@
                         </div>
                         <div class="form-group row">
                             {{ Form::label('zip1', '郵便番号', ['class' => 'col-sm-2 form-control-label']) }}
-                            @if ($confirm)
+                            @if ($show)
                             <div class="col-sm-10">
                             @if ($value['zip1'] || $value['zip2'])
                             {{ $value['zip1'] . '-' . $value['zip2'] }}
@@ -120,7 +118,7 @@
                         </div>
                         <div class="form-group row">
                             {{ Form::label('pref', '住所', ['class' => 'col-sm-2 form-control-label']) }}
-                            @if ($confirm)
+                            @if ($show)
                             <div class="col-sm-10">
                                 {{ $value['pref'] . ' ' . $value['city'] . ' ' . $value['street'] }}
                             </div>
@@ -140,7 +138,7 @@
                         <div class="form-group row">
                             {{ Form::label('building', '建物名/部屋番号', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['building'] }}
                                 @else
                                 {{ Form::text('building', null, ['class' => 'form-control', 'placeholder' => '田中マンション 101号室']) }}
@@ -150,7 +148,7 @@
                         <div class="form-group row">
                             {{ Form::label('tel_private', '電話番号(個人)', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['tel_private'] }}
                                 @else
                                 {{ Form::number('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}
@@ -160,7 +158,7 @@
                         <div class="form-group row">
                             {{ Form::label('tel_work', '電話番号(会社)', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['tel_work'] }}
                                 @else
                                 {{ Form::number('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}
@@ -170,7 +168,7 @@
                         <div class="form-group row">
                             {{ Form::label('section_code', '部署', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $userData['sections'][$value['section_code']] }}
                                 @else
                                 <select class='form-control' id='section_code' name='section_code'>
@@ -189,7 +187,7 @@
                         <div class="form-group row">
                             {{ Form::label('position_code', '役職', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $userData['positions'][$value['position_code']] }}
                                 @else
                                 <select class='form-control' id='position_code' name='position_code'>

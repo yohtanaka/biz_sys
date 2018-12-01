@@ -89,16 +89,16 @@
                                             <td>{{ config('const.display')[$news->display_flag] }}</td>
                                             <td>
                                                 <span class="action-list">
+                                                    <a class="edit" href="{{ route('admin.news.edit', $news->id) }}">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                </span>
+                                                <span class="action-list">
                                                     {{ Form::open(['route' => ['admin.news.destroy', 'id' => $news->id], 'method' => 'delete', 'id' => 'form_' . $news->id]) }}
                                                     <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $news->id }}" onclick="deletePost(this);">
                                                         <i class="fa fa-trash-o"></i>
                                                     </a>
                                                     {{ Form::close() }}
-                                                </span>
-                                                <span class="action-list">
-                                                    <a class="edit" href="{{ route('admin.news.edit', $news->id) }}">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
                                                 </span>
                                             </td>
                                         </tr>

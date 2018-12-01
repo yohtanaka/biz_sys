@@ -14,7 +14,7 @@
                         <div class="form-group row">
                             {{ Form::label('title', 'お知らせタイトル', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['title'] }}
                                 @else
                                 {{ Form::text('title', null, ['class' => 'form-control']) }}
@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             {{ Form::label('', 'お知らせタイプ', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ config('const.type')[$value['type']] }}
                                 @else
                                 {{ Form::radio('type', 1, true, ['id'=>'admin']) }}
@@ -37,7 +37,7 @@
                         <div class="form-group row">
                             {{ Form::label('body', '本文', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ $value['body'] }}
                                 @else
                                 {{ Form::textarea('body', null, ['class' => 'form-control']) }}
@@ -47,7 +47,7 @@
                         <div class="form-group row">
                             {{ Form::label('', '表示ステータス', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($confirm)
+                                @if ($show)
                                 {{ config('const.display')[$value['display_flag']] }}
                                 @else
                                 {{ Form::radio('display_flag', 1, true, ['id'=>'on']) }}

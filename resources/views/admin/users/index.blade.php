@@ -93,16 +93,16 @@
                                             <td>{{ $user->position['name'] }}</td>
                                             <td>
                                                 <span class="action-list">
+                                                    <a class="edit" href="{{ route('admin.user.edit', $user->id) }}">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                </span>
+                                                <span class="action-list">
                                                     {{ Form::open(['route' => ['admin.user.destroy', 'id' => $user->id], 'method' => 'delete', 'id' => 'form_' . $user->id]) }}
                                                     <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" data-id="{{ $user->id }}" onclick="deletePost(this);">
                                                         <i class="fa fa-trash-o"></i>
                                                     </a>
                                                     {{ Form::close() }}
-                                                </span>
-                                                <span class="action-list">
-                                                    <a class="edit" href="{{ route('admin.user.edit', $user->id) }}">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
                                                 </span>
                                             </td>
                                         </tr>

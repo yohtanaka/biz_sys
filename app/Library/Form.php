@@ -8,8 +8,8 @@ class Form
 {
     public function beforeCreate()
     {
-        $data['edit']    = false;
-        $data['confirm'] = false;
+        $data['edit'] = false;
+        $data['show'] = false;
         if (!session()->exists('_old_input')) {
             session()->forget('post_data');
         }
@@ -28,24 +28,24 @@ class Form
         } else {
             $data['edit'] = false;
         }
-        $data['confirm'] = true;
-        $data['value']   = $request->all();
+        $data['show']  = 'confirm';
+        $data['value'] = $request->all();
         session()->put('post_data', $data['value']);
         return $data;
     }
 
     public function beforeShow(Request $request)
     {
-        $data['edit']    = false;
-        $data['confirm'] = 'show';
+        $data['edit'] = false;
+        $data['show'] = 'show';
         return $data;
     }
 
     public function beforeEdit($value)
     {
 
-        $data['edit']    = true;
-        $data['confirm'] = false;
+        $data['edit'] = true;
+        $data['show'] = false;
         if (!session()->exists('_old_input')) {
             session()->forget('post_data');
         }

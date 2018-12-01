@@ -1,15 +1,11 @@
-    @if ($confirm)
     <div class="form-group">
-        @if ($confirm !== 'show')
-        <button type="submit" name="action" value="post" class="btn btn-primary">送信</button>
-        <button type="submit" name="action" value="back" class="btn btn-primary-outline">戻る</button>
-        @else
-        <a href="{{ route($name . '.index') }}" class="btn btn-primary">戻る</a>
-        @endif
-    </div>
+    @if ($show === 'confirm')
+    {{ Form::submit('送信', ['class' => 'btn btn-primary']) }}
+    <button type="submit" name="action" value="back" class="btn btn-primary-outline">戻る</button>
+    @elseif ($show === 'show')
+    <a href="{{ route($name . '.index') }}" class="btn btn-primary">戻る</a>
     @else
-    <div class="form-group">
-        {{ Form::submit('確認画面へ', ['class' => 'btn btn-primary']) }}
+    {{ Form::submit('確認画面へ', ['class' => 'btn btn-primary']) }}
+    @endif
     </div>
-   @endif
 {{ Form::close() }}

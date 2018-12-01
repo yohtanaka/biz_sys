@@ -1,4 +1,4 @@
-@if ($confirm)
+@if ($show)
 @if ($edit)
 {{ Form::open(['route' => [$name . '.update', 'id' => $id], 'method' => 'put']) }}
 @else
