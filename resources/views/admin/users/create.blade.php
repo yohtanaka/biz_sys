@@ -79,12 +79,10 @@
                                 @if ($show)
                                 {{ $gender[$value['gender']] }}
                                 @else
-                                {{ Form::radio('gender', 1, true, ['id'=>'men']) }}
-                                {{ Form::label('men', '男性') }}
-                                {{ Form::radio('gender', 2, false, ['id'=>'women']) }}
-                                {{ Form::label('women', '女性') }}
-                                {{ Form::radio('gender', 3, false, ['id'=>'others']) }}
-                                {{ Form::label('others', 'その他') }}
+                                @foreach ($gender as $key => $value)
+                                {{ Form::radio('gender', $key, true, ['id'=>'gender_$key']) }}
+                                {{ Form::label('gender_$key', $value) }}
+                                @endforeach
                                 @endif
                             </div>
                         </div>

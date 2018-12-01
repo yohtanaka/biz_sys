@@ -27,10 +27,10 @@
                                 @if ($show)
                                 {{ $type[$value['type']] }}
                                 @else
-                                {{ Form::radio('type', 1, true, ['id'=>'admin']) }}
-                                {{ Form::label('admin', '管理者向け') }}
-                                {{ Form::radio('type', 2, false, ['id'=>'user']) }}
-                                {{ Form::label('user', 'ユーザ向け') }}
+                                {{ Form::radio('type', 1, true, ['id'=>'type_1']) }}
+                                {{ Form::label('type_1', $type[1]) }}
+                                {{ Form::radio('type', 2, false, ['id'=>'type_2']) }}
+                                {{ Form::label('type_2', $type[2]) }}
                                 @endif
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                                 @if ($show)
                                 {{ $display[$value['display_flag']] }}
                                 @else
-                                {{ Form::radio('display_flag', 1, true, ['id'=>'on']) }}
-                                {{ Form::label('on', '表示') }}
-                                {{ Form::radio('display_flag', 2, false, ['id'=>'off']) }}
-                                {{ Form::label('off', '非表示') }}
+                                {{ Form::radio('display_flag', 1, true, ['id'=>'display_1']) }}
+                                {{ Form::label('display_1', $display[1]) }}
+                                {{ Form::radio('display_flag', 2, false, ['id'=>'display_2']) }}
+                                {{ Form::label('display_2', $display[2]) }}
                                 @endif
                             </div>
                         </div>

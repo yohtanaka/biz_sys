@@ -15,19 +15,7 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        $data['name']  = $request->name;
-        $data['sc']    = $request->section_code;
-        $data['pc']    = $request->position_code;
-        $data['order'] = $request->order;
-        $data['users'] = User::nameIn('first_name', $data['name'])
-                             ->orNameIn('last_name', $data['name'])
-                             ->orNameIn('f_n_kana', $data['name'])
-                             ->orNameIn('l_n_kana', $data['name'])
-                             ->orNameIn('email', $data['name'])
-                             ->nameEqual('section_code', $data['sc'])
-                             ->nameEqual('position_code', $data['pc'])
-                             ->changeOrder($data['order'])
-                             ->paginate(10);
+        $data = $this->searchUser($request);
         return view('admin.users.index', $data);
     }
 
