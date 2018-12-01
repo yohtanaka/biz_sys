@@ -24,6 +24,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            {{ Form::label('password', 'パスワード', ['class' => 'col-sm-2 form-control-label']) }}
+                            <div class="col-sm-10">
+                                @if ($show)
+                                ****************
+                                @else
+                                {{ Form::password('password', ['class' => 'form-control']) }}
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             {{ Form::label('role', '権限', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
                                 @if ($show)
@@ -100,7 +110,9 @@
                             {{ Form::label('zip1', '郵便番号', ['class' => 'col-sm-2 form-control-label']) }}
                             @if ($show === 'confirm')
                             <div class="col-sm-10">
+                                @if ($value['zip1'] && $value['zip2'])
                                 {{ $value['zip1'] . '-' . $value['zip2'] }}
+                                @endif
                             </div>
                             @elseif ($show === 'show')
                             <div class="col-sm-10">

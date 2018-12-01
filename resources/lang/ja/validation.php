@@ -64,7 +64,7 @@ return [
     'size'                 => [
         'numeric' => ':attributeは:sizeにしてください',
         'file'    => ':attributeは:size KBにしてください',
-        'string'  => ':attribute:は:size文字にしてください',
+        'string'  => ':attributeは:size文字にしてください',
         'array'   => ':attributeは:size個にしてください',
     ],
     'string'               => ':attributeは文字列にしてください',

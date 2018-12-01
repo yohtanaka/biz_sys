@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'email'         => 'master@master.jp',
-                'password'      => Hash::make('master'),
+                'password'      => Hash::make('testtest'),
                 'code'          => 1,
                 'last_name'     => 'マスター',
                 'first_name'    => '管理者',
@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
                 'position_code' => 10
             ], [
                 'email'         => 'test@test.jp',
-                'password'      => Hash::make('test'),
+                'password'      => Hash::make('testtest'),
                 'code'          => 2,
                 'last_name'     => 'タナカ',
                 'first_name'    => 'テスト',
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                 'position_code' => 20
             ], [
                 'email'         => 'test2@test.jp',
-                'password'      => Hash::make('test'),
+                'password'      => Hash::make('testtest'),
                 'code'          => 3,
                 'last_name'     => 'タナカ',
                 'first_name'    => 'テスト',
