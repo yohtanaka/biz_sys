@@ -1,6 +1,6 @@
-@extends('admin.layouts.common')
-@section('title', 'お知らせ登録')
-@section('content')
+@extends ('admin.layouts.common')
+@section ('title', 'お知らせ登録')
+@section ('content')
 <article class="content">
     <div class="row">
         <div class="col-md-12">
@@ -9,8 +9,8 @@
                     <div class="card-title-block">
                         <h3 class="title">お知らせ登録</h3>
                     </div>
-                    @include('layouts.error')
-                    @include('layouts.formOpen', ['name' => 'admin.news'])
+                    @include ('layouts.error')
+                    @include ('layouts.formOpen', ['name' => 'admin.news'])
                         <div class="form-group row">
                             {{ Form::label('title', 'お知らせタイトル', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
@@ -57,7 +57,7 @@
                                 @endif
                             </div>
                         </div>
-                    @include('layouts.formClose', ['name' => 'admin.news'])
+                    @include ('layouts.formClose', ['name' => 'admin.news'])
                 </div>
             </div>
         </div>

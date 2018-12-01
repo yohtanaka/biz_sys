@@ -1,6 +1,6 @@
-@extends('admin.layouts.common')
-@section('title', '部署登録')
-@section('content')
+@extends ('admin.layouts.common')
+@section ('title', '部署登録')
+@section ('content')
 <article class="content">
     <section class="section">
         <div class="row">
@@ -25,7 +25,7 @@
                         <div class="card-title-block">
                             <h3 class="title">部署新規登録</h3>
                         </div>
-                        @include('layouts.error')
+                        @include ('layouts.error')
                         {{ Form::open(['route' => 'admin.section.store']) }}
                             <div class="form-group row">
                                 {{ Form::label('code', '部署コード', ['class' => 'col-sm-2 form-control-label']) }}

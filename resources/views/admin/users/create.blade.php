@@ -1,6 +1,6 @@
-@extends('admin.layouts.common')
-@section('title', '社員登録')
-@section('content')
+@extends ('admin.layouts.common')
+@section ('title', '社員登録')
+@section ('content')
 <article class="content">
     <div class="row">
         <div class="col-md-12">
@@ -9,8 +9,8 @@
                     <div class="card-title-block">
                         <h3 class="title">社員登録</h3>
                     </div>
-                    @include('layouts.error')
-                    @include('layouts.formOpen', ['name' => 'admin.user'])
+                    @include ('layouts.error')
+                    @include ('layouts.formOpen', ['name' => 'admin.user'])
                         <div class="form-group row">
                             {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
@@ -104,6 +104,8 @@
                             <div class="col-sm-10">
                             @if ($value['zip1'] || $value['zip2'])
                             {{ $value['zip1'] . '-' . $value['zip2'] }}
+                            @elseif ($show === 'show')
+                            {{ $value['zip']}}
                             @endif
                             </div>
                             @else
@@ -202,7 +204,7 @@
                                 @endif
                             </div>
                         </div>
-                    @include('layouts.formClose', ['name' => 'admin.user'])
+                    @include ('layouts.formClose', ['name' => 'admin.user'])
                 </div>
             </div>
         </div>

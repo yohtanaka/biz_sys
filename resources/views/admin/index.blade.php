@@ -1,13 +1,13 @@
-@extends('admin.layouts.common')
-@section('title', '管理画面')
-@section('content')
+@extends ('admin.layouts.common')
+@section ('title', '管理画面')
+@section ('content')
 <article class="content">
     <div class="title-block">
         <h3 class="title">お知らせ</h3>
         <p class="title-description"><a href="{{ route('admin.news.index') }}">お知らせ管理</a>で編集できます</p>
     </div>
     <section class="section">
-        @foreach($list as $news)
+        @foreach ($list as $news)
         <div class="col-12">
             <div class="card card-primary">
                 <div class="card-header">

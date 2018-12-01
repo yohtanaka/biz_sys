@@ -1,6 +1,6 @@
-@extends('admin.layouts.login')
-@section('title', '管理画面 ログイン')
-@section('content')
+@extends ('admin.layouts.login')
+@section ('title', '管理画面 ログイン')
+@section ('content')
 <div class="auth">
     <div class="auth-container">
         <div class="card">
