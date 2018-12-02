@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShopsTable extends Migration
+class CreateItemSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
+        Schema::create('item_sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->string    ('name')->comment('店舗名');
-            $table->integer   ('code')->comment('店舗コード')->unique();
-            $table->timestamps();
+            $table->integer   ('count')   ->comment('商品数');
+            $table->integer   ('item_id') ->comment('商品ID');
+            $table->integer   ('sales_id')->comment('売上ID');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('item_sales');
     }
 }

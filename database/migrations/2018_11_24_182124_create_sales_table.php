@@ -15,11 +15,11 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments ('id');
-            $table->integer    ('user_code')   ->comment('担当者コード');
-            $table->integer    ('shop_code')   ->comment('店舗コード');
-            $table->tinyInteger('type')        ->comment('売上分類');
-            $table->integer    ('amount')      ->comment('売上金額');
-            $table->date       ('sold_date')   ->comment('売上計上日');
+            $table->integer    ('amount')        ->comment('金額');
+            $table->integer    ('user_code')     ->comment('担当者コード');
+            $table->integer    ('shop_code')     ->comment('店舗コード');
+            $table->tinyInteger('project_code')  ->comment('プロジェクトコード');
+            $table->date       ('recording_date')->comment('計上日');
             $table->timestamps ();
         });
     }
