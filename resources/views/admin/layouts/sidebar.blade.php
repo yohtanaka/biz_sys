@@ -35,6 +35,7 @@
                     <ul class="sidebar-nav">
                         <li><a href="{{ route('admin.sales.index') }}"><i class="fa fa-list"></i> 一覧 </a></li>
                         <li><a href="{{ route('admin.sales.csv') }}"><i class="fa fa-upload"></i> CSV登録 </a></li>
+                        <li><a href="{{ route('admin.project.index') }}"><i class="fa fa-pencil-square"></i> プロジェクト登録 </a></li>
                     </ul>
                 </li>
                 <li>

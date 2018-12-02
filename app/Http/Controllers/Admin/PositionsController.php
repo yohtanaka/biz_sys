@@ -17,8 +17,7 @@ class PositionsController extends Controller
 
     public function store(PositionRequest $request)
     {
-        $position = Position::firstOrNew(['code' => $request->code]);
-        $position::create($request->all());
+        $position = Position::updateOrCreate(['code' => $request->code], $request->all());
         return redirect()->route('admin.position.index');
     }
 

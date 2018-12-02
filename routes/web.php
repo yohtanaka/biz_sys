@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('sales/csv', 'SalesController@csv')->name('sales.csv');
         Route::post('sales/upload', 'SalesController@csvUpload')->name('sales.upload');
         Route::get('sales/download', 'SalesController@csvDownload')->name('sales.download');
+        Route::resource('project', 'ProjectsController', ['only' => ['index', 'store', 'destroy']]);
 
         Route::resource('shop', 'ShopsController');
         Route::post('shop/confirm', 'ShopsController@confirm')->name('shop.confirm');

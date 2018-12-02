@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="card-title-block">
-                            <h3 class="title">部署新規登録</h3>
+                            <h3 class="title">部署登録</h3>
                         </div>
                         @include ('layouts.error')
                         {{ Form::open(['route' => 'admin.section.store']) }}
@@ -67,7 +67,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sections as $section)
+                                        @forelse ($sections as $section)
                                         <tr class="odd gradeX">
                                             <td>{{ $section->code }}</td>
                                             <td>{{ $section->name }}</td>
@@ -86,7 +86,11 @@
                                                 </span>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr class="odd gradeX">
+                                            <td colspan="3">該当の項目がありません</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

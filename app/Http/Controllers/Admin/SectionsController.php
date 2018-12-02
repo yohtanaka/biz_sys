@@ -18,8 +18,7 @@ class SectionsController extends Controller
 
     public function store(SectionRequest $request)
     {
-        $section = Section::firstOrNew(['code' => $request->code]);
-        $section::create($request->all());
+        $section = Section::updateOrCreate(['code' => $request->code], $request->all());
         return redirect()->route('admin.section.index');
     }
 
