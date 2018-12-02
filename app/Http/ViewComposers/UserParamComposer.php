@@ -16,7 +16,6 @@ class UserParamComposer
             'gender'     => User::$gender,
             'sections'   => Section::names(),
             'positions'  => Position::names(),
-            'user_count' => count(User::all()),
         ]);
     }
 }

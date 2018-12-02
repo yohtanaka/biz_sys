@@ -12,7 +12,6 @@ class NewsParamComposer
         $view->with([
             'type'       => News::$type,
             'display'    => News::$display,
-            'news_count' => count(News::all()),
         ]);
     }
 }

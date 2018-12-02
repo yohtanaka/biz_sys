@@ -13,7 +13,7 @@
                         {{ Form::open(['route' => 'admin.news.index', 'method' => 'get']) }}
                         <div class="form-group">
                             <label for="name">タイトル・本文から検索</label>
-                            {{ Form::text('name', $name, ['class' => 'form-control']) }}
+                            {{ Form::text('name', $s_name, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             <label>お知らせタイプ・表示ステータスで絞り込み</label>
@@ -23,7 +23,7 @@
                                 {{ Form::radio('type', '', true, ['id' => 'type_all']) }}
                                 {{ Form::label('type_all', '全て') }}
                                 @foreach ($type as $key => $value)
-                                @if ($type == $key)
+                                @if ($s_type == $key)
                                 {{ Form::radio('type', $key, true, ['id' => "type_${key}"]) }}
                                 @else
                                 {{ Form::radio('type', $key, false, ['id' => "type_${key}"]) }}
@@ -32,13 +32,13 @@
                                 @endforeach
                             </div>
                             <div class="col-4">
-                                {{ Form::radio('display_flag', '', true, ['id' => 'df_all']) }}
+                                {{ Form::radio('display', '', true, ['id' => 'df_all']) }}
                                 {{ Form::label('df_all', '全て') }}
                                 @foreach ($display as $key => $value)
-                                @if ($df == $key)
-                                {{ Form::radio('display_flag', $key, true, ['id' => "df_${key}"]) }}
+                                @if ($s_display == $key)
+                                {{ Form::radio('display', $key, true, ['id' => "df_${key}"]) }}
                                 @else
-                                {{ Form::radio('display_flag', $key, false, ['id' => "df_${key}"]) }}
+                                {{ Form::radio('display', $key, false, ['id' => "df_${key}"]) }}
                                 @endif
                                 {{ Form::label("df_${key}", $value) }}
                                 @endforeach
@@ -61,7 +61,7 @@
                     <div class="card-block">
                         <div class="card-title-block">
                             <h3 class="title">お知らせ一覧</h3>
-                            <p class="right">合計数: {{ $news_count }}</p>
+                            @include ('layouts.countList', ['list' => $list])
                         </div>
                         <section class="example">
                             <div class="table-flip-scroll">
@@ -118,7 +118,7 @@
         </div>
     </section>
     <nav class="text-right">
-        {{ $list->links() }}
+        {{ $list->appends($params)->links() }}
     </nav>
 </article>
 <script>

@@ -7,23 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Models\News;
 use App\Traits\FormTrait;
+use App\Traits\PostNewsTrait;
 
 class NewsController extends Controller
 {
-    use FormTrait;
+    use FormTrait, PostNewsTrait;
 
     public function index(Request $request)
     {
-        $data['name']  = $request->name;
-        $data['type']  = $request->type;
-        $data['df']    = $request->display_flag;
-        $data['order'] = $request->order;
-        $data['list']  = News::nameIn('title', $data['name'])
-                            ->orNameIn('body', $data['name'])
-                            ->nameEqual('type', $data['type'])
-                            ->nameEqual('display_flag', $data['df'])
-                            ->changeOrder($data['order'])
-                            ->paginate (10);
+        $data = $this->searchNews($request);
         return view('admin.news.index', $data);
     }
 

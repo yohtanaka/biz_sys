@@ -13,17 +13,17 @@
                         {{ Form::open(['route' => 'admin.user.index', 'method' => 'get']) }}
                         <div class="form-group">
                             <label for="name">名前・メールアドレスで検索</label>
-                            {{ Form::text('name', $name, ['class' => 'form-control']) }}
+                            {{ Form::text('name', $s_name, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             <label>部署・役職で絞り込み</label>
                         </div>
                         <div class="row form-group" style="margin-top: -15px;">
                             <div class="col-6">
-                                <select name='section_code' class='form-control'>
+                                <select name='section' class='form-control'>
                                     <option value=''>選択してください</option>
                                     @foreach ($sections as $key => $value)
-                                    @if ($sc == $key)
+                                    @if ($s_section == $key)
                                     <option value="{{ $key }}" selected>{{ $value }}</option>
                                     @else
                                     <option value="{{ $key }}">{{ $value }}</option>
@@ -32,10 +32,10 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <select name='position_code' class='form-control'>
+                                <select name='position' class='form-control'>
                                     <option value=''>選択してください</option>
                                     @foreach ($positions as $key => $value)
-                                    @if ($pc == $key)
+                                    @if ($s_position == $key)
                                     <option value="{{ $key }}" selected>{{ $value }}</option>
                                     @else
                                     <option value="{{ $key }}">{{ $value }}</option>
@@ -61,7 +61,9 @@
                     <div class="card-block">
                         <div class="card-title-block">
                             <h3 class="title">社員一覧</h3>
-                            <p class="right">合計数: {{ $user_count }}</p>
+                            <p class="right">
+                            @include ('layouts.countList', ['list' => $users])
+                            </p>
                         </div>
                         <section class="example">
                             <div class="table-flip-scroll">
@@ -122,7 +124,7 @@
         </div>
     </section>
     <nav class="text-right">
-        {{ $users->links() }}
+        {{ $users->appends($params)->links() }}
     </nav>
 </article>
 <script>

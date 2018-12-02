@@ -5,7 +5,7 @@
     <div class="col-4">
         {{ Form::radio('order', 'asc', true, ['id' => 'asc']) }}
         {{ Form::label('asc', 'ID昇順') }}
-        @if ($order === 'desc')
+        @if ($s_order === 'desc')
         {{ Form::radio('order', 'desc', true, ['id' => 'desc']) }}
         @else
         {{ Form::radio('order', 'desc', false, ['id' => 'desc']) }}

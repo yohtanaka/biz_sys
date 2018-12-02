@@ -9,19 +9,25 @@ use App\Models\City;
 trait PostUserTrait
 {
     private function searchUser($request) {
-        $data['name']  = $request->name;
-        $data['sc']    = $request->section_code;
-        $data['pc']    = $request->position_code;
-        $data['order'] = $request->order;
-        $data['users'] = User::nameIn('first_name', $data['name'])
-                             ->orNameIn('last_name', $data['name'])
-                             ->orNameIn('f_n_kana', $data['name'])
-                             ->orNameIn('l_n_kana', $data['name'])
-                             ->orNameIn('email', $data['name'])
-                             ->nameEqual('section_code', $data['sc'])
-                             ->nameEqual('position_code', $data['pc'])
-                             ->changeOrder($data['order'])
-                             ->paginate(10);
+        $data['s_name']     = $request->name;
+        $data['s_section']  = $request->section;
+        $data['s_position'] = $request->position;
+        $data['s_order']    = $request->order;
+        $data['users']      = User::nameIn('first_name', $data['s_name'])
+                                  ->orNameIn('last_name', $data['s_name'])
+                                  ->orNameIn('f_n_kana', $data['s_name'])
+                                  ->orNameIn('l_n_kana', $data['s_name'])
+                                  ->orNameIn('email', $data['s_name'])
+                                  ->nameEqual('section_code', $data['s_section'])
+                                  ->nameEqual('position_code', $data['s_position'])
+                                  ->changeOrder($data['s_order'])
+                                  ->paginate(10);
+        $data['params']     = [
+            'name'     => $data['s_name'],
+            'section'  => $data['s_section'],
+            'position' => $data['s_position'],
+            'order'    => $data['s_order'],
+        ];
         return $data;
     }
 
