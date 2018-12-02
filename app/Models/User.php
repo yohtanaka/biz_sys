@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\News');
     }
 
+    public function sales()
+    {
+        return $this->hasMany('App\Models\Sales');
+    }
+
     static $names = [
         'email'         => 'メールアドレス',
         'password'      => 'パスワード',
