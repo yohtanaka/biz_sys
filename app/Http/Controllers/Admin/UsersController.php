@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use App\Traits\FormTrait;
 use App\Traits\PostUserTrait;
+use App\Models\City;
 
 class UsersController extends Controller
 {
@@ -50,8 +51,8 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $user = $this->addParams($user);
         $data = $this->beforeEdit($user);
-        $this->replaceParams($user);
         return view('admin.users.create', $data);
     }
 

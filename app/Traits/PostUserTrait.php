@@ -46,9 +46,10 @@ trait PostUserTrait
         return $data;
     }
 
-    private function replaceParams($user) {
-        session()->put('_old_input.zip1', substr($user['zip'], 0, 3));
-        session()->put('_old_input.zip2', substr($user['zip'], -4));
-        session()->put('_old_input.pref', City::where('pref_code', $user['pref_code'])->first()['pref_name']);
+    private function addParams($user) {
+        $user['zip1'] = substr($user['zip'], 0, 3);
+        $user['zip2'] = substr($user['zip'], -4);
+        $user['pref'] = City::where('pref_code', $user['pref_code'])->first()['pref_name'];
+        return $user;
     }
 }
