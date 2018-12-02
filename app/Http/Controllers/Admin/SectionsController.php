@@ -11,7 +11,7 @@ class SectionsController extends Controller
 {
     public function index()
     {
-        $data['sections']  = Section::orderBy('code', 'asc')->get();
+        $data['sections']  = Section::oldest('code')->get();
         $data['next_code'] = Section::max('code') + 1;
         return view('admin.sections.index', $data);
     }

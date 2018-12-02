@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = [
-        'code', 'name',
-    ];
+    public function sales()
+    {
+        return $this->hasMany('App\Models\Sales', 'position_code', 'code');
+    }
 
     public $timestamps = false;
-
-    static $names = [
-        'code' => 'プロジェクトコード',
-        'name' => 'プロジェクト名',
-    ];
 
     static function names()
     {
@@ -26,8 +22,12 @@ class Project extends Model
         return $names;
     }
 
-    public function sales()
-    {
-        return $this->hasMany('App\Models\Sales', 'position_code', 'code');
-    }
+    static $names = [
+        'code' => 'プロジェクトコード',
+        'name' => 'プロジェクト名',
+    ];
+
+    protected $fillable = [
+        'code', 'name',
+    ];
 }

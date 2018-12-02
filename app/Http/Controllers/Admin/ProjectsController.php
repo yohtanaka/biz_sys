@@ -11,7 +11,7 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $data['projects']  = Project::orderBy('code', 'asc')->get();
+        $data['projects']  = Project::latest('code')->get();
         $data['next_code'] = Project::max('code') + 1;
         return view('admin.projects.index', $data);
     }

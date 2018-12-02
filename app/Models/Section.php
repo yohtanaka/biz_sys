@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-    protected $fillable = [
-        'code', 'name',
-    ];
+    public function users()
+    {
+        return $this->hasMany('App\Models\User', 'section_code', 'code');
+    }
 
     public $timestamps = false;
-
-    static $names = [
-        'code' => '部署コード',
-        'name' => '部署名',
-    ];
 
     static function names()
     {
@@ -26,8 +22,12 @@ class Section extends Model
         return $names;
     }
 
-    public function users()
-    {
-        return $this->hasMany('App\Models\User', 'section_code', 'code');
-    }
+    static $names = [
+        'code' => '部署コード',
+        'name' => '部署名',
+    ];
+
+    protected $fillable = [
+        'code', 'name',
+    ];
 }

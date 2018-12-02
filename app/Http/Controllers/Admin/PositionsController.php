@@ -11,7 +11,7 @@ class PositionsController extends Controller
 {
     public function index()
     {
-        $data['positions'] = Position::orderBy('code', 'asc')->get();
+        $data['positions'] = Position::oldest('code')->get();
         return view('admin.positions.index', $data);
     }
 

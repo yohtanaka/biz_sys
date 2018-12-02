@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['list'] = News::where('type', 1)->where('display_flag', 1)->latest()->get();
+        $data['list'] = News::forAdmins();
         return view('admin.index', $data);
     }
 }

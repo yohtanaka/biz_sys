@@ -10,13 +10,24 @@ class News extends Model
 {
     use SearchTrait;
 
-    protected $fillable = [
-        'title',
-        'type',
-        'body',
-        'display_flag',
-        'user_id',
-    ];
+    public function scopeForAdmins($query) {
+        return $query->where('type', 1)->where('display_flag', 1)->latest()->get();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::saving(function(News $news) {
+            if (Auth::check()) {
+                $news->user_id = Auth::user()->id;
+            }
+        });
+    }
 
     static $names = [
         'title'        => 'お知らせタイトル',
@@ -36,18 +47,11 @@ class News extends Model
         2 => '非表示',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-        self::saving(function(News $news) {
-            if (Auth::check()) {
-                $news->user_id = Auth::user()->id;
-            }
-        });
-    }
-
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
+    protected $fillable = [
+        'title',
+        'type',
+        'body',
+        'display_flag',
+        'user_id',
+    ];
 }
