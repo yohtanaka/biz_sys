@@ -34,10 +34,11 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        $data = session()->get('post_data');
         if ($request->get('action') === 'back') {
-            return redirect()->route('admin.user.create')->withInput(session()->get('post_data'));
+            return redirect()->route('admin.user.create')->withInput($data);
         }
-        $data = $this->formatParams();
+        $data = $this->formatParams($data);
         $user = User::create($data);
         return redirect()->route('admin.user.index');
     }
@@ -58,10 +59,11 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = session()->get('post_data');
         if ($request->get('action') === 'back') {
-            return redirect()->route('admin.user.edit', ['id' => $id ])->withInput(session()->get('post_data'));
+            return redirect()->route('admin.user.edit', ['id' => $id ])->withInput($data);
         }
-        $data = $this->formatParams();
+        $data = $this->formatParams($data);
         $user = User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');
     }

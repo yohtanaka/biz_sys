@@ -31,8 +31,7 @@ trait PostUserTrait
         return $data;
     }
 
-    private function formatParams() {
-        $data                = session()->get('post_data');
+    private function formatParams($data) {
         $data['l_n_kana']    = mb_convert_kana($data['l_n_kana'], 'C');
         $data['password']    = Hash::make($data['password']);
         $data['f_n_kana']    = mb_convert_kana($data['f_n_kana'], 'C');

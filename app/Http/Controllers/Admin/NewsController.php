@@ -33,10 +33,10 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->get('action') === 'back') {
-            return redirect()->route('admin.news.create')->withInput(session()->get('post_data'));
-        }
         $data = session()->get('post_data');
+        if ($request->get('action') === 'back') {
+            return redirect()->route('admin.news.create')->withInput($data);
+        }
         $news = News::create($data);
         return redirect()->route('admin.news.index');
     }
@@ -56,10 +56,10 @@ class NewsController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->get('action') === 'back') {
-            return redirect()->route('admin.news.edit', ['id' => $id ])->withInput(session()->get('post_data'));
-        }
         $data = session()->get('post_data');
+        if ($request->get('action') === 'back') {
+            return redirect()->route('admin.news.edit', ['id' => $id ])->withInput($data);
+        }
         $news = News::findOrFail($id)->update($data);
         return redirect()->route('admin.news.index');
     }
