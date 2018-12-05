@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CompanyRequest;
+use App\Models\Company;
+use App\Traits\FormTrait;
 
 class CompaniesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data =[];
+        // $data = $this->searchCompany($request);
+        return view('admin.companies.index', $data);
     }
 
     public function create()

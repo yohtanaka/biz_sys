@@ -14,6 +14,19 @@ class News extends Model
         return $query->where('type', 1)->where('display_flag', 1)->latest()->get();
     }
 
+    // public function getTypeAttribute($value) {
+    //     return self::$type[$value];
+    // }
+
+    // public function getDisplayFlagAttribute($value) {
+    //     return self::$display[$value];
+    // }
+
+    // public function setTypeAttribute($value)
+    // {
+    //     $this->attributes['type'] = self::$type[$value];
+    // }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

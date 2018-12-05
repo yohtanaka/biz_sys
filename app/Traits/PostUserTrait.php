@@ -14,14 +14,14 @@ trait PostUserTrait
         $data['s_position'] = $request->position;
         $data['s_order']    = $request->order;
         $data['users']      = User::nameIn('first_name', $data['s_name'])
-                                  ->orNameIn('last_name', $data['s_name'])
-                                  ->orNameIn('f_n_kana', $data['s_name'])
-                                  ->orNameIn('l_n_kana', $data['s_name'])
-                                  ->orNameIn('email', $data['s_name'])
-                                  ->nameEqual('section_code', $data['s_section'])
-                                  ->nameEqual('position_code', $data['s_position'])
-                                  ->changeOrder($data['s_order'])
-                                  ->paginate(10);
+                                ->orNameIn('last_name', $data['s_name'])
+                                ->orNameIn('f_n_kana', $data['s_name'])
+                                ->orNameIn('l_n_kana', $data['s_name'])
+                                ->orNameIn('email', $data['s_name'])
+                                ->nameEqual('section_code', $data['s_section'])
+                                ->nameEqual('position_code', $data['s_position'])
+                                ->changeOrder($data['s_order'])
+                                ->paginate(10);
         $data['params']     = [
             'name'     => $data['s_name'],
             'section'  => $data['s_section'],
@@ -45,8 +45,8 @@ trait PostUserTrait
         }
         if ($data['pref'] && $data['city_name']) {
             $data['city_code'] = City::where('pref_name', 'LIKE', "${data['pref']}%")
-                                     ->where('city_name', 'LIKE', "${data['city_name']}%")
-                                     ->first()['city_code'];
+                                    ->where('city_name', 'LIKE', "${data['city_name']}%")
+                                    ->first()['city_code'];
         }
         return $data;
     }

@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ItemRequest;
+use App\Models\Item;
+use App\Traits\FormTrait;
 
 class ItemsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data =[];
+        // $data = $this->searchItem($request);
+        return view('admin.items.index', $data);
     }
 
     public function create()

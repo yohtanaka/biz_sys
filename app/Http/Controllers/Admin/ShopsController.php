@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ShopRequest;
+use App\Models\Shop;
+use App\Traits\FormTrait;
 
 class ShopsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data =[];
+        // $data = $this->searchShop($request);
+        return view('admin.shops.index', $data);
     }
 
     public function create()
