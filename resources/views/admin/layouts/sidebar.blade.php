@@ -27,8 +27,8 @@
                         <li><a href="{{ route('admin.section.index') }}"><i class="fa fa-pencil-square"></i> 部署・役職登録 </a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="sales">
+                <li id="sales">
+                    <a href="">
                         <i class="fa fa-area-chart"></i> 売上管理
                         <i class="fa arrow"></i>
                     </a>
@@ -38,8 +38,8 @@
                         <li><a href="{{ route('admin.project.index') }}"><i class="fa fa-pencil-square"></i> プロジェクト登録 </a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="shops">
+                <li id="shops">
+                    <a href="">
                         <i class="fa fa-home"></i> 店舗管理
                         <i class="fa arrow"></i>
                     </a>
@@ -51,8 +51,8 @@
                         <li><a href="{{ route('admin.shop.csv') }}"><i class="fa fa-upload"></i> CSV登録 </a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="items">
+                <li id="items">
+                    <a href="">
                         <i class="fa fa-briefcase"></i> 商品管理
                         <i class="fa arrow"></i>
                     </a>
