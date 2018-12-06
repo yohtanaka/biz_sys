@@ -12,7 +12,7 @@ use App\Traits\FormTrait;
 
 class ShopsController extends Controller
 {
-    use CsvTrait;
+    use FormTrait, CsvTrait;
 
     private static $table = 'shops';
 
@@ -25,32 +25,56 @@ class ShopsController extends Controller
 
     public function create()
     {
-        //
+        $data = $this->beforeCreate();
+        return view('admin.shops.create', $data);
+    }
+
+    public function confirm(ShopRequest $request)
+    {
+        $data = $this->beforeConfirm($request);
+        return view('admin.shops.create', $data);
     }
 
     public function store(Request $request)
     {
-        //
+        $data = session()->get('post_data');
+        if ($request->get('action') === 'back') {
+            return redirect()->route('admin.shop.create')->withInput($data);
+        }
+        $data = $this->formatParams($data);
+        $shop = Shop::create($data);
+        return redirect()->route('admin.shop.index');
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $data          = $this->beforeShow($request);
+        $data['value'] = Shop::findOrFail($id);
+        return view('admin.shops.create', $data);
     }
 
-    public function edit($id)
+    public function edit(Shop $shop)
     {
-        //
+        $shop = $this->addParams($shop);
+        $data = $this->beforeEdit($shop);
+        return view('admin.shops.create', $data);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $data = session()->get('post_data');
+        if ($request->get('action') === 'back') {
+            return redirect()->route('admin.shop.edit', ['id' => $id ])->withInput($data);
+        }
+        $data = $this->formatParams($data);
+        $shop = Shop::findOrFail($id)->update($data);
+        return redirect()->route('admin.shop.index');
     }
 
     public function destroy($id)
     {
-        //
+        $shop = Shop::findOrFail($id)->delete();
+        return redirect()->route('admin.shop.index');
     }
 
     public function csv()
