@@ -15,15 +15,18 @@ class SalesController extends Controller
 
     private static $table = 'sales';
 
-    public function index() {
+    public function index()
+    {
         return view('admin.sales.index');
     }
 
-    public function csv() {
+    public function csv()
+    {
         return view('admin.sales.csv');
     }
 
-    public function csvUpload(CsvRequest $request) {
+    public function csvUpload(CsvRequest $request)
+    {
         $file  = $request->file('csvFile');
         $names = Sales::$names;
         $data  = $this->upload($file, $names);
@@ -37,7 +40,8 @@ class SalesController extends Controller
         return redirect()->route('admin.sales.csv')->with('notice', 'アップロードしました');
     }
 
-    public function csvDownload() {
+    public function csvDownload()
+    {
         $names = Sales::$names;
         $eles  = Sales::all();
         $name  = self::$table;
