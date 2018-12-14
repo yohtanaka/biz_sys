@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-block">
                     <div class="card-title-block">
-                        <h3 class="title">お知らせ登録</h3>
+                        <h3 class="title">店舗登録</h3>
                     </div>
                     @include ('layouts.error')
                     @include ('layouts.formOpen', ['name' => 'admin.shop'])
