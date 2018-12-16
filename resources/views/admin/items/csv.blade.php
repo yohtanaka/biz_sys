@@ -1,5 +1,7 @@
 @extends ('admin.layouts.common')
+
 @section ('title', '商品CSV管理')
+
 @section ('content')
 <article class="content">
     @include ('layouts.fileError', ['name' => 'csvFile'])

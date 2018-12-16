@@ -1,5 +1,7 @@
 @extends ('admin.layouts.common')
+
 @section ('title', '企業登録')
+
 @section ('content')
 <article class="content">
     <div class="row">

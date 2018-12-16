@@ -1,5 +1,7 @@
 @extends ('admin.layouts.common')
+
 @section ('title', '部署登録')
+
 @section ('content')
 <article class="content">
     <section class="section">
