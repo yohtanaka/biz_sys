@@ -13,8 +13,8 @@
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
+// Route::group(['middleware' => ['auth', 'can:user-higher']], function() {
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('report', 'ReportsController');
     // Route::resource('user', 'UsersController', ['only' => ['index', 'show', 'update', 'edit']]);
-});
+// });
