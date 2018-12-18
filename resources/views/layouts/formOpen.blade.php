@@ -7,6 +7,7 @@
 @else
 {{ Form::open(['route' => $name . '.confirm']) }}
 @endif
+
 @if ($edit)
 {{ Form::hidden('edit', 'true') }}
 @endif
