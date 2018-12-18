@@ -8,7 +8,8 @@ use App\Models\City;
 
 trait PostUserTrait
 {
-    private function searchUser($request) {
+    private function searchUser($request)
+    {
         $data['s_name']     = $request->name;
         $data['s_section']  = $request->section;
         $data['s_position'] = $request->position;
@@ -31,7 +32,8 @@ trait PostUserTrait
         return $data;
     }
 
-    private function formatParams($data) {
+    private function formatParams($data)
+    {
         $data['l_n_kana']    = mb_convert_kana($data['l_n_kana'], 'C');
         $data['password']    = Hash::make($data['password']);
         $data['f_n_kana']    = mb_convert_kana($data['f_n_kana'], 'C');
@@ -51,7 +53,8 @@ trait PostUserTrait
         return $data;
     }
 
-    private function addParams($user) {
+    private function addParams($user)
+    {
         $user['zip1'] = substr($user['zip'], 0, 3);
         $user['zip2'] = substr($user['zip'], -4);
         $user['pref'] = City::where('pref_code', $user['pref_code'])->first()['pref_name'];

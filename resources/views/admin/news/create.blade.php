@@ -16,11 +16,7 @@
                         <div class="form-group row">
                             {{ Form::label('title', 'お知らせタイトル', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $value['title'] }}
-                                @else
-                                {{ Form::text('title', null, ['class' => 'form-control']) }}
-                                @endif
+                                {{ $show ? $value['title'] : Form::text('title', null, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group row">
@@ -39,11 +35,7 @@
                         <div class="form-group row">
                             {{ Form::label('body', '本文', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $value['body'] }}
-                                @else
-                                {{ Form::textarea('body', null, ['class' => 'form-control']) }}
-                                @endif
+                                {{ $show ? $value['body'] : Form::textarea('body', null, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group row">

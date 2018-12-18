@@ -6,7 +6,8 @@ use App\Models\News;
 
 trait PostNewsTrait
 {
-    private function searchNews($request) {
+    private function searchNews($request)
+    {
         $data['s_name']    = $request->name;
         $data['s_type']    = $request->type;
         $data['s_display'] = $request->display;
@@ -23,7 +24,6 @@ trait PostNewsTrait
             'display' => $data['s_display'],
             'order'   => $data['s_order'],
         ];
-
         return $data;
     }
 }

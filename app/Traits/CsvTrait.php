@@ -8,7 +8,8 @@ use Goodby\CSV\Import\Standard\LexerConfig;
 
 trait CsvTrait
 {
-    private function upload($file, $names) {
+    private function upload($file, $names)
+    {
         $nameKeys    = array_keys($names);
         $nameValues  = array_values($names);
         $config      = new LexerConfig();
@@ -36,7 +37,8 @@ trait CsvTrait
         return $data;
     }
 
-    private function download($name, $data) {
+    private function download($name, $data)
+    {
         $dateCsv     = $name . date('YmdHis') . '.csv';
         $csvFileName = 'storage/csv/' . $dateCsv;
         $res         = fopen($csvFileName, 'w');
@@ -59,7 +61,8 @@ trait CsvTrait
         readfile($csvFileName);
     }
 
-    private function getElements($names, $eles) {
+    private function getElements($names, $eles)
+    {
         $data[] = array_values($names);
         $list   = array_keys($names);
         foreach ($eles as $ele) {

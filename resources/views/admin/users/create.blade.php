@@ -28,31 +28,19 @@
                         <div class="form-group row">
                             {{ Form::label('password', 'パスワード', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                ****************
-                                @else
-                                {{ Form::password('password', ['class' => 'form-control']) }}
-                                @endif
+                                {{ $show ? '****************' : Form::password('password', ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             {{ Form::label('role', '権限', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $roles[$value['role']] }}
-                                @else
-                                {{ Form::select('role', [2 => 'マスター管理者', 5 => '管理者', 10 => '一般'], 10, ['class' => 'form-control']) }}
-                                @endif
+                                {{ $show ? $roles[$value['role']] : Form::select('role', [2 => 'マスター管理者', 5 => '管理者', 10 => '一般'], 10, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             {{ Form::label('code', '社員番号', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $value['code'] }}
-                                @else
-                                {{ Form::number('code', null, ['class' => 'form-control']) }}
-                                @endif
+                                {{ $show ? $value['code'] : Form::number('code', null, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group row">
@@ -101,11 +89,7 @@
                         <div class="form-group row">
                             {{ Form::label('birthday', '誕生日', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-5">
-                                @if ($show)
-                                {{ $value['birthday'] }}
-                                @else
-                                {{ Form::input('date', 'birthday', date('Y-m-d'), ['class' => 'form-control']) }}
-                                @endif
+                                {{ $show ? $value['birthday'] : Form::input('date', 'birthday', date('Y-m-d'), ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="form-group row">
@@ -156,31 +140,19 @@
                         <div class="form-group row">
                             {{ Form::label('building', '建物名/部屋番号', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $value['building'] }}
-                                @else
-                                {{ Form::text('building', null, ['class' => 'form-control', 'placeholder' => '田中マンション 101号室']) }}
-                                @endif
+                                {{ $show ? $value['building'] : Form::text('building', null, ['class' => 'form-control', 'placeholder' => '田中マンション 101号室']) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             {{ Form::label('tel_private', '電話番号(個人)', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $value['tel_private'] }}
-                                @else
-                                {{ Form::text('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}
-                                @endif
+                                {{ $show ? $value['tel_private'] : Form::text('tel_private', null, ['class' => 'form-control', 'placeholder' => '0344445555']) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             {{ Form::label('tel_work', '電話番号(会社)', ['class' => 'col-sm-2 form-control-label']) }}
                             <div class="col-sm-10">
-                                @if ($show)
-                                {{ $value['tel_work'] }}
-                                @else
-                                {{ Form::text('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}
-                                @endif
+                                {{ $show ? $value['tel_work'] : Form::text('tel_work', null, ['class' => 'form-control', 'placeholder' => '07088889999']) }}
                             </div>
                         </div>
                         <div class="form-group row">

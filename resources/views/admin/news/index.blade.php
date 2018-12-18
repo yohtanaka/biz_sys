@@ -25,11 +25,7 @@
                                 {{ Form::radio('type', '', true, ['id' => 'type_all']) }}
                                 {{ Form::label('type_all', '全て') }}
                                 @foreach ($type as $key => $value)
-                                @if ($s_type == $key)
-                                {{ Form::radio('type', $key, true, ['id' => "type_${key}"]) }}
-                                @else
-                                {{ Form::radio('type', $key, false, ['id' => "type_${key}"]) }}
-                                @endif
+                                {{ Form::radio('type', $key, $s_type == $key ?true : false, ['id' => "type_${key}"]) }}
                                 {{ Form::label("type_${key}", $value) }}
                                 @endforeach
                             </div>
@@ -37,11 +33,7 @@
                                 {{ Form::radio('display', '', true, ['id' => 'df_all']) }}
                                 {{ Form::label('df_all', '全て') }}
                                 @foreach ($display as $key => $value)
-                                @if ($s_display == $key)
-                                {{ Form::radio('display', $key, true, ['id' => "df_${key}"]) }}
-                                @else
-                                {{ Form::radio('display', $key, false, ['id' => "df_${key}"]) }}
-                                @endif
+                                {{ Form::radio('display', $key, $s_display == $key ? true: false, ['id' => "df_${key}"]) }}
                                 {{ Form::label("df_${key}", $value) }}
                                 @endforeach
                             </div>
