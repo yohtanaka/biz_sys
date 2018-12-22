@@ -18,7 +18,7 @@ class ShopsController extends Controller
 
     public function index(Request $request)
     {
-        $data =[];
+        $data['shops'] = Shop::all();
         // $data = $this->searchShop($request);
         return view('admin.shops.index', $data);
     }
