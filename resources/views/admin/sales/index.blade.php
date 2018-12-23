@@ -12,6 +12,12 @@
                         <div class="card-title-block">
                             <h3 class="title">売上検索</h3>
                         </div>
+                        {{ Form::open(['route' => 'admin.shop.index', 'method' => 'get']) }}
+                        @include ('layouts.searchOrder')
+                        <div class="form-group">
+                            {{ Form::submit('検索', ['class' => 'btn btn-primary']) }}
+                        </div>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
