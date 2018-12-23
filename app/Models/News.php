@@ -12,7 +12,7 @@ class News extends Model
 
     /**
      * @param $query
-     * @return $query
+     * @return string
      */
     public function scopeForAdmins($query) {
         return $query->where('type', 1)->where('display_flag', 1)->latest()->get();

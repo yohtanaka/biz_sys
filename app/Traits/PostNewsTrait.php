@@ -8,7 +8,7 @@ trait PostNewsTrait
 {
     /**
      * @param \Illuminate\Http\Request  $request
-     * @return array $data
+     * @return array
      */
     private function searchNews($request)
     {

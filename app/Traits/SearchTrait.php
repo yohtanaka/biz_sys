@@ -6,9 +6,9 @@ trait SearchTrait
 {
     /**
      * @param $query
-     * @param string $string
-     * @param string $keyword
-     * @return $query
+     * @param $string
+     * @param $keyword
+     * @return string
      */
     public function scopeNameIn($query, $string, $keyword)
     {
@@ -17,9 +17,9 @@ trait SearchTrait
 
     /**
      * @param $query
-     * @param string $string
-     * @param string $keyword
-     * @return $query
+     * @param $string
+     * @param $keyword
+     * @return string
      */
     public function scopeOrNameIn($query, $string, $keyword)
     {
@@ -28,9 +28,9 @@ trait SearchTrait
 
     /**
      * @param $query
-     * @param string $string
-     * @param string $keyword
-     * @return $query
+     * @param $string
+     * @param $keyword
+     * @return string
      */
     public function scopeNameEqual($query, $string, $keyword)
     {
@@ -39,9 +39,9 @@ trait SearchTrait
 
     /**
      * @param $query
-     * @param string $string
-     * @param string $keyword
-     * @return $query
+     * @param $string
+     * @param $keyword
+     * @return string
      */
     public function scopeOrNameEqual($query, $string, $keyword)
     {
@@ -50,8 +50,8 @@ trait SearchTrait
 
     /**
      * @param $query
-     * @param string $order
-     * @return $query
+     * @param $order
+     * @return string
      */
     public function scopeChangeOrder($query, $order)
     {

@@ -10,7 +10,7 @@ trait PostUserTrait
 {
     /**
      * @param \Illuminate\Http\Request  $request
-     * @return array $data
+     * @return array
      */
     private function searchUser($request)
     {
@@ -37,8 +37,8 @@ trait PostUserTrait
     }
 
     /**
-     * @param array $data
-     * @return array $data
+     * @param $data
+     * @return array
      */
     private function formatParams($data)
     {
@@ -62,8 +62,8 @@ trait PostUserTrait
     }
 
     /**
-     * @param array $user
-     * @return array $data
+     * @param $user
+     * @return array
      */
     private function addParams($user)
     {

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 trait FormTrait
 {
     /**
-     * @return array $data
+     * @return array
      */
     private function beforeCreate()
     {
@@ -24,7 +24,7 @@ trait FormTrait
     }
 
     /**
-     * @return array $data
+     * @return array
      */
     private function beforeConfirm(Request $request)
     {
@@ -42,7 +42,7 @@ trait FormTrait
 
     /**
      * @param \Illuminate\Http\Request  $request
-     * @return array $data
+     * @return array
      */
     private function beforeShow(Request $request)
     {
@@ -53,7 +53,7 @@ trait FormTrait
 
     /**
      * @param array $value
-     * @return array $data
+     * @return array
      */
     private function beforeEdit($value)
     {

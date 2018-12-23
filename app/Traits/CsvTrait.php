@@ -10,7 +10,7 @@ trait CsvTrait
 {
     /**
      * @param $file
-     * @param array $names
+     * @param $names
      * @return array
      */
     private function upload($file, $names)
@@ -43,8 +43,8 @@ trait CsvTrait
     }
 
     /**
-     * @param string $name
-     * @param array $data
+     * @param $name
+     * @param $data
      * @return void
      */
     private function download($name, $data)
@@ -72,8 +72,8 @@ trait CsvTrait
     }
 
     /**
-     * @param array $names
-     * @param array $eles
+     * @param $names
+     * @param $eles
      * @return array
      */
     private function getElements($names, $eles)
