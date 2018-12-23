@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="card-title-block">
-                            <h3 class="title">店舗一覧</h3>
+                            <h3 class="title">店舗検索</h3>
                         </div>
                     </div>
                 </div>
@@ -23,8 +23,8 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="card-title-block">
-                            <h3 class="title">お知らせ一覧</h3>
-                            {{-- @include ('layouts.countList', ['list' => $shops]) --}}
+                            <h3 class="title">店舗一覧</h3>
+                            @include ('layouts.countList', ['list' => $shops])
                         </div>
                         <section class="example">
                             <div class="table-flip-scroll">
@@ -72,9 +72,9 @@
             </div>
         </div>
     </section>
-    {{-- <nav class="text-right">
-        {{ $list->appends($params)->links() }}
-    </nav> --}}
+    <nav class="text-right">
+        {{ $shops->appends($params)->links() }}
+    </nav>
 </article>
 <script>
     $('.sidebar-menu').children('#shops').addClass('active');
