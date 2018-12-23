@@ -7,6 +7,9 @@ use App\Models\News;
 
 class NewsParamComposer
 {
+    /**
+     * @return viod
+     */
     public function compose(View $view)
     {
         $view->with([

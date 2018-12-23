@@ -8,6 +8,11 @@ use Goodby\CSV\Import\Standard\LexerConfig;
 
 trait CsvTrait
 {
+    /**
+     * @param $file
+     * @param array $names
+     * @return array
+     */
     private function upload($file, $names)
     {
         $nameKeys    = array_keys($names);
@@ -37,6 +42,11 @@ trait CsvTrait
         return $data;
     }
 
+    /**
+     * @param string $name
+     * @param array $data
+     * @return void
+     */
     private function download($name, $data)
     {
         $dateCsv     = $name . date('YmdHis') . '.csv';
@@ -61,6 +71,11 @@ trait CsvTrait
         readfile($csvFileName);
     }
 
+    /**
+     * @param array $names
+     * @param array $eles
+     * @return array
+     */
     private function getElements($names, $eles)
     {
         $data[] = array_values($names);

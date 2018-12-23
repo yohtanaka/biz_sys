@@ -13,24 +13,39 @@ class NewsController extends Controller
 {
     use FormTrait, PostNewsTrait;
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $data = $this->searchNews($request);
         return view('admin.news.index', $data);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $data = $this->beforeCreate();
         return view('admin.news.create', $data);
     }
 
+    /**
+     * @param  \App\Http\Requests\Admin\NewsRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function confirm(NewsRequest $request)
     {
         $data = $this->beforeConfirm($request);
         return view('admin.news.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = session()->get('post_data');
@@ -41,6 +56,11 @@ class NewsController extends Controller
         return redirect()->route('admin.news.index');
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
     {
         $data          = $this->beforeShow($request);
@@ -48,12 +68,21 @@ class NewsController extends Controller
         return view('admin.news.create', $data);
     }
 
+    /**
+     * @param  \App\Models\News  $news
+     * @return \Illuminate\Http\Response
+     */
     public function edit(News $news)
     {
         $data = $this->beforeEdit($news);
         return view('admin.news.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $data = session()->get('post_data');
@@ -64,6 +93,10 @@ class NewsController extends Controller
         return redirect()->route('admin.news.index');
     }
 
+    /**
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $news = News::findOrFail($id)->delete();

@@ -6,13 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
+    /**
+     * @return \App\Models\User
+     */
     public function users()
     {
         return $this->hasMany('App\Models\User', 'position_code', 'code');
     }
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * @return array
+     */
     static function names()
     {
         $names = [];
@@ -22,11 +31,17 @@ class Position extends Model
         return $names;
     }
 
-    static $names = [
+    /**
+     * @var array
+     */
+    public static $names = [
         'code' => '役職コード',
         'name' => '役職名',
     ];
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'code', 'name',
     ];

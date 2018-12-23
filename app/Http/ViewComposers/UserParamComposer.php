@@ -9,6 +9,9 @@ use App\Models\Position;
 
 class UserParamComposer
 {
+    /**
+     * @return void
+     */
     public function compose(View $view)
     {
         $view->with([

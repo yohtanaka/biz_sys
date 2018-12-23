@@ -8,6 +8,10 @@ use App\Models\City;
 
 trait PostUserTrait
 {
+    /**
+     * @param \Illuminate\Http\Request  $request
+     * @return array $data
+     */
     private function searchUser($request)
     {
         $data['s_name']     = $request->name;
@@ -32,6 +36,10 @@ trait PostUserTrait
         return $data;
     }
 
+    /**
+     * @param array $data
+     * @return array $data
+     */
     private function formatParams($data)
     {
         $data['l_n_kana']    = mb_convert_kana($data['l_n_kana'], 'C');
@@ -47,12 +55,16 @@ trait PostUserTrait
         }
         if ($data['pref'] && $data['city_name']) {
             $data['city_code'] = City::where('pref_name', 'LIKE', "${data['pref']}%")
-                                    ->where('city_name', 'LIKE', "${data['city_name']}%")
-                                    ->first()['city_code'];
+                                     ->where('city_name', 'LIKE', "${data['city_name']}%")
+                                     ->first()['city_code'];
         }
         return $data;
     }
 
+    /**
+     * @param array $user
+     * @return array $data
+     */
     private function addParams($user)
     {
         $user['zip1'] = substr($user['zip'], 0, 3);

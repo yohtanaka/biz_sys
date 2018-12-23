@@ -14,24 +14,39 @@ class UsersController extends Controller
 {
     use FormTrait, PostUserTrait;
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $data = $this->searchUser($request);
         return view('admin.users.index', $data);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $data = $this->beforeCreate();
         return view('admin.users.create', $data);
     }
 
-    public function confirm(UserRequest $request)
+     /**
+     * @param  \App\Http\Requests\Admin\UserRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+   public function confirm(UserRequest $request)
     {
         $data = $this->beforeConfirm($request);
         return view('admin.users.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = session()->get('post_data');
@@ -43,6 +58,11 @@ class UsersController extends Controller
         return redirect()->route('admin.user.index');
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
     {
         $data          = $this->beforeShow($request);
@@ -50,6 +70,10 @@ class UsersController extends Controller
         return view('admin.users.create', $data);
     }
 
+    /**
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function edit(User $user)
     {
         $user = $this->addParams($user);
@@ -57,6 +81,11 @@ class UsersController extends Controller
         return view('admin.users.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $data = session()->get('post_data');
@@ -68,6 +97,10 @@ class UsersController extends Controller
         return redirect()->route('admin.user.index');
     }
 
+    /**
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $user = User::findOrFail($id)->delete();

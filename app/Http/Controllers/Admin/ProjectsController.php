@@ -9,6 +9,9 @@ use App\Models\Project;
 
 class ProjectsController extends Controller
 {
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $data['projects']  = Project::latest('code')->get();
@@ -16,12 +19,20 @@ class ProjectsController extends Controller
         return view('admin.projects.index', $data);
     }
 
+    /**
+     * @param  \App\Http\Requests\Admin\ProjectRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(ProjectRequest $request)
     {
         $section = Project::updateOrCreate(['code' => $request->code], $request->all());
         return redirect()->route('admin.project.index');
     }
 
+    /**
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $section = Project::findOrFail($id)->delete();

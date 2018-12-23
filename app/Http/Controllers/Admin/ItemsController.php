@@ -16,25 +16,47 @@ class ItemsController extends Controller
 
     private static $table = 'items';
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
-        $data =[];
-        // $data = $this->searchItem($request);
+        $data['s_name']  = $request->name;
+        $data['s_order'] = $request->order;
+        $data['items']   = Item::nameIn('name', $data['s_name'])
+                               ->changeOrder($data['s_order'])
+                               ->paginate (10);
+        $data['params']  = [
+            'name'  => $data['s_name'],
+            'order' => $data['s_order'],
+        ];
         return view('admin.items.index', $data);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $data = $this->beforeCreate();
         return view('admin.items.create', $data);
     }
 
+    /**
+     * @param  \App\Http\Requests\Admin\ItemRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function confirm(ItemRequest $request)
     {
         $data = $this->beforeConfirm($request);
         return view('admin.items.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = session()->get('post_data');
@@ -46,6 +68,11 @@ class ItemsController extends Controller
         return redirect()->route('admin.item.index');
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
     {
         $data          = $this->beforeShow($request);
@@ -53,6 +80,10 @@ class ItemsController extends Controller
         return view('admin.items.create', $data);
     }
 
+    /**
+     * @param  \App\Models\Item  $item
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Item $item)
     {
         $item = $this->addParams($item);
@@ -60,6 +91,11 @@ class ItemsController extends Controller
         return view('admin.items.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $data = session()->get('post_data');
@@ -71,17 +107,28 @@ class ItemsController extends Controller
         return redirect()->route('admin.item.index');
     }
 
+    /**
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $item = Item::findOrFail($id)->delete();
         return redirect()->route('admin.item.index');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function csv()
     {
         return view('admin.items.csv');
     }
 
+    /**
+     * @param  \App\Http\Requests\CsvRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function csvUpload(CsvRequest $request) {
         $file  = $request->file('csvFile');
         $names = Item::$names;
@@ -96,6 +143,9 @@ class ItemsController extends Controller
         return redirect()->route('admin.item.index')->with('notice', 'アップロードしました');
     }
 
+    /**
+     * @return \App\Traits\CsvTrait
+     */
     public function csvDownload() {
         $names = Item::$names;
         $eles  = Item::all();

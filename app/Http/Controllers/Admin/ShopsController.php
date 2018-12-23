@@ -16,25 +16,47 @@ class ShopsController extends Controller
 
     private static $table = 'shops';
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
-        $data['shops'] = Shop::all();
-        // $data = $this->searchShop($request);
+        $data['s_name']  = $request->name;
+        $data['s_order'] = $request->order;
+        $data['shops']   = Shop::nameIn('name', $data['s_name'])
+                               ->changeOrder($data['s_order'])
+                               ->paginate (10);
+        $data['params']  = [
+            'name'  => $data['s_name'],
+            'order' => $data['s_order'],
+        ];
         return view('admin.shops.index', $data);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $data = $this->beforeCreate();
         return view('admin.shops.create', $data);
     }
 
+    /**
+     * @param  \App\Http\Requests\Admin\ShopRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function confirm(ShopRequest $request)
     {
         $data = $this->beforeConfirm($request);
         return view('admin.shops.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = session()->get('post_data');
@@ -46,6 +68,11 @@ class ShopsController extends Controller
         return redirect()->route('admin.shop.index');
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
     {
         $data          = $this->beforeShow($request);
@@ -53,6 +80,10 @@ class ShopsController extends Controller
         return view('admin.shops.create', $data);
     }
 
+    /**
+     * @param  \App\Models\Shop  $shop
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Shop $shop)
     {
         $shop = $this->addParams($shop);
@@ -60,6 +91,11 @@ class ShopsController extends Controller
         return view('admin.shops.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $data = session()->get('post_data');
@@ -71,17 +107,28 @@ class ShopsController extends Controller
         return redirect()->route('admin.shop.index');
     }
 
+    /**
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $shop = Shop::findOrFail($id)->delete();
         return redirect()->route('admin.shop.index');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function csv()
     {
         return view('admin.shops.csv');
     }
 
+    /**
+     * @param  \App\Http\Requests\CsvRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function csvUpload(CsvRequest $request)
     {
         $file  = $request->file('csvFile');
@@ -97,6 +144,9 @@ class ShopsController extends Controller
         return redirect()->route('admin.shop.index')->with('notice', 'アップロードしました');
     }
 
+    /**
+     * @return \App\Traits\CsvTrait
+     */
     public function csvDownload()
     {
         $names = Shop::$names;

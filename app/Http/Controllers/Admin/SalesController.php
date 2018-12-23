@@ -15,16 +15,33 @@ class SalesController extends Controller
 
     private static $table = 'sales';
 
-    public function index()
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        return view('admin.sales.index');
+        $data['s_order'] = $request->order;
+        $data['list']    = Sales::changeOrder($data['s_order'])
+                                ->paginate (10);
+        $data['params']  = [
+            'order' => $data['s_order'],
+        ];
+        return view('admin.sales.index', $data);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function csv()
     {
         return view('admin.sales.csv');
     }
 
+    /**
+     * @param  \App\Http\Requests\CsvRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function csvUpload(CsvRequest $request)
     {
         $file  = $request->file('csvFile');
@@ -40,6 +57,9 @@ class SalesController extends Controller
         return redirect()->route('admin.sales.csv')->with('notice', 'アップロードしました');
     }
 
+    /**
+     * @return \App\Traits\CsvTrait
+     */
     public function csvDownload()
     {
         $names = Sales::$names;

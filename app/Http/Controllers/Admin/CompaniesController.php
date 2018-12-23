@@ -12,25 +12,47 @@ class CompaniesController extends Controller
 {
     use FormTrait;
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
-        $data =[];
-        // $data = $this->searchCompany($request);
+        $data['s_name']    = $request->name;
+        $data['s_order']   = $request->order;
+        $data['companies'] = Company::nameIn('name', $data['s_name'])
+                                  ->changeOrder($data['s_order'])
+                                  ->paginate (10);
+        $data['params']    = [
+            'name'  => $data['s_name'],
+            'order' => $data['s_order'],
+        ];
         return view('admin.companies.index', $data);
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $data = $this->beforeCreate();
         return view('admin.companies.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function confirm(CompanyRequest $request)
     {
         $data = $this->beforeConfirm($request);
         return view('admin.companies.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data    = session()->get('post_data');
@@ -42,6 +64,11 @@ class CompaniesController extends Controller
         return redirect()->route('admin.company.index');
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
     {
         $data          = $this->beforeShow($request);
@@ -49,6 +76,10 @@ class CompaniesController extends Controller
         return view('admin.companies.create', $data);
     }
 
+    /**
+     * @param  \App\Models\Company  $company
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Company $company)
     {
         $company = $this->addParams($company);
@@ -56,6 +87,11 @@ class CompaniesController extends Controller
         return view('admin.companies.create', $data);
     }
 
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $data    = session()->get('post_data');
@@ -67,6 +103,10 @@ class CompaniesController extends Controller
         return redirect()->route('admin.company.index');
     }
 
+    /**
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $company = Company::findOrFail($id)->delete();

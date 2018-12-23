@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AppLayoutComposer
 {
+    /**
+     * @return viod
+     */
     public function compose(View $view)
     {
         $view->with([
@@ -15,6 +18,9 @@ class AppLayoutComposer
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function greeting() {
         $time = date('H');
         switch ($time) {

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 trait FormTrait
 {
+    /**
+     * @return array $data
+     */
     private function beforeCreate()
     {
         $data['edit'] = false;
@@ -20,6 +23,9 @@ trait FormTrait
         return $data;
     }
 
+    /**
+     * @return array $data
+     */
     private function beforeConfirm(Request $request)
     {
         if (session()->has('id')) {
@@ -34,6 +40,10 @@ trait FormTrait
         return $data;
     }
 
+    /**
+     * @param \Illuminate\Http\Request  $request
+     * @return array $data
+     */
     private function beforeShow(Request $request)
     {
         $data['edit'] = false;
@@ -41,6 +51,10 @@ trait FormTrait
         return $data;
     }
 
+    /**
+     * @param array $value
+     * @return array $data
+     */
     private function beforeEdit($value)
     {
 

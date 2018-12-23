@@ -8,8 +8,6 @@ use App\Models\News;
 class NewsRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
      * @return bool
      */
     public function authorize()
@@ -18,8 +16,6 @@ class NewsRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules()
@@ -32,6 +28,9 @@ class NewsRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function attributes()
     {
         return News::$names;

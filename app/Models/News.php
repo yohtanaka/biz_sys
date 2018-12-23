@@ -10,28 +10,25 @@ class News extends Model
 {
     use SearchTrait;
 
+    /**
+     * @param $query
+     * @return $query
+     */
     public function scopeForAdmins($query) {
         return $query->where('type', 1)->where('display_flag', 1)->latest()->get();
     }
 
-    // public function getTypeAttribute($value) {
-    //     return self::$type[$value];
-    // }
-
-    // public function getDisplayFlagAttribute($value) {
-    //     return self::$display[$value];
-    // }
-
-    // public function setTypeAttribute($value)
-    // {
-    //     $this->attributes['type'] = self::$type[$value];
-    // }
-
+    /**
+     * @return \App\Models\User
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
 
+    /**
+     * @return void
+     */
     public static function boot()
     {
         parent::boot();
@@ -42,7 +39,10 @@ class News extends Model
         });
     }
 
-    static $names = [
+    /**
+     * @var array
+     */
+    public static $names = [
         'title'        => 'お知らせタイトル',
         'type'         => 'お知らせタイプ',
         'body'         => '本文',
@@ -50,16 +50,25 @@ class News extends Model
         'user_id'      => 'ユーザID',
     ];
 
-    static $type = [
+    /**
+     * @var array
+     */
+    public static $type = [
         1 => '管理者向け',
         2 => 'ユーザ向け',
     ];
 
-    static $display = [
+    /**
+     * @var array
+     */
+    public static $display = [
         1 => '表示',
         2 => '非表示',
     ];
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'title',
         'type',

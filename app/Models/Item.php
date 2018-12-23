@@ -9,6 +9,9 @@ class Item extends Model
 {
     use SearchTrait;
 
+    /**
+     * @return \App\Models\Sales
+     */
     public function sales()
     {
         return $this->belongsToMany('App\Models\Sales');

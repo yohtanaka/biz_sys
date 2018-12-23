@@ -7,8 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class CsvRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
      * @return bool
      */
     public function authorize()
@@ -17,8 +15,6 @@ class CsvRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules()
@@ -28,6 +24,9 @@ class CsvRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function attributes()
     {
         return [
@@ -35,6 +34,9 @@ class CsvRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function messages() {
         return [
             'csvFile.file'      => ':attributeが保存できませんでした',
