@@ -1,13 +1,13 @@
 @if ($show)
-@if ($edit)
-{{ Form::open(['route' => [$name . '.update', 'id' => $id], 'method' => 'put']) }}
+    @if ($edit)
+        {{ Form::open(['route' => [$name . '.update', 'id' => $id], 'method' => 'put']) }}
+    @else
+        {{ Form::open(['route' => $name . '.store']) }}
+    @endif
 @else
-{{ Form::open(['route' => $name . '.store']) }}
-@endif
-@else
-{{ Form::open(['route' => $name . '.confirm']) }}
+    {{ Form::open(['route' => $name . '.confirm']) }}
 @endif
 
 @if ($edit)
-{{ Form::hidden('edit', 'true') }}
+    {{ Form::hidden('edit', 'true') }}
 @endif

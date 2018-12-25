@@ -163,6 +163,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+        App\Providers\FormMacroServiceProvider::class,
 
     ],
 
