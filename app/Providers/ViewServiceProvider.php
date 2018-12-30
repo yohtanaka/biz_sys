@@ -16,8 +16,8 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer('*.header', 'App\Http\ViewComposers\AppLayoutComposer');
         View::composer('*.*.index', 'App\Http\ViewComposers\ResetSessionComposer');
-        View::composer('admin.users.*', 'App\Http\ViewComposers\UserParamComposer');
-        View::composer('admin.news.*', 'App\Http\ViewComposers\NewsParamComposer');
+        View::composer('admin.users.*', 'App\Http\ViewComposers\UserVariableComposer');
+        View::composer('admin.news.*', 'App\Http\ViewComposers\NewsVariableComposer');
     }
 
     /**

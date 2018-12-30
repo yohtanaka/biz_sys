@@ -10,22 +10,22 @@
     </div>
     <section class="section">
         @foreach ($list as $news)
-        <div class="col-12">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <div class="header-block">
-                        <p class="title">{{ $news->title }}</p>
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="header-block">
+                            <p class="title">{{ $news->title }}</p>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <p>{{ $news->body }}</p>
+                    </div>
+                    <div class="card-footer right">
+                        {{ $news->user->getFullName() }}
+                        {{ $news->updated_at->format('Y/m/d') }}
                     </div>
                 </div>
-                <div class="card-block">
-                    <p>{{ $news->body }}</p>
-                </div>
-                <div class="card-footer right">
-                    {{ $news->user->getFullName() }}
-                    {{ $news->updated_at->format('Y/m/d') }}
-                </div>
             </div>
-        </div>
         @endforeach
     </section>
 </article>

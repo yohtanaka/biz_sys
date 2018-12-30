@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Section;
 use App\Models\Position;
 
-class UserParamComposer
+class UserVariableComposer
 {
     /**
      * @return void

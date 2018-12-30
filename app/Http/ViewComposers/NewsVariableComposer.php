@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Models\News;
 
-class NewsParamComposer
+class NewsVariableComposer
 {
     /**
      * @return viod

@@ -7,11 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Models\News;
 use App\Traits\FormTrait;
-use App\Traits\PostNewsTrait;
+use App\Traits\NewsAttributeTrait;
 
 class NewsController extends Controller
 {
-    use FormTrait, PostNewsTrait;
+    use FormTrait, NewsAttributeTrait;
 
     /**
      * @param  \Illuminate\Http\Request  $request
@@ -19,7 +19,7 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $this->searchNews($request);
+        $data = $this->searchAttribute($request);
         return view('admin.news.index', $data);
     }
 

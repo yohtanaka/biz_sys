@@ -7,12 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use App\Traits\FormTrait;
-use App\Traits\PostUserTrait;
+use App\Traits\UserAttributeTrait;
 use App\Models\City;
 
 class UsersController extends Controller
 {
-    use FormTrait, PostUserTrait;
+    use FormTrait, UserAttributeTrait;
 
     /**
      * @param  \Illuminate\Http\Request  $request
@@ -53,7 +53,7 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.user.create')->withInput($data);
         }
-        $data = $this->formatParams($data);
+        $data = $this->formatAttribute($data);
         $user = User::create($data);
         return redirect()->route('admin.user.index');
     }
@@ -76,7 +76,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $user = $this->addParams($user);
+        $user = $this->addAttribute($user);
         $data = $this->beforeEdit($user);
         return view('admin.users.create', $data);
     }
@@ -92,7 +92,7 @@ class UsersController extends Controller
         if ($request->get('action') === 'back') {
             return redirect()->route('admin.user.edit', ['id' => $id ])->withInput($data);
         }
-        $data = $this->formatParams($data);
+        $data = $this->formatAttribute($data);
         $user = User::findOrFail($id)->update($data);
         return redirect()->route('admin.user.index');
     }

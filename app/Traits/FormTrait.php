@@ -11,16 +11,16 @@ trait FormTrait
      */
     private function beforeCreate()
     {
-        $data['edit'] = false;
-        $data['show'] = false;
-        if (!session()->exists('_old_input')) {
-            session()->forget('post_data');
-        }
-        if (session()->has('id')) {
-            session()->forget('id');
-            session()->forget('_old_input');
-        }
-        return $data;
+        // $data['edit'] = false;
+        // $data['show'] = false;
+        // if (!session()->exists('_old_input')) {
+        //     session()->forget('post_data');
+        // }
+        // if (session()->has('id')) {
+        //     session()->forget('id');
+        //     session()->forget('_old_input');
+        // }
+        // return $data;
     }
 
     /**
@@ -28,38 +28,36 @@ trait FormTrait
      */
     private function beforeConfirm(Request $request)
     {
-        if (session()->has('id')) {
-            $data['edit'] = true;
-            $data['id']   = session()->get('id');
-        } else {
-            $data['edit'] = false;
-        }
-        $data['show']  = 'confirm';
+        // if (session()->has('id')) {
+        //     $data['edit'] = true;
+        //     $data['id']   = session()->get('id');
+        // } else {
+        //     $data['edit'] = false;
+        // }
+        // $data['show']  = 'confirm';
         $data['value'] = $request->all();
         session()->put('post_data', $data['value']);
         return $data;
     }
 
     /**
-     * @param \Illuminate\Http\Request  $request
      * @return array
      */
-    private function beforeShow(Request $request)
+    private function beforeShow()
     {
-        $data['edit'] = false;
-        $data['show'] = 'show';
-        return $data;
+        // $data['edit'] = false;
+        // $data['show'] = 'show';
+        // return $data;
     }
 
     /**
-     * @param array $value
+     * @param $value
      * @return array
      */
     private function beforeEdit($value)
     {
-
-        $data['edit'] = true;
-        $data['show'] = false;
+        // $data['edit'] = true;
+        // $data['show'] = false;
         if (!session()->exists('_old_input')) {
             session()->forget('post_data');
         }

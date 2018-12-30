@@ -6,13 +6,13 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\City;
 
-trait PostUserTrait
+trait UserAttributeTrait
 {
     /**
      * @param \Illuminate\Http\Request  $request
      * @return array
      */
-    private function searchUser($request)
+    private function searchAttribute($request)
     {
         $data['s_name']     = $request->name;
         $data['s_section']  = $request->section;
@@ -40,7 +40,7 @@ trait PostUserTrait
      * @param $data
      * @return array
      */
-    private function formatParams($data)
+    private function formatAttribute($data)
     {
         $data['l_n_kana']    = mb_convert_kana($data['l_n_kana'], 'C');
         $data['password']    = Hash::make($data['password']);
@@ -65,7 +65,7 @@ trait PostUserTrait
      * @param $user
      * @return array
      */
-    private function addParams($user)
+    private function addAttribute($user)
     {
         $user['zip1'] = substr($user['zip'], 0, 3);
         $user['zip2'] = substr($user['zip'], -4);

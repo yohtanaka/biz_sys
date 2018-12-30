@@ -4,13 +4,13 @@ namespace App\Traits;
 
 use App\Models\News;
 
-trait PostNewsTrait
+trait NewsAttributeTrait
 {
     /**
      * @param \Illuminate\Http\Request  $request
      * @return array
      */
-    private function searchNews($request)
+    private function searchAttribute($request)
     {
         $data['s_name']    = $request->name;
         $data['s_type']    = $request->type;
