@@ -40,6 +40,9 @@ class CrudBaseComposer
             case ('edit'):
                 $view->with('show', false);
                 $view->with('edit', true);
+                if (!session()->exists('_old_input')) {
+                    session()->forget('post_data');
+                }
                 break;
 
             default:

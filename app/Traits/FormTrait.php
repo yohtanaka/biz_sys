@@ -58,16 +58,24 @@ trait FormTrait
     {
         // $data['edit'] = true;
         // $data['show'] = false;
-        if (!session()->exists('_old_input')) {
-            session()->forget('post_data');
-        }
-        if (session()->has('post_data.edit') || session()->has('errors')) {
-            return $data;
-        }
-        $values = $value->toArray();
-        session()->put('id', $values['id']);
-        foreach ($values as $key => $val) {
-            session()->put("_old_input.{$key}", $val);
+        // if (!session()->exists('_old_input')) {
+        //     session()->forget('post_data');
+        // }
+        // if (session()->has('post_data.edit') || session()->has('errors')) {
+        //     return $data;
+        // }
+        // $values = $value->toArray();
+        // session()->put('id', $values['id']);
+        // foreach ($values as $key => $val) {
+        //     session()->put("_old_input.{$key}", $val);
+        // }
+        // return $data;
+        if (!session()->has('post_data.edit') && !session()->has('errors')) {
+            $values = $value->toArray();
+            session()->put('id', $values['id']);
+            foreach ($values as $key => $val) {
+                session()->put("_old_input.{$key}", $val);
+            }
         }
         return $data;
     }
