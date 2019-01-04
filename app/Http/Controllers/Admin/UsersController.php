@@ -29,8 +29,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $data = $this->beforeCreate();
-        return view('admin.users.create', $data);
+        return view('admin.users.create');
     }
 
      /**
@@ -39,7 +38,7 @@ class UsersController extends Controller
      */
    public function confirm(UserRequest $request)
     {
-        $data = $this->beforeConfirm($request);
+        $data = $this->putPostData($request);
         return view('admin.users.create', $data);
     }
 
@@ -65,7 +64,6 @@ class UsersController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data          = $this->beforeShow($request);
         $data['value'] = User::findOrFail($id);
         return view('admin.users.create', $data);
     }
@@ -77,7 +75,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $user = $this->addAttribute($user);
-        $data = $this->beforeEdit($user);
+        $data = $this->putOldInput($user);
         return view('admin.users.create', $data);
     }
 

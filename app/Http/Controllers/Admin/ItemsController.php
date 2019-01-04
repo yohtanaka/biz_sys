@@ -39,8 +39,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        $data = $this->beforeCreate();
-        return view('admin.items.create', $data);
+        return view('admin.items.create');
     }
 
     /**
@@ -49,7 +48,7 @@ class ItemsController extends Controller
      */
     public function confirm(ItemRequest $request)
     {
-        $data = $this->beforeConfirm($request);
+        $data = $this->putPostData($request);
         return view('admin.items.create', $data);
     }
 
@@ -75,7 +74,6 @@ class ItemsController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data          = $this->beforeShow($request);
         $data['value'] = Item::findOrFail($id);
         return view('admin.items.create', $data);
     }
@@ -87,7 +85,7 @@ class ItemsController extends Controller
     public function edit(Item $item)
     {
         $item = $this->addParams($item);
-        $data = $this->beforeEdit($item);
+        $data = $this->putOldInput($item);
         return view('admin.items.create', $data);
     }
 

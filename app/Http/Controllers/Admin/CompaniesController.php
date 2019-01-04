@@ -35,8 +35,7 @@ class CompaniesController extends Controller
      */
     public function create()
     {
-        $data = $this->beforeCreate();
-        return view('admin.companies.create', $data);
+        return view('admin.companies.create');
     }
 
     /**
@@ -45,7 +44,7 @@ class CompaniesController extends Controller
      */
     public function confirm(CompanyRequest $request)
     {
-        $data = $this->beforeConfirm($request);
+        $data = $this->putPostData($request);
         return view('admin.companies.create', $data);
     }
 
@@ -71,7 +70,6 @@ class CompaniesController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data          = $this->beforeShow($request);
         $data['value'] = Company::findOrFail($id);
         return view('admin.companies.create', $data);
     }
@@ -83,7 +81,7 @@ class CompaniesController extends Controller
     public function edit(Company $company)
     {
         $company = $this->addParams($company);
-        $data    = $this->beforeEdit($company);
+        $data    = $this->putOldInput($company);
         return view('admin.companies.create', $data);
     }
 

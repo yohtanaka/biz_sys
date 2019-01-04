@@ -28,8 +28,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $data = $this->beforeCreate();
-        return view('admin.news.create', $data);
+        return view('admin.news.create');
     }
 
     /**
@@ -38,7 +37,7 @@ class NewsController extends Controller
      */
     public function confirm(NewsRequest $request)
     {
-        $data = $this->beforeConfirm($request);
+        $data = $this->putPostData($request);
         return view('admin.news.create', $data);
     }
 
@@ -63,7 +62,6 @@ class NewsController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data          = $this->beforeShow($request);
         $data['value'] = News::findOrFail($id);
         return view('admin.news.create', $data);
     }
@@ -74,7 +72,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        $data = $this->beforeEdit($news);
+        $data = $this->putOldInput($news);
         return view('admin.news.create', $data);
     }
 

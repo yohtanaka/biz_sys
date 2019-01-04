@@ -39,8 +39,7 @@ class ShopsController extends Controller
      */
     public function create()
     {
-        $data = $this->beforeCreate();
-        return view('admin.shops.create', $data);
+        return view('admin.shops.create');
     }
 
     /**
@@ -49,7 +48,7 @@ class ShopsController extends Controller
      */
     public function confirm(ShopRequest $request)
     {
-        $data = $this->beforeConfirm($request);
+        $data = $this->putPostData($request);
         return view('admin.shops.create', $data);
     }
 
@@ -75,7 +74,6 @@ class ShopsController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data          = $this->beforeShow($request);
         $data['value'] = Shop::findOrFail($id);
         return view('admin.shops.create', $data);
     }
@@ -87,7 +85,7 @@ class ShopsController extends Controller
     public function edit(Shop $shop)
     {
         $shop = $this->addParams($shop);
-        $data = $this->beforeEdit($shop);
+        $data = $this->putOldInput($shop);
         return view('admin.shops.create', $data);
     }
 

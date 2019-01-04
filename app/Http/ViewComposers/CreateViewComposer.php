@@ -1,11 +1,11 @@
--<?php
+<?php
 
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
-class CrudBaseComposer
+class CreateViewComposer
 {
     public function compose(View $view)
     {
@@ -25,24 +25,22 @@ class CrudBaseComposer
                 break;
 
             case ('confirm'):
-                if (session()->has('id')) {
-                    $edit = 'edit';
-                    $id = session()->get('id');
-                } else {
-                    $edit = false;
-                }
                 session()->keep('images');
-                $view->with('show', 'show');
-                $view->with('edit', $edit);
-                $view->with('id', $id);
+                if (session()->has('id')) {
+                    $view->with('edit', true);
+                    $view->with('id', session()->get('id'));
+                } else {
+                    $view->with('edit', false);
+                }
+                $view->with('show', 'confirm');
                 break;
 
             case ('edit'):
-                $view->with('show', false);
-                $view->with('edit', true);
                 if (!session()->exists('_old_input')) {
                     session()->forget('post_data');
                 }
+                $view->with('show', false);
+                $view->with('edit', true);
                 break;
 
             default:
