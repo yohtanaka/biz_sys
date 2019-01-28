@@ -27,12 +27,6 @@ trait UserAttributeTrait
                                 ->nameEqual('position_code', $data['s_position'])
                                 ->changeOrder($data['s_order'])
                                 ->paginate(10);
-        $data['params']     = [
-            'name'     => $data['s_name'],
-            'section'  => $data['s_section'],
-            'position' => $data['s_position'],
-            'order'    => $data['s_order'],
-        ];
         return $data;
     }
 

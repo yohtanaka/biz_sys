@@ -126,7 +126,7 @@
         </div>
     </section>
     <nav class="text-right">
-        {{ $users->appends($params)->links() }}
+        {{ $users->appends(Request::query())->links() }}
     </nav>
 </article>
 <script>

@@ -83,7 +83,7 @@
         </div>
     </section>
     <nav class="text-right">
-        {{ $shops->appends($params)->links() }}
+        {{ $shops->appends(Request::query())->links() }}
     </nav>
 </article>
 <script>

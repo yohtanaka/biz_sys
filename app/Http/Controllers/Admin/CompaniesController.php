@@ -23,10 +23,6 @@ class CompaniesController extends Controller
         $data['companies'] = Company::nameIn('name', $data['s_name'])
                                   ->changeOrder($data['s_order'])
                                   ->paginate (10);
-        $data['params']    = [
-            'name'  => $data['s_name'],
-            'order' => $data['s_order'],
-        ];
         return view('admin.companies.index', $data);
     }
 

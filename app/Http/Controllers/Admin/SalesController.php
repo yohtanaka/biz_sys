@@ -24,9 +24,6 @@ class SalesController extends Controller
         $data['s_order'] = $request->order;
         $data['list']    = Sales::changeOrder($data['s_order'])
                                 ->paginate (10);
-        $data['params']  = [
-            'order' => $data['s_order'],
-        ];
         return view('admin.sales.index', $data);
     }
 
